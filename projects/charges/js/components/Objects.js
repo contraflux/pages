@@ -1,10 +1,10 @@
 /**
- * Container
+ * Objects
  * 
  * Classes for organizing content needed across scripts
  * 
  * @author contraflux
- * @date 10/2/2025
+ * @date 10/8/2025
  */
 
 class Container {
@@ -14,18 +14,23 @@ class Container {
     }
 }
 
-class FieldContainer extends Container {
+export class FieldContainer extends Container {
     constructor(id) {
         super(id);
         this.coordScale = 25;
         this.offsetX = 0;
         this.offsetY = 0;
         this.isDragging = false;
+        this.dragging = null;
         this.mouseOffsetX = 0;
         this.mouseOffsetY = 0;
-        this.initialLocations = [];
         this.zoomSpeed = 2e-3;
         this.overlay = "none";
+        this.chargeList = [];
+        this.dt = 0;
+        this.elapsedTime = 0;
+        this.colorOffset = 0;
+        this.editing = null;
     }
 
     resetFields() {
@@ -37,6 +42,7 @@ class FieldContainer extends Container {
         this.mouseOffsetY = 0;
         this.initialLocations = [];
         this.overlay = "none";
+        this.elapsedTime = 0;
     }
 
     dragGrid(e) {
@@ -55,4 +61,13 @@ class FieldContainer extends Container {
     }
 }
 
-export { FieldContainer };
+export class Charge {
+    constructor(x, y, v_x, v_y, q) {
+        this.x = x;
+        this.y = y;
+        this.v_x = v_x;
+        this.v_y = v_y;
+        this.q = q;
+        this.isLocked = false;
+    }
+}

@@ -33,6 +33,10 @@
   box-shadow: 0 5px 10px black;
 }
 
+.hidden {
+  display: none;
+}
+
 .project {
   position: relative;
   height: 150px;

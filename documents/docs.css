@@ -30,6 +30,10 @@
   box-shadow: 0 5px 10px black;
 }
 
+.hidden {
+  display: none;
+}
+
 .document-holder {
   position: relative;
   width: calc(100vw - 240px - mod(100vw - 240px, 330px) + 30px);

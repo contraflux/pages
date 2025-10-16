@@ -1,161 +1,84 @@
-const filterMSFS = document.getElementById('filter-msfs');
-const filterDCS = document.getElementById('filter-dcs');
-const filterScenery = document.getElementById('filter-scenery');
-const filterLivery = document.getElementById('filter-livery');
-const filterC182T = document.getElementById('filter-c182t');
-const filterOH58D = document.getElementById('filter-oh58d');
-const filterAH64D = document.getElementById('filter-ah64d');
-const filterUH60L = document.getElementById('filter-uh60l');
-
-let selectedMSFS = false;
-let selectedDCS = false;
-let selectedScenery = false;
-let selectedLivery = false;
-let selectedC182T = false;
-let selectedOH58D = false;
-let selectedAH64D = false;
-let selectedUH60L = false;
-
-filterMSFS.addEventListener('click', () => {
-    selectedMSFS = !selectedMSFS;
-    if (selectedMSFS) {
-        filterMSFS.style.backgroundColor = "rgb(190, 200, 220)";  
-        filterMSFS.style.color = "rgb(22, 22, 28)";  
-
-        selectedDCS = false;
-        filterDCS.style.backgroundColor = "rgb(22, 22, 28)";
-        filterDCS.style.color = "rgb(190, 200, 220)"; 
-    } else {
-        filterMSFS.style.backgroundColor = "rgb(22, 22, 28)";
-        filterMSFS.style.color = "rgb(190, 200, 220)"; 
+class Filter {
+    constructor(elementId, affectedIds) {
+        this.element = document.getElementById(elementId);
+        this.state = false;
+        this.affectedIds = affectedIds;
+        this.dependencies = [];
+        this.element.addEventListener('click', () => this.switchState());
     }
-});
 
-filterDCS.addEventListener('click', () => {
-    selectedDCS = !selectedDCS;
-    if (selectedDCS) {
-        filterDCS.style.backgroundColor = "rgb(190, 200, 220)";  
-        filterDCS.style.color = "rgb(22, 22, 28)";
+    switchState() {
+        if (this.state) {
+            this.setInactive();
+        } else {
+            for (const dependentFilter of this.dependencies) {
+                dependentFilter.setInactive();
+            }
+            this.setActive();
+        }
 
-        selectedMSFS = false;
-        filterMSFS.style.backgroundColor = "rgb(22, 22, 28)";
-        filterMSFS.style.color = "rgb(190, 200, 220)"; 
-    } else {
-        filterDCS.style.backgroundColor = "rgb(22, 22, 28)";
-        filterDCS.style.color = "rgb(190, 200, 220)"; 
+        updateStates();
     }
-});
 
-filterScenery.addEventListener('click', () => {
-    selectedScenery = !selectedScenery;
-    if (selectedScenery) {
-        filterScenery.style.backgroundColor = "rgb(190, 200, 220)";  
-        filterScenery.style.color = "rgb(22, 22, 28)";
-
-        selectedLivery = false;
-        filterLivery.style.backgroundColor = "rgb(22, 22, 28)";
-        filterLivery.style.color = "rgb(190, 200, 220)";
-    } else {
-        filterScenery.style.backgroundColor = "rgb(22, 22, 28)";
-        filterScenery.style.color = "rgb(190, 200, 220)"; 
+    setActive() {
+        this.state = true;
+        this.element.style.backgroundColor = "rgb(190, 200, 220)";  
+        this.element.style.color = "rgb(22, 22, 28)"; 
     }
-});
 
-filterLivery.addEventListener('click', () => {
-    selectedLivery = !selectedLivery;
-    if (selectedLivery) {
-        filterLivery.style.backgroundColor = "rgb(190, 200, 220)";  
-        filterLivery.style.color = "rgb(22, 22, 28)";
-
-        selectedScenery = false;
-        filterScenery.style.backgroundColor = "rgb(22, 22, 28)";
-        filterScenery.style.color = "rgb(190, 200, 220)"; 
-    } else {
-        filterLivery.style.backgroundColor = "rgb(22, 22, 28)";
-        filterLivery.style.color = "rgb(190, 200, 220)"; 
+    setInactive() {
+        this.state = false;
+        this.element.style.backgroundColor = "rgb(22, 22, 28)"; 
+        this.element.style.color = "rgb(190, 200, 220)";
     }
-});
+}
 
-filterC182T.addEventListener('click', () => {
-    selectedC182T = !selectedC182T;
-    if (selectedC182T) {
-        filterC182T.style.backgroundColor = "rgb(190, 200, 220)";  
-        filterC182T.style.color = "rgb(22, 22, 28)";
+function updateStates() {
+    for (const item of all_items) {
+        let master = true;
+        let show = false;
+        let hide = false;
 
-        selectedOH58D = false;
-        filterOH58D.style.backgroundColor = "rgb(22, 22, 28)";
-        filterOH58D.style.color = "rgb(190, 200, 220)"; 
-        selectedAH64D = false;
-        filterAH64D.style.backgroundColor = "rgb(22, 22, 28)";
-        filterAH64D.style.color = "rgb(190, 200, 220)"; 
-        selectedUH60L = false;
-        filterUH60L.style.backgroundColor = "rgb(22, 22, 28)";
-        filterUH60L.style.color = "rgb(190, 200, 220)"; 
-    } else {
-        filterC182T.style.backgroundColor = "rgb(22, 22, 28)";
-        filterC182T.style.color = "rgb(190, 200, 220)"; 
+        for (const filter of all_filters) {
+            if (filter.state) {
+                master = false;
+                if (filter.affectedIds.includes(item)) {
+                    show = true;
+                } else {
+                    hide = true;
+                }
+            }
+        }
+
+        if ((!hide && show) || master) {
+            document.getElementById(item).className = "asset";
+        } else {
+            document.getElementById(item).className = "asset hidden";
+        }
     }
-});
+}
 
-filterOH58D.addEventListener('click', () => {
-    selectedOH58D = !selectedOH58D;
-    if (selectedOH58D) {
-        filterOH58D.style.backgroundColor = "rgb(190, 200, 220)";  
-        filterOH58D.style.color = "rgb(22, 22, 28)";
+const msfs = new Filter('filter-msfs', ['kayz', 'kjpx', 'ny03', '21n', 'khwv', '7b2', 'kjra', 'n67ad']);
+const dcs = new Filter('filter-dcs', ['2-17-a', '2-17-b', '6-6-c', '1-10', '1-101-b', '1-101-c', '5-101-a', '5-101-c']);
 
-        selectedC182T = false;
-        filterC182T.style.backgroundColor = "rgb(22, 22, 28)";
-        filterC182T.style.color = "rgb(190, 200, 220)"; 
-        selectedAH64D = false;
-        filterAH64D.style.backgroundColor = "rgb(22, 22, 28)";
-        filterAH64D.style.color = "rgb(190, 200, 220)"; 
-        selectedUH60L = false;
-        filterUH60L.style.backgroundColor = "rgb(22, 22, 28)";
-        filterUH60L.style.color = "rgb(190, 200, 220)"; 
-    } else {
-        filterOH58D.style.backgroundColor = "rgb(22, 22, 28)";
-        filterOH58D.style.color = "rgb(190, 200, 220)"; 
-    }
-});
+msfs.dependencies = [dcs];
+dcs.dependencies = [msfs];
 
-filterAH64D.addEventListener('click', () => {
-    selectedAH64D = !selectedAH64D;
-    if (selectedAH64D) {
-        filterAH64D.style.backgroundColor = "rgb(190, 200, 220)";  
-        filterAH64D.style.color = "rgb(22, 22, 28)";
+const scenery = new Filter('filter-scenery', ['kayz', 'kjpx', 'ny03', '21n', 'khwv', '7b2', 'kjra']);
+const livery = new Filter('filter-livery', ['n67ad', '2-17-a', '2-17-b', '6-6-c', '1-10', '1-101-b', '1-101-c', '5-101-a', '5-101-c']);
 
-        selectedC182T = false;
-        filterC182T.style.backgroundColor = "rgb(22, 22, 28)";
-        filterC182T.style.color = "rgb(190, 200, 220)"; 
-        selectedOH58D = false;
-        filterOH58D.style.backgroundColor = "rgb(22, 22, 28)";
-        filterOH58D.style.color = "rgb(190, 200, 220)"; 
-        selectedUH60L = false;
-        filterUH60L.style.backgroundColor = "rgb(22, 22, 28)";
-        filterUH60L.style.color = "rgb(190, 200, 220)"; 
-    } else {
-        filterAH64D.style.backgroundColor = "rgb(22, 22, 28)";
-        filterAH64D.style.color = "rgb(190, 200, 220)"; 
-    }
-});
+scenery.dependencies = [livery];
+livery.dependencies = [scenery];
 
-filterUH60L.addEventListener('click', () => {
-    selectedUH60L = !selectedUH60L;
-    if (selectedUH60L) {
-        filterUH60L.style.backgroundColor = "rgb(190, 200, 220)";  
-        filterUH60L.style.color = "rgb(22, 22, 28)";
+const c182t = new Filter('filter-c182t', ['n67ad']);
+const oh58d = new Filter('filter-oh58d', ['2-17-b']);
+const ah64d = new Filter('filter-ah64d', ['2-17-a', '6-6-c', '1-10', '1-101-b', '1-101-c']);
+const uh60l = new Filter('filter-uh60l', ['5-101-a', '5-101-c']);
 
-        selectedC182T = false;
-        filterC182T.style.backgroundColor = "rgb(22, 22, 28)";
-        filterC182T.style.color = "rgb(190, 200, 220)"; 
-        selectedOH58D = false;
-        filterOH58D.style.backgroundColor = "rgb(22, 22, 28)";
-        filterOH58D.style.color = "rgb(190, 200, 220)"; 
-        selectedAH64D = false;
-        filterAH64D.style.backgroundColor = "rgb(22, 22, 28)";
-        filterAH64D.style.color = "rgb(190, 200, 220)"; 
-    } else {
-        filterUH60L.style.backgroundColor = "rgb(22, 22, 28)";
-        filterUH60L.style.color = "rgb(190, 200, 220)"; 
-    }
-});
+c182t.dependencies = [oh58d, ah64d, uh60l];
+oh58d.dependencies = [c182t, ah64d, uh60l];
+ah64d.dependencies = [c182t, oh58d, uh60l];
+uh60l.dependencies = [c182t, oh58d, ah64d];
+
+const all_items = ['kayz', 'kjpx', 'ny03', '21n', 'khwv', '7b2', 'kjra', 'n67ad', '2-17-a', '2-17-b', '6-6-c', '1-10', '1-101-b', '1-101-c', '5-101-a', '5-101-c'];
+const all_filters = [msfs, dcs, scenery, livery, c182t, oh58d, ah64d, uh60l];

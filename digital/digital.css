@@ -36,6 +36,10 @@
   margin-left: 5px; margin-right: 10px;
 }
 
+.hidden {
+  display: none;
+}
+
 .asset-holder {
   position: relative;
   width: calc(100vw - 120px - mod(100vw - 120px, 330px) + 30px);

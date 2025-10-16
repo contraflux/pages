@@ -1,3 +1,41 @@
+.filter-bar {
+  height: 50px;
+  width: calc(100vw - 120px - mod(100vw - 120px, 330px) - 30px);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: -20px;
+}
+
+.filter-bar>p {
+  position: relative;
+  float: left;
+  height: 30px;
+  padding-left: 10px; padding-right: 10px;
+  font-size: 14px;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--light);
+  box-sizing: border-box;
+  transition: ease 0.4s all;
+}
+
+.filter-bar>p:hover {
+  margin-top: 5px;
+  box-shadow: 0 5px 10px black;
+}
+
+.filter-bar-spacer {
+  background-color: var(--light);
+  width: 1px; height: 40px;
+  margin-left: 5px; margin-right: 10px;
+}
+
 .asset-holder {
   position: relative;
   width: calc(100vw - 120px - mod(100vw - 120px, 330px) + 30px);

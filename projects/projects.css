@@ -2,6 +2,37 @@
   color: var(--light);
 }
 
+.filter-bar {
+  height: 50px;
+  margin-left: 120px; margin-right: 120px;
+  display: flex;
+  align-items: center;
+  margin-bottom: -20px;
+}
+
+.filter-bar>p {
+  position: relative;
+  float: left;
+  height: 30px;
+  padding-left: 10px; padding-right: 10px;
+  font-size: 14px;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--light);
+  box-sizing: border-box;
+  transition: ease 0.4s all;
+}
+
+.filter-bar>p:hover {
+  margin-top: 5px;
+  box-shadow: 0 5px 10px black;
+}
+
 .project {
   position: relative;
   height: 150px;

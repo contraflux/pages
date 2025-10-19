@@ -111,3 +111,13 @@
   border-color: var(--light);
   box-sizing: border-box;
 }
+
+.no-results {
+  display: none;
+  margin-bottom: -10px;
+  text-align: center;
+  width: 275px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 30px;
+}

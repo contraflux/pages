@@ -34,6 +34,7 @@ class Filter {
 }
 
 function updateStates() {
+    let all_hidden = true;
     for (const item of all_items) {
         let master = true;
         let show = false;
@@ -52,9 +53,16 @@ function updateStates() {
 
         if ((!hide && show) || master) {
             document.getElementById(item).className = "asset";
+            all_hidden = false;
         } else {
             document.getElementById(item).className = "asset hidden";
         }
+    }
+
+    if (all_hidden) {
+        document.getElementById('no-results').style.display = "block";
+    } else {
+        document.getElementById('no-results').style.display = "none";
     }
 }
 

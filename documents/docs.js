@@ -67,10 +67,12 @@ function updateStates() {
 }
 
 const math = new Filter('filter-math', ['surface-integrals', 'surface-derivatives']);
-const physics = new Filter('filter-physics', ['ampere', 'rlc', 'reference-frames']);
+const physics = new Filter('filter-physics', ['ampere', 'rlc', 'reference-frames', 'nozzle-theory', 'rao-nozzles']);
+const engineering = new Filter('filter-engineering', ['nozzle-theory', 'rao-nozzles'])
 
-math.dependencies = [physics];
-physics.dependencies = [math];
+math.dependencies = [physics, engineering];
+physics.dependencies = [math, engineering];
+engineering.dependencies = [math, physics];
 
-const all_items = ['ampere', 'rlc', 'reference-frames', 'surface-integrals', 'surface-derivatives'];
-const all_filters = [math, physics];
+const all_items = ['ampere', 'rlc', 'reference-frames', 'surface-integrals', 'surface-derivatives', 'nozzle-theory', 'rao-nozzles'];
+const all_filters = [math, physics, engineering];

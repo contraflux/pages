@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Solids</title>
+    <title>Liquids</title>
     <link rel="icon" href="../../../assets/favicon.png">
     <link rel="stylesheet" href="../../../index.css">
     <link rel="stylesheet" href="../../hardware.css">
@@ -44,185 +44,105 @@
         <img class="banner" src="../../../assets/projects/banner.png" width="100%">
 
         <div class="content">
-            <h2>Solid Propulsion</h2>
-            <h4>Nozzle Optimization</h4>
+            <h2>Liquid Propulsion</h2>
+            <h4>Fluid Flow Simulation</h4>
             <p>
-                My first project was to optimize our rocket nozzle. A nozzle
-                consists of two sections, the converging section that funnels
-                the exhaust gas to the throat while speeding it up, and then
-                the diverging section that allows the gas to expand, further
-                icnreasing its velocity. There are five main parameters that
-                define a converging-diverging nozzle:
-                <br>
-                <br> 1. Converging half-angle: The angle between the converging wall and the axial direction
-                <br> 2. Diverging half-angle: The angle between the diverging wall and the axial direction
-                <br> 3. Entry area: The cross-sectional area of the nozzle at the entry
-                <br> 4. Throat area: The cross-sectional area of the nozzle at the throat
-                <br> 5. Exit area: The cross-sectional area of the nozzle at the exit
-                <br>
-                <br>
-                From our static hotfire test last year, the peak chamber pressure
-                was around 590 PSI. From this pressure and Vieille's Law, I found
-                our mass flow rate. From the mass flow rate, chamber pressure, and choked condition
-                at the nozzle throat, I then calculated the required throat area. I also then calculated the
-                optimal exit Mach number, and from that I then found the optimal expansion ratio, and thus exit area.
+                We are developing Duke AERO's first liquid engine, ENO.
+                Currently we have a test stand consisting of pipes, flowmeters,
+                and valves that transport the fluids from their respective
+                tanks to the combustion chamber. We are using nitrous oxide as
+                our oxidizer, ethanol as our fuel, and nitrogen gas to backfill
+                the tanks and push the other fluids towards the combustion chamber.
+            </p>
+            <div class="figure" style="float: none; display: block; margin: auto; width:600px">
+                <img src="plumbing_diagram.png" style="width:400px;">
+                <p>Figure 1: Liquid engine plumbing diagram</p>
+            </div>
+            <p>
+                Before we run our actual propellants through the system, we are
+                conducting a series of cold flows using water as a stand-in for both
+                nitrous oxide and ethanol. Each test we collect pressure data from four
+                points in each line, the tank pressure, flowmeter upstream pressure,
+                flowmeter downstream pressure, and the injector pressure. But we can't
+                be sure we are getting correct results unless we have something to compare
+                these numbers to.
             </p>
             <p>
-                I found an optimal expansion ratio of 5.81, while our expansion ratio last year was 4.49. To verify
-                my calculations, I ran a series of simulations using Ansys Fluent, and calculated the force for each.
+                In order to validate our test data, I developed a script to simulate pressure
+                losses through various piping elements, and to calculate mass flow via the
+                pressure drop across the flowmeter and injector. My program then iteratively
+                solves the system to ensure the mass flow rate across the flowmeter and
+                injector are equal. This requirement is called continuity, and it's really
+                an extension of the conservation of mass.
             </p>
             <div class="figure-grid">
                 <div class="figure">
-                    <img src="../25-6_c_mach.png" style="width:400px;">
-                    <p>Figure 1: Mach number through the redesigned nozzle</p>
+                    <img src="setup.png" style="height:350px;">
+                    <p>Figure 2: Example of simulation input code</p>
                 </div>
                 <div class="figure">
-                    <img src="../25-6_c_pressure.png" style="width:400px;">
-                    <p>Figure 2: Static pressure through the redesigned nozzle</p>
+                    <img src="solution.png" style="height:350px;">
+                    <p>Figure 3: Simulation results for the parameters from Figure 2</p>
                 </div>
             </div>
+            <p>
+                Once we have data from a cold flow test we can compare it with the results
+                of the simulation.
+            </p>
             <div class="figure-table">
                 <table class="data-table">
                     <tr class="data-head">
-                        <th>Name</th>
-                        <th>Exit Pressure (Pa)</th>
-                        <th>Exit Mach</th>
-                        <th>Exit Velocity (m/s)</th>
-                        <th>Mass Flow Rate (kg/s)</th>
-                        <th>Thrust (N)</th>
-                        <th>ISP (s)</th>
+                        <th>Test</th>
+                        <th>Tank (PSI)</th>
+                        <th>Indicated Injector Delta (PSI)</th>
+                        <th>Injector Delta (PSI)</th>
+                        <th>Chamber (PSI)</th>
+                        <th>Head Loss (PSI)</th>
+                        <th>Mass Flow (kg/s)</th>
                     </tr>
                     <tr class="data-row">
-                        <td>24-25 C</td>
-                        <td>38983</td>
-                        <td>2.718</td>
-                        <td>2339.66</td>
-                        <td>2.418265</td>
-                        <td>5837.34</td>
-                        <td>246.31</td>
+                        <td>10/19/25</td>
+                        <td>700</td>
+                        <td>175</td>
+                        <td>170</td>
+                        <td>14.7</td>
+                        <td>515</td>
+                        <td>0.260</td>
                     </tr>
                     <tr class="data-row">
-                        <td>25-26 C</td>
-                        <td>-2459</td>
-                        <td>2.904</td>
-                        <td>2421.54</td>
-                        <td>2.423279</td>
-                        <td>5853.42</td>
-                        <td>246.48</td>
+                        <td>Sim</td>
+                        <td>700</td>
+                        <td>159</td>
+                        <td>127</td>
+                        <td>14.7</td>
+                        <td>558</td>
+                        <td>0.276</td>
                     </tr>
                 </table>
                 <p>
-                    Table 1: Results from Ansys Fluent simulations of the old
-                    24-25 conical nozzle with expansion ratio 4.49 and the new
-                    25-26 conical nozzle with expansion ratio 5.81. <br> Exit pressure
-                    is relative to the operating pressure, so a value of 0 Pa is really
-                    101325 Pa.
+                    Table 1: Pressure and mass flow measurements from the 
+                    kersoene line of a Cold Flow test on October 19, 2025,
+                    compared to the simulation from Figure 2
                 </p>
             </div>
             <p>
-                From Table 1, you can see that for the 25-26 conical nozzle the
-                exit pressure was closer to the optimum of 0 Pa, which lead to
-                increased exit velocies. This lead to increased thrust and
-                specific impulse, though the performance increases were less
-                than what we had hoped for.
+                From Table 1, the simulation's predicted head loss is larger
+                than the observed loss, corresponding to a smaller pressure
+                difference across the injector. Despite this, the predicted
+                and observed mass flow rates are quite similar, off by only
+                around 6%.
             </p>
             <p>
-                To verify that this marginal performance increase made sense,
-                I approximated the inverse to the area-Mach relation and found
-                a curve for thrust from expansion ratio.
+                To get the simulator to more closely match the experimental
+                data, there are a few parameters we can play with, mainly
+                the individual discharge coefficients and the roughness
+                values for the braided and stainless steel pipes. In order
+                to solve for these constants, I am working on developing
+                a gradient descent algorithm that iteratively solves for
+                the correct constants to most closely match certain experimental
+                parameters like pressure loss across the injector and flowmeter,
+                and mass flow rate.
             </p>
-            <div class="figure" style="float: none; display: block; margin: auto; width:600px">
-                <img src="../thrustvsepsilon.png" style="width:600px;">
-                <p>Figure 3: Thrust in kilonewtons vs expansion ratio</p>
-            </div>
-            <p>
-                From Figure 3 we can see a maximum right around 5.8 yeilding
-                around 6000 kN, but small increases or decreases in the
-                expansion ratio hardly change the thrust. This graph backs
-                up the small thrust change see in the CFD runs.
-            </p>
-            <p>
-                After this lackluster result, I continued research into optimizing
-                for thrust output, and came acrossa a series of journal entries
-                written by G.V.R. Rao describing a method he found for curving
-                the diverging section of the nozzle to increase performance.
-            </p>
-            <div class="figure" style="float: none; display: block; margin: auto; width:600px">
-                <img src="../rao_sketch.png" style="width:600px;">
-                <p>
-                    Figure 4: Sketch of the diverging section of a Rao nozzle. <br>
-                    "Approximation of Optimum Thrust Nozzle Contour," G.V.R. Rao, Jan. 4 1959.
-                </p>
-            </div>
-            <p>
-                He then approximated these ideal wall contours using a circular
-                arc close to the throat and a parabola towards the exit. Using the
-                expansion ratio and throat radius I found previously, I was able
-                to use Rao's charts to design a new nozzle. I then ran the new nozzle
-                in Fluent to characterize its performance.
-            </p>
-            <div class="figure-grid">
-                <div class="figure">
-                    <img src="../25-6_r_mach.png" style="width:400px;">
-                    <p>Figure 5: Mach number through the Rao nozzle</p>
-                </div>
-                <div class="figure">
-                    <img src="../25-6_r_pressure.png" style="width:400px;">
-                    <p>Figure 6: Static pressure through the Rao nozzle</p>
-                </div>
-            </div>
-            <div class="figure-table">
-                <table class="data-table">
-                    <tr class="data-head">
-                        <th>Name</th>
-                        <th>Exit Pressure (Pa)</th>
-                        <th>Exit Mach</th>
-                        <th>Exit Velocity (m/s)</th>
-                        <th>Mass Flow Rate (kg/s)</th>
-                        <th>Thrust (N)</th>
-                        <th>ISP (s)</th>
-                    </tr>
-                    <tr class="data-row">
-                        <td>25-26 R</td>
-                        <td>-3083</td>
-                        <td>2.917</td>
-                        <td>2448.57</td>
-                        <td>2.427653</td>
-                        <td>5925.91</td>
-                        <td>249.08</td>
-                    </tr>
-                </table>
-                <p>
-                    Table 2: Results from Ansys Fluent simulations of the 25-26
-                    Rao nozzle. <br> Exit pressure is relative to the operating
-                    pressure, so a value of 0 Pa is really 101325 Pa.
-                </p>
-            </div>
-            <p>
-                From the results in Table 2, we can see that the Rao nozzle offers
-                much larger increases in thrust and specific impulse, though the
-                manufacturing complexity might outweigh the potential performance
-                increases.
-            </p>
-            <p>
-                I then used CAD to create two models of our potential solid
-                rocket nozzle for the 2025-26 season. Both had expansion ratios of 5.81, while
-                one was a pure conical nozzle and the other was a Rao nozzle. In Figures 7 and 8 below,
-                the blue material is the aluminum nozzle washer, the orange is phenolic nozzle body,
-                and the grey is graphite throat. The converging half angle in both of these designs
-                is 50 degrees.
-            </p>
-
-            <div class="figure-grid">
-                <div class="figure">
-                    <img src="../conical.png" style="height:350px;">
-                    <p>Figure 7: Conical nozzle for the Duke AERO 2025-26 rocket</p>
-                </div>
-                <div class="figure">
-                    <img src="../rao.png" style="height:350px;">
-                    <p>Figure 8: Rao nozzle for the Duke AERO 2025-26 rocket</p>
-                </div>
-            </div>
         </div>
 
         <div class="footer">

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liquids</title>
+    <link rel="icon" href="../../../../assets/global/favicon.png">
+    <link rel="stylesheet" href="../../../../index.css">
+    <link rel="stylesheet" href="../../../hardware.css">
+    <link rel="stylesheet" href="../aero.css">
+    <script src="../../../../index.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <a href="../../../..">
+            <img class="navbar-name" src="../../../../assets/global/name.png" height="30px">
+        </a>
+        <a class="navbar-item" href="../../../..">
+            <p>Home</p>
+        </a>
+        <a class="navbar-item" href="../../..">
+            <p>Hardware</p>
+        </a>
+        <a class="navbar-item" href="../../../../software">
+            <p>Software</p>
+        </a>
+        <a class="navbar-item" href="../../../../digital">
+            <p>Digital Assets</p>
+        </a>
+        <a class="navbar-item" href="../../../../photography">
+            <p>Photography</p>
+        </a>
+        <a class="navbar-icon" href="https://github.com/contraflux" target="_blank" style="right:90px;">
+            <img src="../../../../assets/global/github.svg" width="30px" height="30px">
+        </a>
+        <a class="navbar-icon" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+            <img src="../../../../assets/global/linkedin.svg" width="30px" height="30px">
+        </a>
+    </nav>
+
+    <div class="body" id="body">
+        <img class="banner" src="assets/banner.png" width="100%">
+
+        <div class="content">
+            <h2>Liquid Propulsion</h2>
+            <h4>Fluid Flow Simulation</h4>
+            <p>
+                We are developing Duke AERO's first liquid engine, ENO.
+                Currently we have a test stand consisting of pipes, flowmeters,
+                and valves that transport the fluids from their respective
+                tanks to the combustion chamber. We are using nitrous oxide as
+                our oxidizer, ethanol as our fuel, and nitrogen gas to backfill
+                the tanks and push the other fluids towards the combustion chamber.
+            </p>
+            <div class="figure" style="float: none; display: block; margin: auto; width:600px">
+                <img src="assets/imgs/plumbing_diagram.png" style="width:400px;">
+                <p>Figure 1: Liquid engine plumbing diagram</p>
+            </div>
+            <p>
+                Before we run our actual propellants through the system, we are
+                conducting a series of cold flows using water as a stand-in for both
+                nitrous oxide and ethanol. Each test we collect pressure data from four
+                points in each line, the tank pressure, flowmeter upstream pressure,
+                flowmeter downstream pressure, and the injector pressure. But we can't
+                be sure we are getting correct results unless we have something to compare
+                these numbers to.
+            </p>
+            <p>
+                In order to validate our test data, I developed a script to simulate pressure
+                losses through various piping elements, and to calculate mass flow via the
+                pressure drop across the flowmeter and injector. My program then iteratively
+                solves the system to ensure the mass flow rate across the flowmeter and
+                injector are equal. This requirement is called continuity, and it's really
+                an extension of the conservation of mass.
+            </p>
+            <div class="figure-grid">
+                <div class="figure">
+                    <img src="assets/imgs/setup.png" style="height:350px;">
+                    <p>Figure 2: Example of simulation input code</p>
+                </div>
+                <div class="figure">
+                    <img src="assets/imgs/solution.png" style="height:350px;">
+                    <p>Figure 3: Simulation results for the parameters from Figure 2</p>
+                </div>
+            </div>
+            <p>
+                Once we have data from a cold flow test we can compare it with the results
+                of the simulation.
+            </p>
+            <div class="figure-table">
+                <table class="data-table">
+                    <tr class="data-head">
+                        <th>Test</th>
+                        <th>Tank (PSI)</th>
+                        <th>Indicated Injector Delta (PSI)</th>
+                        <th>Injector Delta (PSI)</th>
+                        <th>Chamber (PSI)</th>
+                        <th>Head Loss (PSI)</th>
+                        <th>Mass Flow (kg/s)</th>
+                    </tr>
+                    <tr class="data-row">
+                        <td>10/19/25</td>
+                        <td>700</td>
+                        <td>175</td>
+                        <td>170</td>
+                        <td>14.7</td>
+                        <td>515</td>
+                        <td>0.260</td>
+                    </tr>
+                    <tr class="data-row">
+                        <td>Sim</td>
+                        <td>700</td>
+                        <td>159</td>
+                        <td>127</td>
+                        <td>14.7</td>
+                        <td>558</td>
+                        <td>0.276</td>
+                    </tr>
+                </table>
+                <p>
+                    Table 1: Pressure and mass flow measurements from the 
+                    kersoene line of a Cold Flow test on October 19, 2025,
+                    compared to the simulation from Figure 2
+                </p>
+            </div>
+            <p>
+                From Table 1, the simulation's predicted head loss is larger
+                than the observed loss, corresponding to a smaller pressure
+                difference across the injector. Despite this, the predicted
+                and observed mass flow rates are quite similar, off by only
+                around 6%.
+            </p>
+            <p>
+                To get the simulator to more closely match the experimental
+                data, there are a few parameters we can play with, mainly
+                the individual discharge coefficients and the roughness
+                values for the braided and stainless steel pipes. In order
+                to solve for these constants, I am working on developing
+                a gradient descent algorithm that iteratively solves for
+                the correct constants to most closely match certain experimental
+                parameters like pressure loss across the injector and flowmeter,
+                and mass flow rate.
+            </p>
+        </div>
+
+        <div class="footer">
+            <a href="https://github.com/contraflux" target="_blank">
+                <p>GitHub</p>
+            </a>
+            <a href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+                <p>LinkedIn</p>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

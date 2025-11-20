@@ -16,7 +16,7 @@ document.addEventListener("wheel", (e) => {
     } else {
         navbar.style.position = "fixed";
         // If scrolling down, hide the navbar
-        if (e.deltaY > 0 && window.scrollY > 60) {
+        if (e.deltaY > 0 && window.scrollY > 180) {
             navbar.style.top = -60 + "px";
         // If scrolling up, show the navbar
         } else {

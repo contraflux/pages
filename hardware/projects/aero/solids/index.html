@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Solids</title>
+    <link rel="icon" href="../../../../assets/global/favicon.png">
+    <link rel="stylesheet" href="../../../../index.css">
+    <link rel="stylesheet" href="../../../hardware.css">
+    <link rel="stylesheet" href="../aero.css">
+    <script src="../../../../index.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <a href="../../../..">
+            <img class="navbar-name" src="../../../../assets/global/name.png" height="30px">
+        </a>
+        <a class="navbar-item" href="../../../..">
+            <p>Home</p>
+        </a>
+        <a class="navbar-item" href="../../..">
+            <p>Hardware</p>
+        </a>
+        <a class="navbar-item" href="../../../../software">
+            <p>Software</p>
+        </a>
+        <a class="navbar-item" href="../../../../digital/">
+            <p>Digital Assets</p>
+        </a>
+        <a class="navbar-item" href="../../../../photography/">
+            <p>Photography</p>
+        </a>
+        <a class="navbar-icon" href="https://github.com/contraflux" target="_blank" style="right:90px;">
+            <img src="../../../../assets/global/github.svg" width="30px" height="30px">
+        </a>
+        <a class="navbar-icon" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+            <img src="../../../../assets/global/linkedin.svg" width="30px" height="30px">
+        </a>
+    </nav>
+
+    <div class="body" id="body">
+        <img class="banner" src="assets/banner.png" width="100%">
+
+        <div class="content">
+            <h2>Solid Propulsion</h2>
+            <h4>Nozzle Optimization</h4>
+            <p>
+                My first project was to optimize our rocket nozzle. A nozzle
+                consists of two sections, the converging section that funnels
+                the exhaust gas to the throat while speeding it up, and then
+                the diverging section that allows the gas to expand, further
+                icnreasing its velocity. There are five main parameters that
+                define a converging-diverging nozzle:
+                <br>
+                <br> 1. Converging half-angle: The angle between the converging wall and the axial direction
+                <br> 2. Diverging half-angle: The angle between the diverging wall and the axial direction
+                <br> 3. Entry area: The cross-sectional area of the nozzle at the entry
+                <br> 4. Throat area: The cross-sectional area of the nozzle at the throat
+                <br> 5. Exit area: The cross-sectional area of the nozzle at the exit
+                <br>
+                <br>
+                From our static hotfire test last year, the peak chamber pressure
+                was around 590 PSI. From this pressure and Vieille's Law, I found
+                our mass flow rate. From the mass flow rate, chamber pressure, and choked condition
+                at the nozzle throat, I then calculated the required throat area. I also then calculated the
+                optimal exit Mach number, and from that I then found the optimal expansion ratio, and thus exit area.
+            </p>
+            <p>
+                I found an optimal expansion ratio of 5.81, while our expansion ratio last year was 4.49. To verify
+                my calculations, I ran a series of simulations using Ansys Fluent, and calculated the force for each.
+            </p>
+            <div class="figure-grid">
+                <div class="figure">
+                    <img src="assets/imgs/25-6_c_mach.png" style="width:480px;">
+                    <p>Figure 1: Mach number through the redesigned nozzle</p>
+                </div>
+                <div class="figure">
+                    <img src="assets/imgs/25-6_c_pressure.png" style="width:480px;">
+                    <p>Figure 2: Static pressure through the redesigned nozzle</p>
+                </div>
+            </div>
+            <div class="figure-table">
+                <table class="data-table">
+                    <tr class="data-head">
+                        <th>Name</th>
+                        <th>Exit Pressure (Pa)</th>
+                        <th>Exit Mach</th>
+                        <th>Exit Velocity (m/s)</th>
+                        <th>Mass Flow Rate (kg/s)</th>
+                        <th>Thrust (N)</th>
+                        <th>ISP (s)</th>
+                    </tr>
+                    <tr class="data-row">
+                        <td>24-25 C</td>
+                        <td>38983</td>
+                        <td>2.718</td>
+                        <td>2339.66</td>
+                        <td>2.418265</td>
+                        <td>5837.34</td>
+                        <td>246.31</td>
+                    </tr>
+                    <tr class="data-row">
+                        <td>25-26 C</td>
+                        <td>-2459</td>
+                        <td>2.904</td>
+                        <td>2421.54</td>
+                        <td>2.423279</td>
+                        <td>5853.42</td>
+                        <td>246.48</td>
+                    </tr>
+                </table>
+                <p>
+                    Table 1: Results from Ansys Fluent simulations of the old
+                    24-25 conical nozzle with expansion ratio 4.49 and the new
+                    25-26 conical nozzle with expansion ratio 5.81. <br> Exit pressure
+                    is relative to the operating pressure, so a value of 0 Pa is really
+                    101325 Pa.
+                </p>
+            </div>
+            <p>
+                From Table 1, you can see that for the 25-26 conical nozzle the
+                exit pressure was closer to the optimum of 0 Pa, which lead to
+                increased exit velocies. This lead to increased thrust and
+                specific impulse, though the performance increases were less
+                than what we had hoped for.
+            </p>
+            <p>
+                To verify that this marginal performance increase made sense,
+                I approximated the inverse to the area-Mach relation and found
+                a curve for thrust from expansion ratio.
+            </p>
+            <div class="figure" style="float: none; display: block; margin: auto; width:600px">
+                <img src="assets/imgs/thrustvsepsilon.png" style="width:600px;">
+                <p>Figure 3: Thrust in kilonewtons vs expansion ratio</p>
+            </div>
+            <p>
+                From Figure 3 we can see a maximum right around 5.8 yielding
+                around 6000 kN, but small increases or decreases in the
+                expansion ratio hardly change the thrust. This graph backs
+                up the small thrust change see in the CFD runs.
+            </p>
+            <p>
+                After this lackluster result, I continued research into optimizing
+                for thrust output, and came acrossa a series of journal entries
+                written by G.V.R. Rao describing a method he found for curving
+                the diverging section of the nozzle to increase performance.
+            </p>
+            <div class="figure" style="float: none; display: block; margin: auto; width:600px">
+                <img src="assets/imgs/rao_sketch.png" style="width:600px;">
+                <p>
+                    Figure 4: Sketch of the diverging section of a Rao nozzle. <br>
+                    "Approximation of Optimum Thrust Nozzle Contour," G.V.R. Rao, Jan. 4 1959.
+                </p>
+            </div>
+            <p>
+                He then approximated these ideal wall contours using a circular
+                arc close to the throat and a parabola towards the exit. Using the
+                expansion ratio and throat radius I found previously, I was able
+                to use Rao's charts to design a new nozzle. I then ran the new nozzle
+                in Fluent to characterize its performance.
+            </p>
+            <div class="figure-grid">
+                <div class="figure">
+                    <img src="assets/imgs/25-6_r_mach.png" style="width:480px;">
+                    <p>Figure 5: Mach number through the Rao nozzle</p>
+                </div>
+                <div class="figure">
+                    <img src="assets/imgs/25-6_r_pressure.png" style="width:480px;">
+                    <p>Figure 6: Static pressure through the Rao nozzle</p>
+                </div>
+            </div>
+            <div class="figure-table">
+                <table class="data-table">
+                    <tr class="data-head">
+                        <th>Name</th>
+                        <th>Exit Pressure (Pa)</th>
+                        <th>Exit Mach</th>
+                        <th>Exit Velocity (m/s)</th>
+                        <th>Mass Flow Rate (kg/s)</th>
+                        <th>Thrust (N)</th>
+                        <th>ISP (s)</th>
+                    </tr>
+                    <tr class="data-row">
+                        <td>25-26 R</td>
+                        <td>-3083</td>
+                        <td>2.917</td>
+                        <td>2448.57</td>
+                        <td>2.427653</td>
+                        <td>5925.91</td>
+                        <td>249.08</td>
+                    </tr>
+                </table>
+                <p>
+                    Table 2: Results from Ansys Fluent simulations of the 25-26
+                    Rao nozzle. <br> Exit pressure is relative to the operating
+                    pressure, so a value of 0 Pa is really 101325 Pa.
+                </p>
+            </div>
+            <p>
+                From the results in Table 2, we can see that the Rao nozzle offers
+                much larger increases in thrust and specific impulse, though the
+                manufacturing complexity might outweigh the potential performance
+                increases.
+            </p>
+            <p>
+                I then used CAD to create two models of our potential solid
+                rocket nozzle for the 2025-26 season. Both had expansion ratios of 5.81, while
+                one was a pure conical nozzle and the other was a Rao nozzle. In Figures 7 and 8 below,
+                the blue material is the aluminum nozzle washer, the orange is phenolic nozzle body,
+                and the grey is graphite throat. The converging half angle in both of these designs
+                is 50 degrees.
+            </p>
+
+            <div class="figure-grid">
+                <div class="figure">
+                    <img src="assets/imgs/25-6_c.png" style="width:480px;">
+                    <p>Figure 7: Conical nozzle for the Duke AERO 2025-26 rocket</p>
+                </div>
+                <div class="figure">
+                    <img src="assets/imgs/25-6_r.png" style="width:480px;">
+                    <p>Figure 8: Rao nozzle for the Duke AERO 2025-26 rocket</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="https://github.com/contraflux" target="_blank">
+                <p>GitHub</p>
+            </a>
+            <a href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+                <p>LinkedIn</p>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

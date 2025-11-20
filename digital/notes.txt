@@ -1,7 +1,0 @@
-Ok so we have a list of objects
-
-[a, b, c, d]
-
-And a list of filters. Each object is assigned to some number of filters.
-If any one of the assigned filters is true, then show the object.
-If all of the filters are false, show the object.

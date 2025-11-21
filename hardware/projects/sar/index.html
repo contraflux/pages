@@ -68,14 +68,53 @@
     <div class="body" id="body">
         <div class="content">
             <h2>MIT Synethic Aperture Radar</h2>
-            <h4>Simulator Development</h4>
+            <h4>Range-Time Intensity Plots</h4>
             <p>
-                The aviation club, Duke Aviators, is currently working on a
-                simulator built to match the Cessna 172S. In previous years,
-                the club had made a dashboard, but major items, such as the
-                lower panels and linked yoke control system were yet to be
-                designed and built.
+                Over the summer of 2024, I had the opportunity to learn about
+                and work with radars at MIT. The radar was a small ultra-wideband
+                radar called the PulsON 440, and we communicated with it via Python
+                scripts from a Raspberry Pi.
             </p>
+            <div class="figure" style="float: none; display: block; margin: auto; width:600px">
+                <img src="assets/imgs/p440.jpeg" style="width:600px;">
+                <p>Figure 1: The PulsON 440 mounted below a Raspberry Pi. The two green triangles are log periodic antennae, one for transmitting and one for receiving.</p>
+            </div>
+            <p>
+                The project consisted of a few phases, the first of which was
+                writing the python program to interact with the PulsON 440. The
+                data gained from the radar was then plotted on a range-time intensity
+                plot, with range on the x-axis and time on the y-axis.
+            </p>
+            <div class="figure-grid">
+                <div class="figure">
+                    <img src="assets/imgs/rti_1.png" style="height:350px;">
+                    <p>Figure 2: Range-time intensity plot dipicting an an object <br> that starts 60m away and moves to 50m over 3 seconds</p>
+                </div>
+                <div class="figure">
+                    <img src="assets/imgs/rti_2.png" style="height:350px;">
+                    <p>Figure 3: Range-time intensity plot showing an object oscillating <br> between 10m and 4m with a period of 3.5 seconds</p>
+                </div>
+            </div>
+            <p>
+                We noticed it could be difficult to make out small objects or
+                objects at far distances due to the radar's limited power,
+                so we also created delta range-time intensity plots, which subtract
+                two adjacent pulses to find the differences between them.
+                Along with making motion easier to see, these plots had the added
+                benefit of reducing the large initial pulse detected by the receiving
+                antenna as the radar is transmitting.
+            </p>
+            <div class="figure-grid">
+                <div class="figure">
+                    <img src="assets/imgs/rti_1_delta.png" style="height:350px;">
+                    <p>Figure 2: Range-time intesnity delta plot of Figure 2</p>
+                </div>
+                <div class="figure">
+                    <img src="assets/imgs/rti_2_delta.png" style="height:350px;">
+                    <p>Figure 3: Range-time intensity delta plot of Figure 3</p>
+                </div>
+            </div>
+            <h4>Time Domain Backprojection</h4>
             <p>
                 First, I created CAD models of the three lower panels, designing
                 them to contain parts we had already ordered, like the throttle

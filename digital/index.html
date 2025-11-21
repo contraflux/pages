@@ -12,32 +12,58 @@
 </head>
 
 <body>
-    <nav class="navbar" id="navbar">
-        <a href="..">
-            <img class="navbar-name" src="../assets/global/name.png" height="30px">
-        </a>
-        <a class="navbar-item" href="..">
-            <p>Home</p>
-        </a>
-        <a class="navbar-item" href="../hardware">
-            <p>Hardware</p>
-        </a>
-        <a class="navbar-item" href="../software">
-            <p>Software</p>
-        </a>
-        <a class="navbar-item" href="">
-            <p>Digital Assets</p>
-        </a>
-        <a class="navbar-item" href="../photography">
-            <p>Photography</p>
-        </a>
-        <a class="navbar-icon" href="https://github.com/contraflux" target="_blank" style="right:90px;">
-            <img src="../assets/global/github.svg" width="30px" height="30px">
-        </a>
-        <a class="navbar-icon" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
-            <img src="../assets/global/linkedin.svg" width="30px" height="30px">
-        </a>
-    </nav>
+    <div class="navbar-holder" id="navbar-holder">
+        <nav class="navbar" id="navbar">
+            <a href="..">
+                <img class="navbar-name" src="../assets/global/name.png" height="30px">
+            </a>
+            <a class="navbar-item" href="..">
+                <p>Home</p>
+            </a>
+            <a class="navbar-item" href="../hardware">
+                <p>Hardware</p>
+            </a>
+            <a class="navbar-item" href="../software">
+                <p>Software</p>
+            </a>
+            <a class="navbar-item" href="">
+                <p>Digital Assets</p>
+            </a>
+            <a class="navbar-item" href="../photography/">
+                <p>Photography</p>
+            </a>
+            <div class="navbar-right">
+                <div class="navbar-menu" id="navbar-menu">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <a class="navbar-icon" href="https://github.com/contraflux" target="_blank">
+                    <img src="../assets/global/github.svg" width="30px" height="30px">
+                </a>
+                <a class="navbar-icon" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+                    <img src="../assets/global/linkedin.svg" width="30px" height="30px">
+                </a>
+            </div>
+        </nav>
+        <div class="navbar-dropdown" id="navbar-dropdown">
+            <a class="navbar-dropdown-item" href="..">
+                <p>Home</p>
+            </a>
+            <a class="navbar-dropdown-item" href="../hardware">
+                <p>Hardware</p>
+            </a>
+            <a class="navbar-dropdown-item" href="../software">
+                <p>Software</p>
+            </a>
+            <a class="navbar-dropdown-item" href="">
+                <p>Digital Assets</p>
+            </a>
+            <a class="navbar-dropdown-item" href="../photography/">
+                <p>Photography</p>
+            </a>
+        </div>
+    </div>
 
     <div class="body" id="body">
         <img class="banner" src="assets/banner.png" width="100%">

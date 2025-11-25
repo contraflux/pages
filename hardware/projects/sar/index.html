@@ -107,57 +107,86 @@
             <div class="figure-grid">
                 <div class="figure">
                     <img src="assets/imgs/rti_1_delta.png" style="height:350px;">
-                    <p>Figure 2: Range-time intesnity delta plot of Figure 2</p>
+                    <p>Figure 4: Range-time intesnity delta plot of Figure 2</p>
                 </div>
                 <div class="figure">
                     <img src="assets/imgs/rti_2_delta.png" style="height:350px;">
-                    <p>Figure 3: Range-time intensity delta plot of Figure 3</p>
+                    <p>Figure 5: Range-time intensity delta plot of Figure 3</p>
                 </div>
             </div>
             <h4>Time Domain Backprojection</h4>
             <p>
-                First, I created CAD models of the three lower panels, designing
-                them to contain parts we had already ordered, like the throttle
-                quadrant and flap and trim panels. Each panel has a wood backing
-                with a spraypainted acrylic cover. We then cut the wood on one of
-                our mills and laser cut the acrylic.
+                Once we had developed a method for plotting our radar returns,
+                we focused on creating synthetic aperture radar maps. Synthetic
+                aperture radar (SAR) is a technique used to increase resolution
+                by overlaying multiple scans of the same target area. The same
+                effect can be achieved by making your radar aperture far larger,
+                so in some sense you're creating a synthetic aperture by moving
+                the radar. To create our images, we flew the radar on drones in
+                MIT's high bay. We then used a system of infrared tracking cameras
+                to get position data on the drone, and lined it up with our scan.
+                We then combined the motion capture and radar data to form our
+                own maps, generally of aluminum soda cans placed on the floor.
             </p>
-            <div class="figure-grid">
-                <div class="figure">
-                    <img src="assets/imgs/mill.jpeg" style="height:280px;">
-                    <p>Figure 1: Center panel wood backing on the mill</p>
-                </div>
-                <div class="figure">
-                    <img src="assets/imgs/spraypaint.jpeg" style="height:280px;">
-                    <p>Figure 2: Center and right panel acrylic having just been spray painted</p>
-                </div>
+            <div class="figure" style="float: none; display: block; margin: auto; width:600px">
+                <img src="assets/imgs/drone.jpeg" style="width:600px;">
+                <p>Figure 6: PulsON 440 and Raspberry Pi assembly mounted below an F550 drone</p>
             </div>
             <div class="figure" style="float: none; display: block; margin: auto; width:600px">
-                <img src="assets/imgs/panel_wip.jpg" style="width:600px;">
-                <p>Figure 3: Initial assembly of center and right panels with trim, throttle quadrant, and flap controls</p>
+                <img src="assets/imgs/soda_cans.jpeg" style="width:600px;">
+                <p>Figure 7: Arrangement of soda cans in the high bay. The large retroreflectors are reference points to aid in making the image</p>
             </div>
             <p>
-                Once we had the panels done, I started creating a CAD model of the
-                linked yokes mechanism. My plan was to use drawer slides for the
-                pitch movement, and then link the two yokes togther to match
-                roll control. I also designed both yokes to link to a center rod
-                that would translate the control movements to a modified
-                Honeycomb Alpha yoke to register control inputs.
+                The final challenge was to use this technique to discover the
+                pattern of soda cans hidden beneath a tarp on the floor.
             </p>
             <div class="figure-grid">
                 <div class="figure">
-                    <img src="assets/imgs/honeycomb.jpg" style="height:350px;">
-                    <p>Figure 4: Modified Honeycomb Alpha</p>
+                    <img src="assets/imgs/final1.png" style="height:400px;">
+                    <p>Figure 8: Initial image generated from the final challenge</p>
                 </div>
                 <div class="figure">
-                    <img src="assets/imgs/slider.jpeg" style="height:350px;">
-                    <p>Figure 5: Flight control assembly without rods and links</p>
+                    <img src="assets/imgs/final2.png" style="height:400px;">
+                    <p>Figure 9: Enhanced image, showing 24 cans arranged in a large "24"</p>
                 </div>
             </div>
-            <div class="figure" style="float: none; display: block; margin: auto; width:600px">
-                <img src="assets/imgs/current.jpg" style="width:600px;">
-                <p>Figure 6: Full assembly of flight controls, dashboard, and lower panels</p>
+            <h4>Demining</h4>
+            <p>
+                In the last week of the program, we were introduced to one possible
+                application of synthetic aperture radar: using it to detect buried
+                landmines. Representatives from MIT's Lincoln Laboratory presented
+                the topic and explained that they too had been assigned to a similar
+                project.
+            </p>
+            <p>
+                To see if we could pick up the landmine, we went to one of the sand pits
+                and set the radar up on a cart attached to a zipline. The cart would move
+                across the wire at a constant speed, and had an encoder so we could know
+                its position along the line. We then set up two refelectors, one in each
+                corner of the sand pit, to act as references, and buried the landmine
+                around one foot under the sand.
+            </p>
+            <div class="figure-grid">
+                <div class="figure">
+                    <img src="assets/imgs/sand_pit.jpeg" style="height:350px;">
+                    <p>Figure 10: Sand pit and zipline setup</p>
+                </div>
+                <div class="figure">
+                    <img src="assets/imgs/landmine.png" style="height:350px;">
+                    <p>Figure 11: SAR image of the sand pit</p>
+                </div>
             </div>
+            <p>
+                We did end up detecting the landmine. The figure above is a horizontal cross
+                section of the sand pit, with the surface of the sand at 0m on the y-axis. The
+                two reference reflectors are at 2m and 11m on the x-axis, and the landmine is
+                clearly visible at 7m on the x-axis and about 0.5m under the surface.
+            </p>
+            <h4>Conclusion</h4>
+            <p>
+                Of the five teams in the program, we were one of two that discovered the
+                soda can pattern, and the only one to successfully detect the landmine.
+            </p>
         </div>
 
         <div class="footer">

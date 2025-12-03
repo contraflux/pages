@@ -119,7 +119,6 @@ body {
   width: 100%;
   padding-top: 10px; 
   background-color: var(--highlight);
-  border-bottom: 1px solid var(--light);
   box-sizing: border-box;
   transition: all 0.4s ease;
 }

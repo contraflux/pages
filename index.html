@@ -5,111 +5,79 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="icon" href="assets/global/favicon.png">
+    <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="index.css">
     <script src="index.js" defer></script>
 </head>
 
 <body>
-    <div class="navbar-holder" id="navbar-holder">
-        <nav class="navbar" id="navbar">
-            <a href="">
-                <img class="navbar-name" src="assets/global/name.png" height="30px">
-            </a>
-            <a class="navbar-item" href="">
-                <p>Home</p>
-            </a>
-            <a class="navbar-item" href="hardware">
-                <p>Hardware</p>
-            </a>
-            <a class="navbar-item" href="software">
-                <p>Software</p>
-            </a>
-            <a class="navbar-item" href="digital">
-                <p>Digital Assets</p>
-            </a>
-            <a class="navbar-item" href="photography">
-                <p>Photography</p>
-            </a>
-            <div class="navbar-right">
-                <div class="navbar-menu" id="navbar-menu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <a class="navbar-icon" href="https://github.com/contraflux" target="_blank">
-                    <img src="assets/global/github.svg" width="30px" height="30px">
-                </a>
-                <a class="navbar-icon" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
-                    <img src="assets/global/linkedin.svg" width="30px" height="30px">
-                </a>
+    <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <img src="assets/global/name.png" height="45px">
+        </div>
+        <a class="navbar-item" href="" style="border-bottom: 1px solid var(--accent);">
+            <p>Home</p>
+        </a>
+        <a class="navbar-item" href="hardware">
+            <p>Hardware</p>
+        </a>
+        <a class="navbar-item" href="software">
+            <p>Software</p>
+        </a>
+        <a class="navbar-item" href="digital">
+            <p>Digital Assets</p>
+        </a>
+        <a class="navbar-item" href="photography">
+            <p>Photography</p>
+        </a>
+    </nav>
+
+    <div class="content" id="content">
+        <div class="bio">
+            <img class="bio-image" src="axolotl.png">
+            <div class="bio-text">
+                <p class="bio-text-1">Ethan Rosenfeld</p>
+                <p class="bio-text-2">Engineering and Physics @ Duke University</p>
+                <p class="bio-text-3">I work on propulsion for DukeAERO and develop interactive software in Julia and JavaScript</p>
             </div>
-        </nav>
-        <div class="navbar-dropdown" id="navbar-dropdown">
-            <a class="navbar-dropdown-item" href="">
-                <p>Home</p>
-            </a>
-            <a class="navbar-dropdown-item" href="hardware">
-                <p>Hardware</p>
-            </a>
-            <a class="navbar-dropdown-item" href="software">
-                <p>Software</p>
-            </a>
-            <a class="navbar-dropdown-item" href="digital">
-                <p>Digital Assets</p>
-            </a>
-            <a class="navbar-dropdown-item" href="photography">
-                <p>Photography</p>
-            </a>
         </div>
-    </div>
-
-    <div class="body" id="body">
-        <img class="banner" src="assets/banner.png" width="100%">
-
-        <p class="title">Welcome to my website!</p>
-
-        <div class="profile-photo">
-            <img src="">
+        <div class="recent">
+            <p>Recent Work</p>
+            <div class="recent-hardware">
+                <div class="recent-hardware-text">
+                    <p class="recent-hardware-text-1">&#9998;&ensp;Hardware</p>
+                    <ul class="recent-hardware-text-2">
+                        <li>Liquid Propulsion</li>
+                        <li>Nozzle Optimization</li>
+                        <li>Radar and Demining</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="recent-software">
+                <div class="recent-software-text">
+                    <p class="recent-software-text-1">&#10095;_&ensp;Software</p>
+                    <ul class="recent-software-text-2">
+                        <li>Electromagnetism</li>
+                        <li>Circuits</li>
+                        <li>Fluids</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </nav>
 
-        <div class="content">
-            <h2>About</h2>
-            <p>
-                My name is Ethan Rosenfeld, and I am a student at Duke
-                University majoring in Mechanical Engineering and Physics
-                with an Aerospace Certificate. I am currently a freshman
-                planning to graduate in Spring 2029.
-            </p>
-            <h2>My Work</h2>
-            <p>
-                I am currently on the Solid and Liquid Propulsion subeams at
-                Duke AERO, our high-powered rocketry club, and I am on the
-                simulator development team at Duke Aviators.
-            </p>
-            <p>
-                You can view some of my mechanical engineering specific work
-                on the hardware page, or see my math and physics projects on
-                the software page. I also have a collection of game assets I've made,
-                and an assortment of my photos.
-            </p>
-            <h2>Contact</h2>
-            <p>
-                Feel free to contact me at
-                <a href="mailto:ethan.rosenfeld@duke.edu">ethan.rosenfeld@duke.edu</a>
-                or on LinkedIn at
-                <a href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">https://www.linkedin.com/in/ethan-rosenfeld06/</a>
-            </p>
-        </div>
-
-        <div class="footer">
-            <a href="https://github.com/contraflux" target="_blank">
-                <p>GitHub</p>
-            </a>
-            <a href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
-                <p>LinkedIn</p>
-            </a>
-        </div>
+    <div class="footer">
+        <a class="footer-item" href="https://github.com/contraflux" target="_blank">
+            <img src="assets/global/github.svg" height="22px">
+            &ensp;GitHub
+        </a>
+        <a class="footer-item" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+            <img src="assets/global/linkedin.svg" height="22px">
+            &ensp;LinkedIn
+        </a>
+        <a class="footer-item" href="mailto:ethan.rosenfeld@duke.edu" target="_blank">
+            <img src="assets/global/mail.svg" height="22px">
+            &ensp;Mail
+        </a>
     </div>
 </body>
-
-</html>

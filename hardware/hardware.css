@@ -1,8 +1,8 @@
 .hardware-content {
   z-index: 0;
   position: relative;
-  top: 75px; left: calc(50% - ((100vw - 150px - mod(100vw - 150px - 16px, 450px + 25px) + 100px + 25px)/2));
-  width: calc(100vw - 150px - mod(100vw - 150px - 16px, 450px + 25px) + 100px + 25px);
+  top: 75px; left: calc(50% - ((100vw - 150px - mod(100vw - 150px - 16px, 450px + 25px) + 100px)/2));
+  width: calc(100vw - 150px - mod(100vw - 150px - 16px, 450px + 25px) + 100px);
   opacity:  0;
   transition: opacity 0.4s ease;
 }
@@ -10,7 +10,7 @@
 .content-header {
   position: relative;
   padding-top: 25px; padding-bottom: 25px;
-  padding-left: 200px; padding-right: 50px;
+  padding-left: calc(125px + 16px + 50px); padding-right: 50px;
 }
 
 .content-text-1 {
@@ -24,6 +24,18 @@
   font-size: 16px;
   margin: 0;
   margin-top: 10px;
+}
+
+.content-banner {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  mask-composite: intersect;
+  mask-image:
+    linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%),
+    linear-gradient(135deg, rgba(0,0,0,0) 15%, rgba(0,0,0,1) 50%);
 }
 
 .timeline {
@@ -69,7 +81,7 @@
 .year-text {
     position: absolute;
     top: calc(50% - 50px/2); left: 0;
-    width: 85px; height: 50px;
+    width: 75px; height: 50px;
     text-align: right;
     margin: 0;
     font-size: 22px;

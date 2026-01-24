@@ -3,7 +3,7 @@
   position: relative;
   top: 75px; left: calc(50% - ((100vw - 150px - mod(100vw - 150px, 250px + 25px) - 25px)/2));
   width: calc(100vw - 150px - mod(100vw - 150px, 250px + 25px) - 25px);
-  opacity:  0;
+  opacity: 0;
   transition: opacity 0.4s ease;
 }
 

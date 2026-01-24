@@ -1,0 +1,123 @@
+.filter-bar {
+  height: 50px;
+  width: calc(100vw - 120px - mod(100vw - 120px, 330px) - 30px);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: -20px;
+}
+
+.filter-bar>p {
+  position: relative;
+  float: left;
+  height: 30px;
+  padding-left: 10px; padding-right: 10px;
+  font-size: 14px;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--light);
+  box-sizing: border-box;
+  transition: ease 0.4s all;
+}
+
+.filter-bar>p:hover {
+  margin-top: 5px;
+  box-shadow: 0 5px 10px black;
+}
+
+.filter-bar-spacer {
+  background-color: var(--light);
+  width: 1px; height: 40px;
+  margin-left: 5px; margin-right: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.asset-holder {
+  position: relative;
+  width: calc(100vw - 120px - mod(100vw - 120px, 330px) + 30px);
+  margin: auto;
+}
+
+.asset {
+  position: relative;
+  float: left;
+  width: 300px; height: 260px;
+  margin-top: 30px; margin-left: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: var(--shadow);
+  box-shadow: 0 0 10px 10px var(--shadow);
+  transition: all 0.4s ease;
+  color: var(--light);
+}
+
+.asset:hover {
+  margin-top: 15px;
+  padding-bottom: 15px;
+}
+
+.asset>img {
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+  filter: brightness(0.7);
+}
+
+.asset-text {
+  position: absolute;
+  top: 150px; left: 0;
+  width: 100%; height: 60px;
+}
+
+.asset-text>h2 {
+  margin: 0;
+  width: 100%; height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 24px;
+}
+
+.asset-tags {
+  position: absolute;
+  top: 210px; left: 0px;
+  width: 275px; height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.asset-tags>p {
+  position: relative;
+  float: left;
+  height: 30px;
+  padding-left: 10px; padding-right: 10px;
+  font-size: 14px;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--light);
+  box-sizing: border-box;
+}
+
+.no-results {
+  display: none;
+  margin-bottom: -10px;
+  text-align: center;
+  width: 275px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 30px;
+}

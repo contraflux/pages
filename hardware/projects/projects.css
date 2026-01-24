@@ -1,0 +1,57 @@
+.figure-grid {
+    position: relative;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    height: max-content;
+}
+
+.figure {
+    position: relative;
+    float: left;
+}
+
+.figure>img {
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.figure>p {
+    position: relative;
+    bottom: 0;
+    height: 50px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 12px;
+}
+
+.data-table {
+    width: 85%;
+    margin: auto;
+    border-collapse: collapse;
+    border: 1px solid var(--light);
+}
+
+.data-head>th {
+    padding: 5px;
+    border: 1px solid var(--light);
+}
+
+.data-row>td {
+    border: 1px solid var(--light);
+    text-align: center;
+    padding: 5px;
+}
+
+.figure-table>p{
+    margin: 0;
+    height: 50px;
+    font-size: 14px;
+    align-content: center;
+    text-align: center;
+}

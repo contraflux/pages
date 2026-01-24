@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Minkowski Diagrams</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+    <script type="module" src="js/app.js" defer></script>
+</head>
+
+<body>
+    <div class="input-container">
+        <div class="matrix-equation">
+            <h3 class="matrix-name" style="color: #ff987c">v</h3>
+            <h3 class="matrix-name">=</h3>
+            <div class="matrix-bracket">
+                <div class="top"></div>
+                <div class="left"></div>
+                <div class="bottom"></div>
+            </div>
+            <div class="matrix-input">
+                <div class="matrix-input-top">
+                    <input type="text" id="v" value="0">
+                    <h3>ct</h3>
+                </div>
+                <h3>t</h3>
+            </div>
+            <div class="matrix-bracket">
+                <div class="top"></div>
+                <div class="right"></div>
+                <div class="bottom"></div>
+            </div>
+        </div>
+
+        <div class="matrix-equation">
+            <h3 class="matrix-name" style="color: #ff7cff">w</h3>
+            <h3 class="matrix-name">=</h3>
+            <div class="matrix-bracket">
+                <div class="top"></div>
+                <div class="left"></div>
+                <div class="bottom"></div>
+            </div>
+            <div class="matrix-input">
+                <div class="matrix-input-top">
+                    <input type="text" id="w" value="0">
+                    <h3>ct</h3>
+                </div>
+                <h3>t</h3>
+            </div>
+            <div class="matrix-bracket">
+                <div class="top"></div>
+                <div class="right"></div>
+                <div class="bottom"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="option-container">
+        <div class="scroll-bar-track"></div>
+        <div class="scroll-bar" id="scroll-bar"></div>
+        <div class="scroll" id="scroll">
+            <div class="container-row" id="top-container">
+                <h3>Primary Worldline</h3>
+                <select name="Primary View Options" id="primary-worldline">
+                    <option value="both">Show Both</option>
+                    <option value="first">Show Initial</option>
+                    <option value="second">Show Final</option>
+                    <option value="hidden">Hide Both</option>
+                </select>
+            </div>
+            <div class="container-row">
+                <h3>Secondary Worldline</h3>
+                <select name="Secondary View Options" id="secondary-worldline">
+                    <option value="both">Show Both</option>
+                    <option value="first">Show Initial</option>
+                    <option value="second">Show Final</option>
+                    <option value="hidden">Hide Both</option>
+                </select>
+            </div>
+            <div class="container-row">
+                <h3>Photon Worldlines</h3>
+                <select name="Photon View Options" id="photon-worldlines">
+                    <option value="both">Show Both</option>
+                    <option value="first">Show Initial</option>
+                    <option value="second">Show Final</option>
+                    <option value="hidden">Hide Both</option>
+                </select>
+            </div>
+            <div class="container-row">
+                <h3>Grid</h3>
+                <select name="Grid View Options" id="grid-display">
+                    <option value="both">Show Both</option>
+                    <option value="first">Show Initial</option>
+                    <option value="second">Show Final</option>
+                    <option value="hidden">Hide Both</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="property-container">
+       <div class="property-row">
+            <h4>Gamma</h4>
+            <p id="gamma">1</p>
+        </div>
+        <div class="property-row">
+            <h4>Determinant</h4>
+            <p>1</p>
+        </div>
+        <div class="property-row">
+            <h4>Eigenvalues</h4>
+            <p id="eigenvalue-1"></p>
+            <p id="eigenvalue-2"></p>
+        </div>
+        <div class="property-row">
+            <h4>Eigenvectors</h4>
+            <p>[ct, t]</p>
+            <p>[-ct, t]</p>
+        </div>
+        <div class="property-row">
+            <h4>Time Transformation</h4>
+            <p id="t-prime">t' = gamma t</p>
+        </div>
+        <div class="property-row">
+            <h4>Distance Transformation</h4>
+            <p id="x-prime">x' = 1/gamma x</p>
+        </div>
+    </div>
+    
+    <canvas class="canvas" id="canvas" width="660" height="500"></canvas>
+</body>
+
+</html>

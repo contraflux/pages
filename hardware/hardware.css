@@ -10,7 +10,8 @@
 .content-header {
   position: relative;
   padding-top: 25px; padding-bottom: 25px;
-  padding-left: calc(125px + 16px + 50px); padding-right: 50px;
+  padding-left: 50px; padding-right: 50px;
+  border-bottom: 1px solid var(--border);
 }
 
 .content-text-1 {
@@ -39,7 +40,6 @@
 }
 
 .timeline {
-  margin-top: -25px;
   padding-bottom: 25px;
 }
 
@@ -99,7 +99,6 @@
     margin: 0;
     padding-top: 25px;
     padding-bottom: 25px;
-    border-bottom: 1px solid var(--border);
 }
 
 .entry {

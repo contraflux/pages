@@ -1,2 +1,2 @@
-# project-site
-Website to display a list of current and future projects, and unsolved problems
+# pages
+Website to display a list of current projects, both hardware and software

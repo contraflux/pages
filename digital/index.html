@@ -5,311 +5,240 @@
     <meta charset="UTF-8">
     <title>Digital Assets</title>
     <link rel="icon" href="../assets/global/favicon.png">
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="digital.css">
     <script src="../index.js" defer></script>
     <script src="digital.js" defer></script>
 </head>
 
 <body>
-    <div class="navbar-holder" id="navbar-holder">
-        <nav class="navbar" id="navbar">
-            <a href="..">
-                <img class="navbar-name" src="../assets/global/name.png" height="30px">
-            </a>
-            <a class="navbar-item" href="..">
-                <p>Home</p>
-            </a>
-            <a class="navbar-item" href="../hardware">
-                <p>Hardware</p>
-            </a>
-            <a class="navbar-item" href="../software">
-                <p>Software</p>
-            </a>
-            <a class="navbar-item" href="">
-                <p>Digital Assets</p>
-            </a>
-            <a class="navbar-item" href="../photography/">
-                <p>Photography</p>
-            </a>
-            <div class="navbar-right">
-                <div class="navbar-menu" id="navbar-menu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <a class="navbar-icon" href="https://github.com/contraflux" target="_blank">
-                    <img src="../assets/global/github.svg" width="30px" height="30px">
-                </a>
-                <a class="navbar-icon" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
-                    <img src="../assets/global/linkedin.svg" width="30px" height="30px">
-                </a>
+    <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <img src="../assets/global/name.png" height="45px">
+        </div>
+        <a class="navbar-item" href="..">
+            <p>Home</p>
+        </a>
+        <a class="navbar-item" href="../hardware">
+            <p>Hardware</p>
+        </a>
+        <a class="navbar-item" href="../software">
+            <p>Software</p>
+        </a>
+        <a class="navbar-item" href="" style="border-bottom: 1px solid var(--accent);">
+            <p>Digital Assets</p>
+        </a>
+        <a class="navbar-item" href="../photography">
+            <p>Photography</p>
+        </a>
+    </nav>
+
+    <div class="digital-content" id="content">
+        <div class="content-header">
+            <p class="content-text-1">Digital Assets</p>
+            <p class="content-text-2">Sceneries and liveries from various games</p>
+            <img class="content-banner" src="assets/banner.png">
+            <div class="content-select">
+                <p id="select-all">&#8704;&ensp;All</p>
+                <p id="select-msfs">&#9992;&ensp;MSFS</p>
+                <p id="select-dcs">&#8982;&ensp;DCS</p>
+                <p id="select-scenery" style="margin-left: 25px;">&#9968;&ensp;Scenery</p>
+                <p id="select-livery">&#9998;&ensp;Livery</p>
             </div>
-        </nav>
-        <div class="navbar-dropdown" id="navbar-dropdown">
-            <a class="navbar-dropdown-item" href="..">
-                <p>Home</p>
+        </div>
+        <div class="content-grid">
+            <a class="entry" id="kayz" href="https://flightsim.to/file/96408/kayz-zahn-s" target="_blank">
+                <img class="entry-img" src="assets/imgs/kayz.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">Zahn's</p>
+                    <p class="entry-text-2">KAYZ</p>
+                </div>
+                <div class="entry-tags">
+                    <p>MSFS</p>
+                    <p>Scenery</p>
+                </div>
             </a>
-            <a class="navbar-dropdown-item" href="../hardware">
-                <p>Hardware</p>
+            <a class="entry" id="kjpx" href="https://flightsim.to/file/75357/kjpx-town-of-east-hampton" target="_blank">
+                <img class="entry-img" src="assets/imgs/kjpx.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">East Hampton</p>
+                    <p class="entry-text-2">KJPX</p>
+                </div>
+                <div class="entry-tags">
+                    <p>MSFS</p>
+                    <p>Scenery</p>
+                </div>
             </a>
-            <a class="navbar-dropdown-item" href="../software">
-                <p>Software</p>
+            <a class="entry" id="khwv" href="https://flightsim.to/file/64914/khwv-brookhaven" target="_blank">
+                <img class="entry-img" src="assets/imgs/khwv.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">Brookhaven</p>
+                    <p class="entry-text-2">KHWV</p>
+                </div>
+                <div class="entry-tags">
+                    <p>MSFS</p>
+                    <p>Scenery</p>
+                </div>
             </a>
-            <a class="navbar-dropdown-item" href="">
-                <p>Digital Assets</p>
+            <a class="entry" id="ny03" href="https://flightsim.to/file/84613/ny3-klenawicus" target="_blank">
+                <img class="entry-img" src="assets/imgs/ny03.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">Klenawicus</p>
+                    <p class="entry-text-2">NY03</p>
+                </div>
+                <div class="entry-tags">
+                    <p>MSFS</p>
+                    <p>Scenery</p>
+                </div>
             </a>
-            <a class="navbar-dropdown-item" href="../photography/">
-                <p>Photography</p>
+            <a class="entry" id="kjra" href="https://flightsim.to/file/75354/kjra-west-30th-street-heliport" target="_blank">
+                <img class="entry-img" src="assets/imgs/kjra.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">West 30th St.</p>
+                    <p class="entry-text-2">KJRA</p>
+                </div>
+                <div class="entry-tags">
+                    <p>MSFS</p>
+                    <p>Scenery</p>
+                </div>
+            </a>
+            <a class="entry" id="21n" href="https://flightsim.to/file/64076/21n-mattituck" target="_blank">
+                <img class="entry-img" src="assets/imgs/21n.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">Mattituck</p>
+                    <p class="entry-text-2">21N</p>
+                </div>
+                <div class="entry-tags">
+                    <p>MSFS</p>
+                    <p>Scenery</p>
+                </div>
+            </a>
+            <a class="entry" id="7b2" href="https://flightsim.to/file/63488/7b2-northampton" target="_blank">
+                <img class="entry-img" src="assets/imgs/7b2.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">Northampton</p>
+                    <p class="entry-text-2">7B2</p>
+                </div>
+                <div class="entry-tags">
+                    <p>MSFS</p>
+                    <p>Scenery</p>
+                </div>
+            </a>
+            <a class="entry" id="n67ad" href="https://flightsim.to/file/60007/carenado-c182t-n67ad" target="_blank">
+                <img class="entry-img" src="assets/imgs/n67ad.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">N67AD</p>
+                    <p class="entry-text-2">Cessna C182T</p>
+                </div>
+                <div class="entry-tags">
+                    <p>MSFS</p>
+                    <p>Livery</p>
+                </div>
+            </a>
+            <a class="entry" id="2-17-b" href="https://www.digitalcombatsimulator.com/en/files/3338449/" target="_blank">
+                <img class="entry-img" src="assets/imgs/dcs1.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">2-17 Cav B Trp 95008</p>
+                    <p class="entry-text-2">Bell OH-58D</p>
+                </div>
+                <div class="entry-tags">
+                    <p>DCS</p>
+                    <p>Livery</p>
+                </div>
+            </a>
+            <a class="entry" id="6-6-c" href="https://www.digitalcombatsimulator.com/en/files/3330926/" target="_blank">
+                <img class="entry-img" src="assets/imgs/dcs2.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">6-6 Cav C Trp 97053</p>
+                    <p class="entry-text-2">Boeing AH-64D</p>
+                </div>
+                <div class="entry-tags">
+                    <p>DCS</p>
+                    <p>Livery</p>
+                </div>
+            </a>
+            <a class="entry" id="2-17-a" href="https://www.digitalcombatsimulator.com/en/files/3329145/" target="_blank">
+                <img class="entry-img" src="assets/imgs/dcs3.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">2-17 Cav A Trp</p>
+                    <p class="entry-text-2">Boeing AH-64D</p>
+                </div>
+                <div class="entry-tags">
+                    <p>DCS</p>
+                    <p>Livery</p>
+                </div>
+            </a>
+            <a class="entry" id="1-10" href="https://www.digitalcombatsimulator.com/en/files/3329075/" target="_blank">
+                <img class="entry-img" src="assets/imgs/dcs4.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">1-10 Av 26290</p>
+                    <p class="entry-text-2">Boeing AH-64D</p>
+                </div>
+                <div class="entry-tags">
+                    <p>DCS</p>
+                    <p>Livery</p>
+                </div>
+            </a>
+            <a class="entry" id="1-101-c" href="https://www.digitalcombatsimulator.com/en/files/3328363/" target="_blank">
+                <img class="entry-img" src="assets/imgs/dcs5.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">1-101 Av C Co</p>
+                    <p class="entry-text-2">Boeing AH-64D</p>
+                </div>
+                <div class="entry-tags">
+                    <p>DCS</p>
+                    <p>Livery</p>
+                </div>
+            </a>
+            <a class="entry" id="1-101-b" href="https://www.digitalcombatsimulator.com/en/files/3328362/" target="_blank">
+                <img class="entry-img" src="assets/imgs/dcs6.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">1-101 Av B Co</p>
+                    <p class="entry-text-2">Boeing AH-64D</p>
+                </div>
+                <div class="entry-tags">
+                    <p>DCS</p>
+                    <p>Livery</p>
+                </div>
+            </a>
+            <a class="entry" id="5-101-c" href="https://www.digitalcombatsimulator.com/en/files/3326588/" target="_blank">
+                <img class="entry-img" src="assets/imgs/dcs7.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">5-101 Av C Co</p>
+                    <p class="entry-text-2">Sikorsky UH-60L</p>
+                </div>
+                <div class="entry-tags">
+                    <p>DCS</p>
+                    <p>Livery</p>
+                </div>
+            </a>
+            <a class="entry" id="5-101-a" href="https://www.digitalcombatsimulator.com/en/files/3326587/" target="_blank">
+                <img class="entry-img" src="assets/imgs/dcs8.jpg">
+                <div class="entry-text">
+                    <p class="entry-text-1">5-101 Av A Co</p>
+                    <p class="entry-text-2">Sikorsky UH-60L</p>
+                </div>
+                <div class="entry-tags">
+                    <p>DCS</p>
+                    <p>Livery</p>
+                </div>
             </a>
         </div>
     </div>
 
-    <div class="body" id="body">
-        <img class="banner" src="assets/banner.png" width="100%">
-
-        <div class="filter-bar">
-            <p id="filter-msfs">MSFS</p>
-            <P id="filter-dcs">DCS</P>
-            <div class="filter-bar-spacer"></div>
-            <p id="filter-scenery">Scenery</p>
-            <P id="filter-livery">Livery</P>
-            <div class="filter-bar-spacer"></div>
-            <p id="filter-c182t">C182T</p>
-            <P id="filter-oh58d">OH-58D</P>
-            <p id="filter-ah64d">AH-64D</p>
-            <P id="filter-uh60l">UH-60L</P>
-        </div>
-
-        <div class="asset-holder">
-            <a href="https://flightsim.to/file/96408/kayz-zahn-s" target="_blank">
-                <div class="asset" id="kayz">
-                    <img src="assets/imgs/kayz.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>KAYZ <br> Zahn's</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>MSFS</p>
-                        <p>Scenery</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://flightsim.to/file/75357/kjpx-town-of-east-hampton" target="_blank">
-                <div class="asset" id="kjpx">
-                    <img src="assets/imgs/kjpx.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>KJPX <br> East Hampton</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>MSFS</p>
-                        <p>Scenery</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://flightsim.to/file/64914/khwv-brookhaven" target="_blank">
-                <div class="asset" id="khwv">
-                    <img src="assets/imgs/khwv.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>KHWV <br> Brookhaven</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>MSFS</p>
-                        <p>Scenery</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://flightsim.to/file/84613/ny3-klenawicus" target="_blank">
-                <div class="asset" id="ny03">
-                    <img src="assets/imgs/ny03.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>NY03 <br> Klenawicus</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>MSFS</p>
-                        <p>Scenery</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://flightsim.to/file/75354/kjra-west-30th-street-heliport" target="_blank">
-                <div class="asset" id="kjra">
-                    <img src="assets/imgs/kjra.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>KJRA <br> West 30th St. Heliport</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>MSFS</p>
-                        <p>Scenery</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://flightsim.to/file/64076/21n-mattituck" target="_blank">
-                <div class="asset" id="21n">
-                    <img src="assets/imgs/21n.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>21N <br> Mattituck</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>MSFS</p>
-                        <p>Scenery</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://flightsim.to/file/63488/7b2-northampton" target="_blank">
-                <div class="asset" id="7b2">
-                    <img src="assets/imgs/7b2.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>7B2 <br> Northampton</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>MSFS</p>
-                        <p>Scenery</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://flightsim.to/file/60007/carenado-c182t-n67ad" target="_blank">
-                <div class="asset" id="n67ad">
-                    <img src="assets/imgs/n67ad.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>N67AD</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>MSFS</p>
-                        <p>Livery</p>
-                        <p>C182T</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://www.digitalcombatsimulator.com/en/files/3338449/" target="_blank">
-                <div class="asset" id="2-17-b">
-                    <img src="assets/imgs/dcs1.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>2-17 Cav B Trp <br> Banshee 95008</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>DCS</p>
-                        <p>Livery</p>
-                        <p>OH-58D</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://www.digitalcombatsimulator.com/en/files/3330926/" target="_blank">
-                <div class="asset" id="6-6-c">
-                    <img src="assets/imgs/dcs2.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>6-6 Cav C Trp <br> Outcasts 97053</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>DCS</p>
-                        <p>Livery</p>
-                        <p>AH-64D</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://www.digitalcombatsimulator.com/en/files/3329145/" target="_blank">
-                <div class="asset" id="2-17-a">
-                    <img src="assets/imgs/dcs3.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>2-17 Cav A Trp <br> Annihilator</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>DCS</p>
-                        <p>Livery</p>
-                        <p>AH-64D</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://www.digitalcombatsimulator.com/en/files/3329075/" target="_blank">
-                <div class="asset" id="1-10">
-                    <img src="assets/imgs/dcs4.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>1-10 Av <br> Tigershark 26290</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>DCS</p>
-                        <p>Livery</p>
-                        <p>AH-64D</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://www.digitalcombatsimulator.com/en/files/3328363/" target="_blank">
-                <div class="asset" id="1-101-c">
-                    <img src="assets/imgs/dcs5.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>1-101 Av C Co <br> Paladins</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>DCS</p>
-                        <p>Livery</p>
-                        <p>AH-64D</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://www.digitalcombatsimulator.com/en/files/3328362/" target="_blank">
-                <div class="asset" id="1-101-b">
-                    <img src="assets/imgs/dcs6.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>1-101 Av B Co <br> Bearcats</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>DCS</p>
-                        <p>Livery</p>
-                        <p>AH-64D</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://www.digitalcombatsimulator.com/en/files/3326588/" target="_blank">
-                <div class="asset" id="5-101-c">
-                    <img src="assets/imgs/dcs7.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>5-101 Av C Co <br> Phantoms</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>DCS</p>
-                        <p>Livery</p>
-                        <p>UH-60L</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://www.digitalcombatsimulator.com/en/files/3326587/" target="_blank">
-                <div class="asset" id="5-101-a">
-                    <img src="assets/imgs/dcs8.jpg" width="300px">
-                    <div class="asset-text">
-                        <h2>5-101 Av A Co <br> Phoenix</h2>
-                    </div>
-                    <div class="asset-tags">
-                        <p>DCS</p>
-                        <p>Livery</p>
-                        <p>UH-60L</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <h4 class="no-results" id="no-results">No results matched filter settings</h4>
-
-        <div class="footer">
-            <a href="https://github.com/contraflux" target="_blank">
-                <p>GitHub</p>
-            </a>
-            <a href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
-                <p>LinkedIn</p>
-            </a>
-        </div> 
+    <div class="footer">
+        <a class="footer-item" href="https://github.com/contraflux" target="_blank">
+            <img src="../assets/global/github.svg" height="22px">
+            &ensp;GitHub
+        </a>
+        <a class="footer-item" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+            <img src="../assets/global/linkedin.svg" height="22px">
+            &ensp;LinkedIn
+        </a>
+        <a class="footer-item" href="mailto:ethan.rosenfeld@duke.edu" target="_blank">
+            <img src="../assets/global/mail.svg" height="22px">
+            &ensp;Mail
+        </a>
     </div>
 </body>
 

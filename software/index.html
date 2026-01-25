@@ -5,160 +5,134 @@
     <meta charset="UTF-8">
     <title>Software</title>
     <link rel="icon" href="../assets/global/favicon.png">
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="software.css">
     <script src="../index.js" defer></script>
     <script src="software.js" defer></script>
 </head>
 
 <body>
-    <div class="navbar-holder" id="navbar-holder">
-        <nav class="navbar" id="navbar">
-            <a href="..">
-                <img class="navbar-name" src="../assets/global/name.png" height="30px">
-            </a>
-            <a class="navbar-item" href="..">
-                <p>Home</p>
-            </a>
-            <a class="navbar-item" href="../hardware">
-                <p>Hardware</p>
-            </a>
-            <a class="navbar-item" href="">
-                <p>Software</p>
-            </a>
-            <a class="navbar-item" href="../digital">
-                <p>Digital Assets</p>
-            </a>
-            <a class="navbar-item" href="../photography">
-                <p>Photography</p>
-            </a>
-            <div class="navbar-right">
-                <div class="navbar-menu" id="navbar-menu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <a class="navbar-icon" href="https://github.com/contraflux" target="_blank">
-                    <img src="../assets/global/github.svg" width="30px" height="30px">
-                </a>
-                <a class="navbar-icon" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
-                    <img src="../assets/global/linkedin.svg" width="30px" height="30px">
-                </a>
+    <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <img src="../assets/global/name.png" height="45px">
+        </div>
+        <a class="navbar-item" href="..">
+            <p>Home</p>
+        </a>
+        <a class="navbar-item" href="../hardware">
+            <p>Hardware</p>
+        </a>
+        <a class="navbar-item" href="" style="border-bottom: 1px solid var(--accent);">
+            <p>Software</p>
+        </a>
+        <a class="navbar-item" href="../digital">
+            <p>Digital Assets</p>
+        </a>
+        <a class="navbar-item" href="../photography">
+            <p>Photography</p>
+        </a>
+    </nav>
+
+    <div class="software-content" id="content">
+        <div class="content-header">
+            <p class="content-text-1">Software Projects</p>
+            <p class="content-text-2">Physics and math coding projects I developed</p>
+            <img class="content-banner" src="assets/banner.png">
+            <div class="content-select">
+                <p id="select-all">&#8704;&ensp;All</p>
+                <p id="select-math">&#8477;&ensp;Math</p>
+                <p id="select-physics">&#9883;&ensp;Physics</p>
             </div>
-        </nav>
-        <div class="navbar-dropdown" id="navbar-dropdown">
-            <a class="navbar-dropdown-item" href="..">
-                <p>Home</p>
+        </div>
+        
+        <div class="content-grid">
+            <a class="entry" id="vector-fields" href="projects/vector-fields">
+                <img class="entry-img" src="assets/imgs/vectors.png">
+                <div class="entry-text">
+                    <p class="entry-text-1">Vector Fields</p>
+                    <p class="entry-text-2">Plot vector fields and operators like divergence and curl</p>
+                </div>
+                <div class="entry-tags">
+                    <p>Math</p>
+                    <p>Physics</p>
+                </div>
             </a>
-            <a class="navbar-dropdown-item" href="../hardware">
-                <p>Hardware</p>
+            <a class="entry" id="circuits" href="projects/circuits">
+                <img class="entry-img" src="assets/imgs/circuits.png">
+                <div class="entry-text">
+                    <p class="entry-text-1">Circuits</p>
+                    <p class="entry-text-2">Explore circuits with batteries, resistors, capacitors, and inductors</p>
+                </div>
+                <div class="entry-tags">
+                    <p>Physics</p>
+                </div>
             </a>
-            <a class="navbar-dropdown-item" href="">
-                <p>Software</p>
+            <a class="entry" id="matrices" href="projects/matrices">
+                <img class="entry-img" src="assets/imgs/matrices.png">
+                <div class="entry-text">
+                    <p class="entry-text-1">Matrices</p>
+                    <p class="entry-text-2">Visualize matrix transformations, eigenvectors, and eigenvalues</p>
+                </div>
+                <div class="entry-tags">
+                    <p>Math</p>
+                </div>
             </a>
-            <a class="navbar-dropdown-item" href="../digital">
-                <p>Digital Assets</p>
+            <a class="entry" id="charges" href="projects/charges">
+                <img class="entry-img" src="assets/imgs/charges.png">
+                <div class="entry-text">
+                    <p class="entry-text-1">Charges</p>
+                    <p class="entry-text-2">Place charges and simulate motion over time</p>
+                </div>
+                <div class="entry-tags">
+                    <p>Physics</p>
+                </div>
             </a>
-            <a class="navbar-dropdown-item" href="../photography">
-                <p>Photography</p>
+            <a class="entry" id="relativity" href="projects/relativity">
+                <img class="entry-img" src="assets/imgs/minkowski.png">
+                <div class="entry-text">
+                    <p class="entry-text-1">Relativity</p>
+                    <p class="entry-text-2">See how Lorentz transformations act on vectors in spacetime</p>
+                </div>
+                <div class="entry-tags">
+                    <p>Physics</p>
+                </div>
+            </a>
+            <a class="entry" id="electromagnetism" href="https://github.com/contraflux/electromagnetism" target="_blank">
+                <img class="entry-img" src="assets/imgs/electromagnetism.png">
+                <div class="entry-text">
+                    <p class="entry-text-1">Electromagnetism</p>
+                    <p class="entry-text-2">Generate electric and magnetic fields from parametrized charges</p>
+                </div>
+                <div class="entry-tags">
+                    <p>Physics</p>
+                </div>
+            </a>
+            <a class="entry" id="fluids" href="https://github.com/contraflux/fluid" target="_blank">
+                <img class="entry-img" src="assets/imgs/fluid.png">
+                <div class="entry-text">
+                    <p class="entry-text-1">Fluids</p>
+                    <p class="entry-text-2">Simulate fluid flow around objects</p>
+                </div>
+                <div class="entry-tags">
+                    <p>Physics</p>
+                </div>
             </a>
         </div>
     </div>
 
-    <div class="body" id="body">
-        <img class="banner" src="assets/banner.png" width="100%">
-
-        <div class="filter-bar">
-            <p id="filter-math">Math</p>
-            <P id="filter-physics">Physics</P>
-        </div>
-
-        <a href="projects/vector-fields" target="_blank">
-            <div class="project" id="vector-fields">
-                <img src="assets/imgs/vectors.png" width="300px">
-                <div class="project-text">
-                    <h2>Vector Fields</h2>
-                    <p>
-                        Project to display vector fields in R^2
-                    </p>
-                </div>
-                <div class="project-tags">
-                    <p>Math</p>
-                    <p>Physics</p>
-                </div>
-            </div>
+    <div class="footer">
+        <a class="footer-item" href="https://github.com/contraflux" target="_blank">
+            <img src="../assets/global/github.svg" height="22px">
+            &ensp;GitHub
         </a>
-
-        <a href="projects/circuits" target="_blank">
-            <div class="project" id="circuits">
-                <img src="assets/imgs/circuits.png" width="300px">
-                <div class="project-text">
-                    <h2>Circuit Simulator</h2>
-                    <p>
-                        Explore different circuits, using batteries, resistors, capacitors, inductors, and more.
-                    </p>
-                </div>
-                <div class="project-tags">
-                    <p>Physics</p>
-                </div>
-            </div>
+        <a class="footer-item" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+            <img src="../assets/global/linkedin.svg" height="22px">
+            &ensp;LinkedIn
         </a>
-
-        <a href="projects/matrices" target="_blank">
-            <div class="project" id="matrices">
-                <img src="assets/imgs/matrices.png" width="300px">
-                <div class="project-text">
-                    <h2>Matrix Transformations</h2>
-                    <p>
-                        Visualize 2x2 matrices, along with basis vectors, eigenvectors and their eigenvalues, and the determinant.
-                    </p>
-                </div>
-                <div class="project-tags">
-                    <p>Math</p>
-                </div>
-            </div>
+        <a class="footer-item" href="mailto:ethan.rosenfeld@duke.edu" target="_blank">
+            <img src="../assets/global/mail.svg" height="22px">
+            &ensp;Mail
         </a>
-
-        <a href="projects/charges" target="_blank">
-            <div class="project" id="charges">
-                <img src="assets/imgs/charges.png" width="300px">
-                <div class="project-text">
-                    <h2>Electric Charges</h2>
-                    <p>
-                        Set up charge configurations and watch the charges move from the electric field.
-                    </p>
-                </div>
-                <div class="project-tags">
-                    <p>Physics</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="projects/minkowski-diagrams" target="_blank">
-            <div class="project" id="minkowski">
-                <img src="assets/imgs/minkowski.png" width="300px">
-                <div class="project-text">
-                    <h2>Minkowski Diagrams</h2>
-                    <p>
-                        Explore the consequences of Special Relativity and visualize Lorentz Transformations in a 2D universe.
-                    </p>
-                </div>
-                <div class="project-tags">
-                    <p>Physics</p>
-                </div>
-            </div>
-        </a>
-
-        <h4 class="no-results" id="no-results">No results matched filter settings</h4>
-        
-        <div class="footer">
-            <a href="https://github.com/contraflux" target="_blank">
-                <p>GitHub</p>
-            </a>
-            <a href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
-                <p>LinkedIn</p>
-            </a>
-        </div>
     </div>
 </body>
 

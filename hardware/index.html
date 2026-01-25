@@ -5,154 +5,105 @@
     <meta charset="UTF-8">
     <title>Hardware</title>
     <link rel="icon" href="../assets/global/favicon.png">
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="hardware.css">
     <script src="../index.js" defer></script>
+    <script src="hardware.js" defer></script>
 </head>
 
 <body>
-    <div class="navbar-holder" id="navbar-holder">
-        <nav class="navbar" id="navbar">
-            <a href="..">
-                <img class="navbar-name" src="../assets/global/name.png" height="30px">
-            </a>
-            <a class="navbar-item" href="..">
-                <p>Home</p>
-            </a>
-            <a class="navbar-item" href="">
-                <p>Hardware</p>
-            </a>
-            <a class="navbar-item" href="../software">
-                <p>Software</p>
-            </a>
-            <a class="navbar-item" href="../digital">
-                <p>Digital Assets</p>
-            </a>
-            <a class="navbar-item" href="../photography/">
-                <p>Photography</p>
-            </a>
-            <div class="navbar-right">
-                <div class="navbar-menu" id="navbar-menu">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+    <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <img src="../assets/global/name.png" height="45px">
+        </div>
+        <a class="navbar-item" href="..">
+            <p>Home</p>
+        </a>
+        <a class="navbar-item" href="" style="border-bottom: 1px solid var(--accent);">
+            <p>Hardware</p>
+        </a>
+        <a class="navbar-item" href="../software">
+            <p>Software</p>
+        </a>
+        <a class="navbar-item" href="../digital">
+            <p>Digital Assets</p>
+        </a>
+        <a class="navbar-item" href="../photography">
+            <p>Photography</p>
+        </a>
+    </nav>
+
+    <div class="hardware-content" id="content">
+        <div class="content-header">
+            <p class="content-text-1">Hardware Projects</p>
+            <p class="content-text-2">Projects I've worked on the past few years</p>
+            <img class="content-banner" src="assets/banner.png">
+        </div>
+        <div class="timeline">
+            <div class="year">
+                <p class="year-text">2026</p>
+                <div class="year-line"></div>
+                <div class="year-dot"></div>
+                <div class="year-grid" style="border-top: 1px solid var(--border);">
                 </div>
-                <a class="navbar-icon" href="https://github.com/contraflux" target="_blank">
-                    <img src="../assets/global/github.svg" width="30px" height="30px">
-                </a>
-                <a class="navbar-icon" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
-                    <img src="../assets/global/linkedin.svg" width="30px" height="30px">
-                </a>
             </div>
-        </nav>
-        <div class="navbar-dropdown" id="navbar-dropdown">
-            <a class="navbar-dropdown-item" href="..">
-                <p>Home</p>
-            </a>
-            <a class="navbar-dropdown-item" href="">
-                <p>Hardware</p>
-            </a>
-            <a class="navbar-dropdown-item" href="../software">
-                <p>Software</p>
-            </a>
-            <a class="navbar-dropdown-item" href="../digital">
-                <p>Digital Assets</p>
-            </a>
-            <a class="navbar-dropdown-item" href="../photography/">
-                <p>Photography</p>
-            </a>
+            <div class="year">
+                <p class="year-text">2025</p>
+                <div class="year-line"></div>
+                <div class="year-dot"></div>
+                <div class="year-grid">
+                    <a class="entry" href="2025/aero">
+                        <img class="entry-img" src="assets/imgs/aero.png">
+                        <div class="entry-text">
+                            <p class="entry-text-1">DukeAERO 2025</p>
+                            <p class="entry-text-2">Developing liquid and solid rocket motors on DukeAERO</p>
+                        </div>
+                    </a>
+                    <a class="entry" href="2025/aviators">
+                        <img class="entry-img" src="assets/imgs/sim.png">
+                        <div class="entry-text">
+                            <p class="entry-text-1">Simulator</p>
+                            <p class="entry-text-2">Building a Cessna 172 simulator in the library</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="year">
+                <p class="year-text">2024</p>
+                <div class="year-line"></div>
+                <div class="year-dot"></div>
+                <div class="year-grid">
+                    <a class="entry" href="2024/sar">
+                        <img class="entry-img" src="assets/imgs/sar.png">
+                        <div class="entry-text">
+                            <p class="entry-text-1">Synthetic Aperture Radar</p>
+                            <p class="entry-text-2">Coding radars and finding landmines at MIT</p>
+                        </div>
+                    </a>
+                    <a class="entry" href="2024/frc">
+                        <img class="entry-img" src="assets/imgs/frc.png">
+                        <div class="entry-text">
+                            <p class="entry-text-1">FRC Robotics</p>
+                            <p class="entry-text-2">Creating an FRC robot on my high school's team</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="body" id="body">
-        <img class="banner" src="assets/banner.png" width="100%">
-
-        <div class="project-grid">
-            <a href="projects/aero/solids">
-                <div class="project" id="solids">
-                    <img src="assets/imgs/solids.png" width="300px">
-                    <div class="project-text">
-                        <h2>Solid Propulsion</h2>
-                        <p>
-                            Iteratively improving our solid rocket motor on Duke Aero
-                        </p>
-                    </div>
-                    <div class="project-tags">
-                        <p>2025 - Present</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="projects/aero/liquids">
-                <div class="project" id="liquids">
-                    <img src="assets/imgs/liquids.png" width="300px">
-                    <div class="project-text">
-                        <h2>Liquid Propulsion</h2>
-                        <p>
-                            Building Duke Aero's first ever liquid rocket engine
-                        </p>
-                    </div>
-                    <div class="project-tags">
-                        <p>2025 - Present</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="projects/sim">
-                <div class="project" id="sim">
-                    <img src="assets/imgs/sim.png" width="300px">
-                    <div class="project-text">
-                        <h2>Simulator Development</h2>
-                        <p>
-                            Building a flight simulator in Duke's Perkins Library with Duke Aviators
-                        </p>
-                    </div>
-                    <div class="project-tags">
-                        <p>2025 - Present</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="projects/sar">
-                <div class="project" id="sar">
-                    <img src="assets/imgs/sar.png" width="300px">
-                    <div class="project-text">
-                        <h2>Synthetic Aperture Radar</h2>
-                        <p>
-                            Using drones and radar to map objects <br> at MIT
-                        </p>
-                    </div>
-                    <div class="project-tags">
-                        <p>2024</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="projects/frc">
-                <div class="project" id="frc">
-                    <img src="assets/imgs/frc.png" width="300px">
-                    <div class="project-text">
-                        <h2>FRC Robotics</h2>
-                        <p>
-                            Electronics lead for my highschool robotics team working on robot control
-                        </p>
-                    </div>
-                    <div class="project-tags">
-                        <p>2023 - 2025</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="footer">
-            <a href="https://github.com/contraflux" target="_blank">
-                <p>GitHub</p>
-            </a>
-            <a href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
-                <p>LinkedIn</p>
-            </a>
-        </div>
+    <div class="footer">
+        <a class="footer-item" href="https://github.com/contraflux" target="_blank">
+            <img src="../assets/global/github.svg" height="22px">
+            &ensp;GitHub
+        </a>
+        <a class="footer-item" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+            <img src="../assets/global/linkedin.svg" height="22px">
+            &ensp;LinkedIn
+        </a>
+        <a class="footer-item" href="mailto:ethan.rosenfeld@duke.edu" target="_blank">
+            <img src="../assets/global/mail.svg" height="22px">
+            &ensp;Mail
+        </a>
     </div>
 </body>
-
-</html>

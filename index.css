@@ -1,223 +1,132 @@
-:root {
-  --highlight: rgb(26, 27, 36);
-  --shadow: rgb(22, 22, 28);
-  --panel: rgb(31, 33, 40);
-  --light: rgb(190, 200, 220);
-}
-
-body {
-  background-color: var(--highlight);
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--light);
-}
-
-.body {
-  opacity: 0;
-  transition: all 0.4s ease;
-}
-
-.navbar-holder {
-  z-index: 2;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  transition: top 0.4s ease;
-}
-
-.navbar {
-  z-index: 2;
-  position: absolute;
-  top: 0; left: 0;
-  background-color: var(--highlight);
-  width: 100%; height: 60px;
+.bio {
+  position: relative;
+  width: 100%; height: 275px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
 }
 
-.navbar-name {
-  position: absolute;
-  top: 18px; left: 30px;
-  filter: invert(100%);
-}
-
-.navbar-item {
+.bio-image {
   position: relative;
   float: left;
-  height: 40px;
-  padding-left: 15px; padding-right: 15px;
-  margin-left: 20px; margin-right: 20px;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  border-radius: 5px;
-  color: var(--light);
-  font-size: 16px;
-  transition: background-color 0.4s ease;
+  margin-left: 25px; margin-right: 75px;
+  width: 200; height: 200px;
+  border-radius: 100px;
+  border: 1px solid var(--accent);
 }
 
-.navbar-item:hover {
-  background-color: var(--shadow);
-}
-
-@media (max-width: 1100px) {
-  .navbar-item {
-    padding-left: 5px; padding-right: 5px;
-    margin-left: 10px; margin-right: 10px;
-  }
-}
-
-@media (max-width: 900px) {
-  .navbar-item {
-    display: none;
-  }
-}
-
-.navbar-right {
-  position: absolute;
-  right: 15px;
-  height: 60px;
-}
-
-.navbar-icon {
+.bio-text {
   position: relative;
-  float: right;
-  margin-top: 15px;
-  margin-right: 30px;
+  float: left;
+  height: 150px;
+  margin-right: 25px;
 }
 
-.navbar-menu {
-  position: relative;
-  float: right;
-  height: 30px; width: 30px;
-  margin-top: 15px;
-  margin-right: 15px;
+.bio-text-1 {
+  color: var(--primary);
+  font-size: 32px;
+  margin: 0;
 }
 
-@media (min-width: 900px) {
-  .navbar-menu {
-    display: none;
-  }
-}
-
-.navbar-menu>div {
-  height: 6px;
-  width: 30px;
-  background-color: white;
-  margin-bottom: 6px;
-  border-radius: 3px;
-}
-
-.navbar-dropdown {
-  z-index: 1;
-  position: absolute;
-  top: -200px;
-  left: 0;
-  width: 100%;
-  padding-top: 10px; 
-  background-color: var(--highlight);
-  box-sizing: border-box;
-  transition: all 0.4s ease;
-}
-
-.navbar-dropdown-item {
-  position: relative;
-  height: 40px;
-  padding-left: 15px; padding-right: 15px;
-  margin-left: 30px; margin-right: 30px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  border-radius: 5px;
-  color: var(--light);
-  font-size: 16px;
-  transition: background-color 0.4s ease;
-}
-
-.navbar-dropdown-item:hover {
-  background-color: var(--shadow);
-}
-
-.body {
-  position: absolute;
-  top: 60px; left: 0;
-}
-
-.banner {
-  position: relative;
-  width: 100%; height: calc(100vw / 6);
-  margin-bottom: -5px;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
-}
-
-.title {
-  position: absolute;
-  top: 0px; left: 60px;
-  height: 32px;
-  margin-top: calc((100vw / 12) - 14px);
-  margin-left: 0;
-  display: flex;
-  align-items: center;
-  font-size: 28px;
-  background-image: linear-gradient(45deg, #ff8a8a, #8c8cff);
-  background-clip: text;
-  color: transparent;
-}
-
-.content {
-  position: relative;
-  left: 120px;
-  margin-right: 120px;
-  width: calc(100% - 240px);
-}
-
-.content>h2 {
-  font-size: 28px;
-  margin-left: 20px; margin-right: 20px;
-}
-
-.content>h4 {
+.bio-text-2 {
+  color: var(--primary);
   font-size: 22px;
-  margin-left: 50px; margin-right: 50px;
 }
 
-.content>p {
+.bio-text-3 {
+  color: var(--secondary);
   font-size: 16px;
-  margin-left: 80px; margin-right: 80px;
 }
 
-.content>p>a {
-  text-decoration: none;
-  color: var(--light);
-}
-
-.content>p>a:hover {
-  text-decoration: underline;
-}
-
-.footer {
+.recent {
   position: relative;
-  bottom: 0; left: 0;
-  width: 100%; height: 60px;
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-}
-
-.footer>a {
-  position: relative;
-  float: left;
-  margin-left: 15px; margin-right: 15px;
+  width: 100%; height: 200px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  text-decoration: none;
-  color: var(--light);
 }
 
-.footer>a:hover {
-  text-decoration: underline;
+.recent>p {
+  position: absolute;
+  top: -10px; left: calc(50% - (125px/2));
+  margin: 0;
+  width: 125px;
+  text-align: center;
+  background-color: var(--background);
+  color: var(--primary);
+  font-size: 16px;
+}
+
+.recent-hardware {
+  position: absolute;
+  right: 50%;
+  width: 350px; height: 125px;
+  box-sizing: border-box;
+  border-right: 0.5px solid var(--border);
+}
+
+.recent-hardware-text {
+  position: absolute;
+  top: 0; right: 75px;
+  width: max-content; height: 100%;
+}
+
+.recent-hardware-text-1 {
+  position: relative;
+  color: var(--primary);
+  font-size: 22px;
+  margin: 0;
+}
+
+.recent-hardware-text-2 {
+  position: relative;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.recent-hardware-text-2>li {
+  color: var(--secondary);
+  margin-top: 10px;
+}
+
+.recent-hardware-text-2>li::marker {
+  color: var(--accent);
+}
+
+.recent-software {
+  position: absolute;
+  left: 50%;
+  width: 350px; height: 125px;
+  box-sizing: border-box;
+  border-left: 0.5px solid var(--border);
+}
+
+.recent-software-text {
+  position: absolute;
+  top: 0; left: 75px;
+  width: max-content; height: 100%;
+}
+
+.recent-software-text-1 {
+  position: relative;
+  color: var(--primary);
+  font-size: 22px;
+  margin: 0;
+}
+
+.recent-software-text-2 {
+  position: relative;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.recent-software-text-2>li {
+  color: var(--secondary);
+  margin-bottom: 10px;
+}
+
+.recent-software-text-2>li::marker {
+  color: var(--accent);
 }

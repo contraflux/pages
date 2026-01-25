@@ -55,6 +55,11 @@
   margin-bottom: 25px;
   border-radius: 5px;
   overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.entry:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 .entry:hover .entry-text {

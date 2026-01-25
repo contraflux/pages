@@ -110,12 +110,13 @@
   border-radius: 10px;
   box-shadow: 0 0 2px black;
   overflow: hidden;
-  transition: transform 0.4s ease;
+  transition: all 0.4s ease;
   text-decoration: none;
 }
 
 .entry:hover {
   transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 .entry-text {

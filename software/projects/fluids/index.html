@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fluids</title>
+    <link rel="icon" href="../../../assets/global/favicon.png">
+    <link rel="stylesheet" href="../../../global.css">
+    <link rel="stylesheet" href="../../projects.css">
+    <script src="../../../index.js" defer></script>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <img src="../../../assets/global/name.png" height="45px">
+        </div>
+        <a class="navbar-item" href="../../..">
+            <p>Home</p>
+        </a>
+        <a class="navbar-item" href="../../../hardware">
+            <p>Hardware</p>
+        </a>
+        <a class="navbar-item" href="../.."  style="border-bottom: 1px solid var(--accent);">
+            <p>Software</p>
+        </a>
+        <a class="navbar-item" href="../../../digital">
+            <p>Digital Assets</p>
+        </a>
+        <a class="navbar-item" href="../../../photography">
+            <p>Photography</p>
+        </a>
+    </nav>
+
+    <div class="content" id="content">
+        <div class="content-header">
+            <p class="content-text-1">Fluids</p>
+            <p class="content-text-2">Eulerian fluid simulation written in Julia</p>
+            <div class="content-grid">
+                <a class="content-image" href="https://github.com/contraflux/fluid" target="_blank">
+                    <img src="../../../assets/global/github.svg">
+                </a>
+                <div class="content-grid-dot"></div>
+                <a class="content-image" href="https://julialang.org/" target="_blank">
+                    <img src="../../../assets/global/julia.svg">
+                </a>
+                <div class="content-grid-dot"></div>
+                <a class="content-image" href="https://makie.org/website/" target="_blank">
+                    <img src="../../../assets/global/makie.png">
+                </a>
+            </div>
+        </div>
+        <div class="content-body">
+            <div class="video">
+                <video autoplay loop muted playsinline controls>
+                    <source src="vids/circle.mp4" type="video/mp4">
+                </video>
+                <p>Figure 1-1. Fluid flow around a circle</p>
+            </div>
+            <p class="heading">Overview</p>
+            <p class="text">
+                The repository contains two main files, the simulation in fluid.jl, and a script to
+                read images and output a grid of cells, generate_cells.jl. The fluid simulation works
+                by creating a grid of cells, with each assigned to a 1 (open) or 0 (closed). Along the
+                edges of each cell is a single number that keeps track of flow across that edge. In a
+                given time step, the simulation first advects the velocities to the new cells, then
+                relaxes to ensure the field is divergence free. An additional smoke advection function
+                is also run to pull smoke into new cells depending on the velocity field.
+            </p>
+            <p class="heading">Grid Generation</p>
+            <p class="text">
+                To generate the grid of cells, you can either write your own method to assign values
+                manually, or input a black and white image. Note that the resolution of the image will
+                equal the resolution of the final simulation. Black cells are read as solid (0), while
+                white cells are read as (1). The cutoff is at a brightness value of 0.5, so all cells
+                below that are assigned a 0 and everything else is assigned a 1.
+            </p>
+            <div class="image-grid">
+                <div class="figure-image">
+                    <img src="imgs/f1.png">
+                    <p>Figure 2-1. Image used to generate grid</p>
+                </div>
+                <div class="figure-image">
+                    <video autoplay loop muted playsinline controls>
+                        <source src="vids/f1car.mp4" type="video/mp4">
+                    </video>
+                    <p>Figure 2-2. Simulation run with the image from Figure 2-1</p>
+                </div>
+            </div>
+            <p class="text">
+                Here's a simulation run with a less streamlined object.
+            </p>
+            <div class="video">
+                <video autoplay loop muted playsinline controls>
+                    <source src="vids/perppeep.mp4" type="video/mp4">
+                </video>
+                <p>Figure 2-3. Fluid flow around a peep</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a class="footer-item" href="https://github.com/contraflux" target="_blank">
+            <img src="../../../assets/global/github.svg" height="22px">
+            &ensp;GitHub
+        </a>
+        <a class="footer-item" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+            <img src="../../../assets/global/linkedin.svg" height="22px">
+            &ensp;LinkedIn
+        </a>
+        <a class="footer-item" href="mailto:ethan.rosenfeld@duke.edu" target="_blank">
+            <img src="../../../assets/global/mail.svg" height="22px">
+            &ensp;Mail
+        </a>
+    </div>
+</body>

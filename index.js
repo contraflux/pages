@@ -36,9 +36,10 @@ function showNavbarDropdown() {
     navbar_dropdown.style.opacity = 1;
     navbar_dropdown.style.top = 75 + "px";
     navbar_state = true;
-    navbar_toggle_1.style.transform = "translate(0, 11px) rotate(45deg)";
+    navbar_toggle_1.style.transform = "translate(0, 11px) rotate(-45deg)";
     navbar_toggle_2.style.opacity = 0;
-    navbar_toggle_3.style.transform = "translate(0, -11px) rotate(-45deg)";
+    navbar_toggle_2.style.transform = "translate(100px, 0)";
+    navbar_toggle_3.style.transform = "translate(0, -11px) rotate(45deg)";
 }
 
 function hideNavbarDropdown() {
@@ -47,5 +48,6 @@ function hideNavbarDropdown() {
     navbar_state = false;
     navbar_toggle_1.style.transform = "translate(0, 0) rotate(0deg)";
     navbar_toggle_2.style.opacity = 1;
+    navbar_toggle_2.style.transform = "translate(0, 0)";
     navbar_toggle_3.style.transform = "translate(0, 0) rotate(0deg)";
 }

@@ -1,10 +1,17 @@
 .photography-content {
   z-index: 0;
   position: relative;
-  top: 75px; left: calc(50% - 65%/2);
-  width: 65%;
+  top: 75px; left: calc(50% - max(640px, 65%)/2);
+  width: max(65%, 640px);
   opacity: 0;
   transition: opacity 0.4s ease;
+}
+
+@media (max-width: 800px) {
+  .photography-content {
+    width: 80%;
+    left: calc(50% - 80%/2);
+  }
 }
 
 .content-header {
@@ -32,7 +39,9 @@
   position: absolute;
   top: 0;
   right: 0;
+  max-width: 100%;
   height: 100%;
+  object-fit: cover;
   mask-composite: intersect;
   mask-image:
     linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%),
@@ -44,6 +53,7 @@
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   padding-top: 25px;
+  padding-left: 25px; padding-right: 25px;
   column-width: 225px;
   column-gap: 25px;
 }

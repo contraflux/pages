@@ -134,8 +134,7 @@ body {
   z-index: 0;
   position: relative;
   top: 75px; left: calc(50% - (min(70%, 800px)/2));
-  width: 70%;
-  max-width: 800px;
+  width: min(70%, 800px);
   opacity: 0;
   transition: opacity 0.4s ease;
 }

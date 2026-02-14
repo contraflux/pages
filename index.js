@@ -15,6 +15,12 @@ window.addEventListener("DOMContentLoaded", () => {
     content.style.opacity = 1;
 });
 
+window.addEventListener('resize', (e) => {
+    if (window.innerWidth > 800) {
+        hideNavbarDropdown();
+    }
+});
+
 document.addEventListener("wheel", (e) => {
     if (window.scrollY == 0) {
         navbar.style.position = "absolute"

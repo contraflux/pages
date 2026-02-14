@@ -1,16 +1,26 @@
 .bio {
   position: relative;
-  width: 100%; height: 275px;
+  width: 100%;
   box-sizing: border-box;
   border-bottom: 1px solid var(--border);
   display: flex;
+  gap: 50px;
   align-items: center;
+  padding: 25px;
+  padding-left: 50px; padding-right: 50px;
+}
+
+@media (max-width: 800px) {
+  .bio {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
 }
 
 .bio-image {
   position: relative;
   float: left;
-  margin-left: 25px; margin-right: 75px;
   width: 200; height: 200px;
   border-radius: 100px;
   border: 1px solid var(--accent);
@@ -19,8 +29,6 @@
 .bio-text {
   position: relative;
   float: left;
-  height: 150px;
-  margin-right: 25px;
 }
 
 .bio-text-1 {
@@ -32,20 +40,35 @@
 .bio-text-2 {
   color: var(--primary);
   font-size: 22px;
+  margin: 0;
+  margin-top: 10px;
 }
 
 .bio-text-3 {
   color: var(--secondary);
   font-size: 16px;
+  margin: 0;
+  margin-top: 10px;
 }
 
 .recent {
   position: relative;
-  width: 100%; height: 200px;
+  width: 100%;
   box-sizing: border-box;
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
+  gap: 50px;
+  padding: 25px;
+  padding-left: 50px; padding-right: 50px;
+}
+
+@media (max-width: 800px) {
+  .recent {
+    flex-direction: column;
+    gap: 25px;
+  }
 }
 
 .recent>p {
@@ -60,17 +83,7 @@
 }
 
 .recent-hardware {
-  position: absolute;
-  right: 50%;
-  width: 350px; height: 125px;
-  box-sizing: border-box;
-  border-right: 0.5px solid var(--border);
-}
-
-.recent-hardware-text {
-  position: absolute;
-  top: 0; right: 75px;
-  width: max-content; height: 100%;
+  position: relative;
 }
 
 .recent-hardware-text-1 {
@@ -96,17 +109,7 @@
 }
 
 .recent-software {
-  position: absolute;
-  left: 50%;
-  width: 350px; height: 125px;
-  box-sizing: border-box;
-  border-left: 0.5px solid var(--border);
-}
-
-.recent-software-text {
-  position: absolute;
-  top: 0; left: 75px;
-  width: max-content; height: 100%;
+  position: relative;
 }
 
 .recent-software-text-1 {

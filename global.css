@@ -13,6 +13,7 @@ body {
   margin: 0;
   font-weight: 300;
   letter-spacing: 0.01em;
+  overflow: hidden;
 }
 
 .navbar {
@@ -41,6 +42,7 @@ body {
 }
 
 .navbar-item {
+  opacity: 1;
   position: relative;
   height: 30px;
   float: left;
@@ -53,6 +55,8 @@ body {
   transition: border 0.4s ease;
   text-decoration: none;
   font-size: 16px;
+  transition: all 0.4s ease;
+  white-space: nowrap;
 }
 
 .navbar-item:hover {
@@ -61,22 +65,24 @@ body {
 
 @media (max-width: 800px) {
   .navbar-item {
-    display: none;
+    opacity: 0;
+    margin-left: 20px;
+    transform: translateY(calc(-105px/2));
   }
 }
 
 .navbar-toggle {
-  display: none;
+  opacity: 0;
   width: 36px; height: 26px;
   position: absolute;
-  right: 50px;
+  right: -26px;
+  transition: all 0.4s ease;
 }
-
-
 
 @media (max-width: 800px) {
   .navbar-toggle {
-    display: block;
+    opacity: 1;
+    right: 50px;
   }
 }
 

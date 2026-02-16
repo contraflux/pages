@@ -97,6 +97,7 @@
   position: relative;
   margin-top: 10px;
   padding-left: 20px;
+  margin: 0;
 }
 
 .recent-hardware-text-2>li {
@@ -123,11 +124,12 @@
   position: relative;
   margin-top: 10px;
   padding-left: 20px;
+  margin: 0;
 }
 
 .recent-software-text-2>li {
   color: var(--secondary);
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .recent-software-text-2>li::marker {

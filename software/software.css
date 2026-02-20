@@ -1,8 +1,8 @@
 .software-content {
   z-index: 0;
   position: relative;
-  top: 75px; left: calc(50% - ((80% - mod(80%, 400px + 25px) - 25px + 50px)/2));
-  width: calc(80% - mod(80%, 400px + 25px) - 25px + 50px);
+  top: 75px; left: calc(50% - ((80% - mod(80%, 400px + 30px) - 30px + 50px)/2));
+  width: calc(80% - mod(80%, 400px + 30px) - 30px + 50px);
   opacity:  0;
   transition: opacity 0.4s ease;
 }
@@ -16,7 +16,7 @@
 
 .content-header {
   position: relative;
-  padding-top: 25px;
+  padding-top: 30px;
   padding-left: 50px; padding-right: 50px;
   overflow: hidden;
 }
@@ -51,8 +51,8 @@
 .content-select {
   color: var(--primary);
   width: 100%;
-  margin-top: 25px;
-  margin-left: -25px;
+  margin-top: 30px;
+  margin-left: -30px;
 }
 
 .content-select>p {
@@ -76,12 +76,12 @@
 .content-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 400px);
-  gap: 25px 25px;
+  gap: 30px 30px;
   margin: 0;
   padding-left: 25px;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding-top: 25px; padding-bottom: 25px;
+  padding-top: 30px; padding-bottom: 30px;
 }
 
 .entry-hidden {

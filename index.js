@@ -49,7 +49,7 @@ function showNavbarDropdown() {
 }
 
 function hideNavbarDropdown() {
-    navbar_dropdown.style.opacity = 1;
+    navbar_dropdown.style.opacity = 0;
     navbar_dropdown.style.top = -navbar_dropdown.offsetHeight + 75 + "px";
     navbar_state = false;
     navbar_toggle_1.style.transform = "translate(0, 0) rotate(0deg)";

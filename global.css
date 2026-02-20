@@ -121,7 +121,7 @@ body {
   align-items: center;
   box-sizing: border-box;
   border-bottom: 1px solid var(--background);
-  transition: border 0.4s ease;
+  transition: all 0.4s ease;
   text-decoration: none;
   font-size: 16px;
 }
@@ -154,7 +154,7 @@ body {
   width: 350px;
   display: flex;
   justify-content: space-between;
-  padding-top: 15px; padding-bottom: 15px;
+  padding-top: 25px; padding-bottom: 30px;
 }
 
 .footer-item {

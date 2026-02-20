@@ -16,7 +16,7 @@
 
 .content-header {
   position: relative;
-  padding-top: 25px; padding-bottom: 25px;
+  padding-top: 30px; padding-bottom: 30px;
   padding-left: 50px; padding-right: 50px;
   overflow: hidden;
 }
@@ -52,17 +52,17 @@
   margin: 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding-top: 25px;
+  padding-top: 30px;
   padding-left: 25px; padding-right: 25px;
   column-width: 225px;
-  column-gap: 25px;
+  column-gap: 30px;
 }
 
 .entry {
   position: relative;
   display: inline-block;
   width: 100%;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   border-radius: 5px;
   overflow: hidden;
   transition: all 0.4s ease;

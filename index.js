@@ -21,7 +21,7 @@ window.addEventListener('resize', (e) => {
     }
 });
 
-document.addEventListener("wheel", (e) => {
+window.addEventListener("scroll", (e) => {
     if (window.scrollY == 0) {
         navbar.style.position = "absolute"
     } else {

@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="../../../global.css">
     <link rel="stylesheet" href="../../projects.css">
     <script src="../../../index.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-julia.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script>
+    Prism.plugins.NormalizeWhitespace.setDefaults({
+        'remove-trailing': true,
+        'remove-indent': true,
+        'left-trim': true,
+        'right-trim': true,
+    });
+    </script>
 </head>
 
 <body>
@@ -74,7 +86,7 @@
             </div>
         </div>
         <div class="content-body">
-            <div class="video">
+            <div class="video" style="padding-top: 25px;">
                 <video autoplay loop muted playsinline controls>
                     <source src="vids/dipole.mp4" type="video/mp4">
                 </video>
@@ -108,147 +120,22 @@
                 to generate a number of complex parametric shapes. The function below will generate
                 32 point charges that move around in a toroid.
             </p>
-            <div class="code">
-                <span class="lang">julia</span>
-                <code>
-                    <span class="line">
-                        <span style="color: var(--tn_blue);">function</span>
-                        <span style="color: var(--tn_lavender);"> getPointCharges()</span>
-                    </span>
-                    <span class="line">
-                        <span>  </span>
-                        <span style="color: var(--tn_blue);">function</span>
-                        <span style="color: var(--tn_lavender);"> toroid(</span>
-                        <span style="color: var(--tn_white);">t</span>
-                        <span style="color: var(--tn_blue);">,</span>
-                        <span style="color: var(--tn_white);"> ϕ</span>
-                        <span style="color: var(--tn_lavender);">)</span>
-                    </span>
-                    <span class="line">
-                        <span>      </span>
-                        <span style="color: var(--tn_white);">w</span>
-                        <span style="color: var(--tn_blue);"> =</span>
-                        <span style="color: var(--tn_orange);"> 0.5</span>
-                    </span>
-                    <span class="line">
-                        <span>      </span>
-                        <span style="color: var(--tn_white);">r</span>
-                        <span style="color: var(--tn_blue);"> =</span>
-                        <span style="color: var(--tn_orange);"> 2.5</span>
-                    </span>
-                    <span class="line">
-                        <span>      </span>
-                        <span style="color: var(--tn_white);">k</span>
-                        <span style="color: var(--tn_blue);"> =</span>
-                        <span style="color: var(--tn_orange);"> 16</span>
-                    </span>
-                    <span class="line">
-                        <span>      </span>
-                        <span style="color: var(--tn_white);">s</span>
-                        <span style="color: var(--tn_blue);"> =</span>
-                        <span style="color: var(--tn_orange);"> 0.075</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_white);"> c</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_white);"> t</span>
-                        <span style="color: var(--tn_blue);"> +</span>
-                        <span style="color: var(--tn_white);"> ϕ</span>
-                    </span>
-                    <span class="line">
-                        <span>      </span>
-                        <span style="color: var(--tn_purple);">return</span>
-                        <span style="color: var(--tn_lavender);"> [</span>
-                        <span style="color: var(--tn_cyan);">cos</span>
-                        <span style="color: var(--tn_blue);">(</span>
-                        <span style="color: var(--tn_white);">s</span>
-                        <span style="color: var(--tn_blue);">)</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_blue);"> (</span>
-                        <span style="color: var(--tn_white);">r</span>
-                        <span style="color: var(--tn_blue);"> +</span>
-                        <span style="color: var(--tn_white);"> w</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_cyan);"> sin</span>
-                        <span style="color: var(--tn_purple);">(</span>
-                        <span style="color: var(--tn_white);">k</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_white);"> s</span>
-                        <span style="color: var(--tn_purple);">)</span>
-                        <span style="color: var(--tn_blue);">)</span>
-                        <span style="color: var(--tn_blue);">,</span>
-                    </span>
-                    <span class="line">
-                        <span>              </span>
-                        <span style="color: var(--tn_cyan);">sin</span>
-                        <span style="color: var(--tn_blue);">(</span>
-                        <span style="color: var(--tn_white);">s</span>
-                        <span style="color: var(--tn_blue);">)</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_blue);"> (</span>
-                        <span style="color: var(--tn_white);">r</span>
-                        <span style="color: var(--tn_blue);"> +</span>
-                        <span style="color: var(--tn_white);"> w</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_cyan);"> sin</span>
-                        <span style="color: var(--tn_purple);">(</span>
-                        <span style="color: var(--tn_white);">k</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_white);"> s</span>
-                        <span style="color: var(--tn_purple);">)</span>
-                        <span style="color: var(--tn_blue);">)</span>
-                        <span style="color: var(--tn_blue);">,</span>
-                    </span>
-                    <span class="line">
-                        <span>             </span>
-                        <span style="color: var(--tn_white);"> w</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_cyan);"> cos</span>
-                        <span style="color: var(--tn_blue);">(</span>
-                        <span style="color: var(--tn_white);">k</span>
-                        <span style="color: var(--tn_blue);"> *</span>
-                        <span style="color: var(--tn_white);"> s</span>
-                        <span style="color: var(--tn_blue);">)</span>
-                        <span style="color: var(--tn_lavender);">]</span>
-                    </span>
-                    <span class="line">
-                        <span>  </span>
-                        <span style="color: var(--tn_purple);">end</span>
-                    </span>
-                    <span class="line">
-                        <span>  </span>
-                        <span style="color: var(--tn_purple);">return</span>
-                        <span style="color: var(--tn_lavender);"> [</span>
-                        <span style="color: var(--tn_cyan);">PointCharge</span>
-                        <span style="color: var(--tn_blue);">(</span>
-                        <span style="color: var(--tn_white);">t</span>
-                        <span style="color: var(--tn_blue);"> -></span>
-                        <span style="color: var(--tn_cyan);"> toroid</span>
-                        <span style="color: var(--tn_purple);">(</span>
-                        <span style="color: var(--tn_white);">t</span>
-                        <span style="color: var(--tn_blue);">,</span>
-                        <span style="color: var(--tn_white);"> ϕ</span>
-                        <span style="color: var(--tn_purple);">)</span>
-                        <span style="color: var(--tn_blue);">,</span>
-                        <span style="color: var(--tn_orange);"> 1</span>
-                        <span style="color: var(--tn_blue);">)</span>
-                        <span style="color: var(--tn_purple);"> for</span>
-                        <span style="color: var(--tn_white);"> ϕ</span>
-                        <span style="color: var(--tn_blue);"> in</span>
-                        <span style="color: var(--tn_orange);"> 0</span>
-                        <span style="color: var(--tn_blue);">:</span>
-                        <span style="color: var(--tn_orange);">π</span>
-                        <span style="color: var(--tn_blue);">/</span>
-                        <span style="color: var(--tn_orange);">16</span>
-                        <span style="color: var(--tn_blue);">:</span>
-                        <span style="color: var(--tn_orange);">31π</span>
-                        <span style="color: var(--tn_blue);">/</span>
-                        <span style="color: var(--tn_orange);">16</span>
-                        <span style="color: var(--tn_lavender);">]</span>
-                    </span>
-                    <span class="line">
-                        <span style="color: var(--tn_purple);">end</span>
-                    </span>
-                </code>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                function getPointCharges()
+                    function toroid(t, ϕ)
+                        w = 0.5
+                        r = 2.5
+                        k = 16
+                        s = 0.075 * c * t + ϕ
+                        return [cos(s) * (r + w * sin(k * s)), 
+                                sin(s) * (r + w * sin(k * s)), 
+                                w * cos(k * s)]
+                    end
+                    return [PointCharge(t -> toroid(t, ϕ), 1) for ϕ in 0:π/16:31π/16]
+                end
+                </code></pre>
             </div>
             <div class="video">
                 <video autoplay loop muted playsinline controls>

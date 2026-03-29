@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TensorFlux.jl | Algebra</title>
+    <link rel="icon" href="../../../../assets/global/favicon.png">
+    <link rel="stylesheet" href="../../../../global.css">
+    <link rel="stylesheet" href="../../../projects.css">
+    <link rel="stylesheet" href="../tensorflux.css">
+    <script src="../../../../index.js" defer></script>
+    <script src="../tensorflux.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-julia.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script>
+    Prism.plugins.NormalizeWhitespace.setDefaults({
+        'remove-trailing': true,
+        'remove-indent': true,
+        'left-trim': true,
+        'right-trim': true,
+    });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="navbar-logo">
+            <img src="../../../../assets/global/name.png" height="45px">
+        </div>
+        <a class="navbar-item" href="../../../..">
+            <p>Home</p>
+        </a>
+        <a class="navbar-item" href="../../../../hardware">
+            <p>Hardware</p>
+        </a>
+        <a class="navbar-item" href="../../.."  style="border-bottom: 1px solid var(--accent);">
+            <p>Software</p>
+        </a>
+        <a class="navbar-item" href="../../../../digital">
+            <p>Digital Assets</p>
+        </a>
+        <a class="navbar-item" href="../../../../photography">
+            <p>Photography</p>
+        </a>
+        <div class="navbar-toggle" id="navbar-toggle">
+            <div id="navbar-toggle-1"></div>
+            <div id="navbar-toggle-2"></div>
+            <div id="navbar-toggle-3"></div>
+        </div>
+    </nav>
+
+    <nav class="navbar-dropdown" id="navbar-dropdown">
+        <a class="navbar-dropdown-item" href="../../../..">
+            <p>Home</p>
+        </a>
+        <a class="navbar-dropdown-item" href="../../../../hardware">
+            <p>Hardware</p>
+        </a>
+        <a class="navbar-dropdown-item" href="../../.."  style="border-bottom: 1px solid var(--accent);">
+            <p>Software</p>
+        </a>
+        <a class="navbar-dropdown-item" href="../../../../digital">
+            <p>Digital Assets</p>
+        </a>
+        <a class="navbar-dropdown-item" href="../../../../photography">
+            <p>Photography</p>
+        </a>
+    </nav>
+
+    <nav class="sidebar" id="sidebar">
+        <a class="sidebar-item" href="..">
+            <div></div>
+            <p class="sidebar-item-title">Overview</p>
+            <p class="sidebar-item-subtitle">Installation</p>
+            <p class="sidebar-item-subtitle">Quick Start</p>
+        </a>
+        <a class="sidebar-item" href=".">
+            <div style="background-color: var(--accent);"></div>
+            <p class="sidebar-item-title">Algebra</p>
+            <p class="sidebar-item-subtitle">Tensors</p>
+            <p class="sidebar-item-subtitle">Indexing</p>
+            <p class="sidebar-item-subtitle">Operations</p>
+        </a>
+        <a class="sidebar-item" href="../geometry/">
+            <div></div>
+            <p class="sidebar-item-title">Geometry</p>
+            <p class="sidebar-item-subtitle">Metric</p>
+            <p class="sidebar-item-subtitle">Derivatives</p>
+            <p class="sidebar-item-subtitle">Connections</p>
+            <p class="sidebar-item-subtitle">Curvature</p>
+            <p class="sidebar-item-subtitle">Lie Bracket</p>
+        </a>
+        <a class="sidebar-item" href="../differential-forms/">
+            <div></div>
+            <p class="sidebar-item-title">Differential Forms</p>
+            <p class="sidebar-item-subtitle">Wedge Product</p>
+            <p class="sidebar-item-subtitle">Exterior Derivative</p>
+            <p class="sidebar-item-subtitle">Hodge Star</p>
+        </a>
+        <a class="sidebar-item" href="../visualization/">
+            <div></div>
+            <p class="sidebar-item-title">Visualization</p>
+            <p class="sidebar-item-subtitle">Surfaces</p>
+            <p class="sidebar-item-subtitle">Scalars</p>
+            <p class="sidebar-item-subtitle">Vectors</p>
+        </a>
+    </nav>
+
+    <nav class="sidesubbar" id="sidesubbar">
+        <a class="sidesubbar-item" href="#heading_tensors">
+            <p>Tensors</p>
+        </a>
+        <a class="sidesubbar-item" href="#heading_indexing">
+            <p>Indexing</p>
+        </a>
+        <a class="sidesubbar-item" href="#heading_operations">
+            <p>Operations</p>
+        </a>
+    </nav>
+
+    <div class="content" id="content">
+        <div class="content-header">
+            <p class="content-text-1">TensorFlux.jl</p>
+            <p class="content-text-2">Differential geometry with mathematical notation in Julia</p>
+            <div class="content-grid">
+                <a class="content-image" href="https://github.com/contraflux/TensorFlux.jl" target="_blank">
+                    <img src="../../../../assets/global/github.svg">
+                </a>
+                <div class="content-grid-dot"></div>
+                <a class="content-image" href="https://julialang.org/" target="_blank">
+                    <img src="../../../../assets/global/julia.svg">
+                </a>
+                <div class="content-grid-dot"></div>
+                <a class="content-image" href="https://makie.org/website/" target="_blank">
+                    <img src="../../../../assets/global/makie.png">
+                </a>
+            </div>
+        </div>
+        <div class="content-body">
+            <p class="heading" id="heading_tensors">Tensors</p>
+            <p class="text">
+                Tensors are objects that transform in specific ways under coordinate changes. They
+                are categorized by how they transform, so an (m, n)-tensor follows m contravariant and
+                n covariant transformations. The order of a tensor is given by m + n.
+            </p>
+            <p class="text">
+                The simplest tensor is a (0, 0)-tensor, a scalar. A (1, 0)-tensor is also known
+                as a vector, and a (0, 1)-tensor is known as a covector or one-form. TensorFlux uses
+                Julia's adjoint to specify the variance of an index.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> v = Tensor([1, 2]) # A vector
+                (1, 0)-Tensor:
+                [1, 2]
+                    (:contra,)
+                julia> ω = Tensor([-3, 1]') # A covector
+                (0, 1)-Tensor:
+                [-3, 1]
+                    (:co,)
+                </code></pre>
+            </div>
+            <p class="text">
+                The Tensor type stores the variance of each index, as well as the components.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> v.data
+                2-element Vector{Int64}:
+                    1
+                    2
+                julia> ω.variance
+                (:co,)
+                </code></pre>
+            </div>
+            <p class="text">
+                The next step up are order 2 tensors. A (1, 1)-tensor is also known as a linear map.
+                An example of a (0, 2)- and a (2, 0)-tensor is the metric and inverse metric.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> L = Tensor([[4, -2]', [1, 1]']) # A linear map
+                (1, 1)-Tensor:
+                [4 -2; 1 1]
+                    (:contra, :co)
+                julia> g = Tensor([[2, 1]', [1, 2]']') # A (0, 2)-tensor
+                (0, 2)-Tensor:
+                [2 1; 1 2]
+                    (:co, :co)
+                </code></pre>
+            </div>
+            <p class="text">
+                This pattern continues to tensors of higher order.
+            </p>
+            <p class="heading" id="heading_indexing">Indexing</p>
+            <p class="text">
+                Tensors need to be indexed for operations. Indexing a Tensor returns an IndexedTensor
+                type, and either symbolic or integer indicies can be used.
+            </p>
+            <p class="text">
+                Indexing follows the convention that contravariant indices are written on top (first),
+                and covariant indices are written on the bottom (second). This distinction is arbitrary
+                for a tensor of constant variance. Thus any (k, 0)- or (0, k)-tensor can be indexed as
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> T[i1, i2...ik]
+                </code></pre>
+            </div>
+            <p class="text">
+                While a (k, l)-tensor is indexed as
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> T[i1, i2...ik][j1, j2...jl]
+                </code></pre>
+            </div>
+            <p class="text">
+                Indexing with pure integers will return a scalar.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> v = Tensor([1, 2])
+                julia> v[1] # Pure integer (1, 0)-tensor
+                1
+                julia> L = Tensor([[4, -2]', [1, 1]'])
+                julia> L[1][2] # Pure integer (1, 1)-tensor
+                -2
+                </code></pre>
+            </div>
+            <p class="text">
+                Indexing with pure symbols or a mix of integers and symbols will return an indexed
+                tensor. In the mixed case, the data will be spliced.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> v[:i] # Pure symbolic (1, 0)-tensor
+                (1, 0)-Tensor:
+                [1, 2]
+                    (:contra,)
+                    (:i,), ()
+                julia> L[:i][:j] # Pure symbolic (1, 1)-tensor
+                (1, 1)-Tensor:
+                [4 -2; 1 1]
+                    (:contra, :co)
+                    (:i,), (:j,)
+                julia> L[2][:k] # Mixed (1, 1)-tensor
+                (0, 1)-Tensor:
+                [1, 1]
+                    (:co,)
+                    (), (:k,)
+                </code></pre>
+            </div>
+            <p class="text">
+                The same convention of indexing applies to other objects with slight modifications.
+            </p>
+            <p class="heading" id="heading_operations">Operations</p>
+            <p class="text">
+                A fundamental operation with tensors is the tensor product. It takes an (m, n)-tensor
+                and a (p, q) tensor and returns an (m + p, n + q)-tensor.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> v = Tensor([2, -1])
+                julia> w = Tensor([3, 4])
+                julia> α = Tensor([2, 3]')
+                julia> L = v ⊗ w # Tensor product of two vectors
+                (2, 0)-Tensor:
+                [6 8; -3 -4]
+                    (:contra, :contra)
+                julia> L ⊗ α ⊗ v  # Tensor product of a (2, 0)-tensor, a covector, and a vector
+                (3, 1)-Tensor:
+                [24 32; -12 -16;;; 36 48; -18 -24;;;; -12 -16; 6 8;;; -18 -24; 9 12]
+                    (:contra, :contra, :co, :contra)
+                </code></pre>
+            </div>
+            <p class="text">
+                Another fundamental operation is contraction. Contraction takes a linear
+                combination along the repeated indices, and is the extension of matrix-vector
+                multiplication. Contraction requires that, in each pair, one index is contravariant
+                and the other is covariant.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> α[:i] * v[:i] # A covector contracted with a vector
+                1
+                julia> A = v ⊗ α # A linear map
+                julia> A[:i][:j] * v[:j] # A linear map contracted with a vector
+                (1, 0)-Tensor:
+                [2, -1]
+                    (:contra,)
+                    (:i,), ()
+                julia> L[:i, :j] * A[:k][:j] # A (2, 0)-tensor contracted with a linear map
+                (2, 0)-Tensor:
+                [72 -36; -36 18]
+                    (:contra, :contra)
+                    (:i, :k), ()
+                </code></pre>
+            </div>
+            <p class="text">
+                Contraction also allows you to take the trace of a tensor across a pair of indices.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> A[:i][:i]
+                1
+                </code></pre>
+            </div>
+            <p class="text">
+                Scaling is applied across all elements.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> 2 * L[:i, :j] # Scaling
+                (2, 0)-Tensor:
+                [12 16; -6 -8]
+                    (:contra, :contra)
+                    (:i, :j), ()
+                </code></pre>
+            </div>
+            <p class="text">
+                Addition and subtraction are element-wise.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> M = Tensor([[4, 2], [-1, 1]])
+                julia> L[:i, :j] + M[:i, :j] # Addition
+                (2, 0)-Tensor:
+                [10 10; -4 -3]
+                    (:contra, :contra)
+                    (:i, :j), ()
+                julia> L[:i, :j] - M[:i, :j] # Subtraction
+                (2, 0)-Tensor:
+                [2 6; -2 -5]
+                    (:contra, :contra)
+                    (:i, :j), ()
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a class="footer-item" href="https://github.com/contraflux" target="_blank">
+            <img src="../../../../assets/global/github.svg" height="22px">
+            &ensp;GitHub
+        </a>
+        <a class="footer-item" href="https://www.linkedin.com/in/ethan-rosenfeld06/" target="_blank">
+            <img src="../../../../assets/global/linkedin.svg" height="22px">
+            &ensp;LinkedIn
+        </a>
+        <a class="footer-item" href="mailto:ethan.rosenfeld@duke.edu" target="_blank">
+            <img src="../../../../assets/global/mail.svg" height="22px">
+            &ensp;Mail
+        </a>
+    </div>
+</body>

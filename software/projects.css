@@ -61,15 +61,16 @@
 
 .content-body {
   padding: 25px;
+  padding-top: 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
 
 .heading {
   margin: 0;
-  margin-bottom: 15px;
+  margin-top: 50px; margin-bottom: 50px;
   color: var(--primary);
-  font-size: 22px;
+  font-size: 28px;
 }
 
 .text {
@@ -103,50 +104,47 @@
   margin-top: 10px;
 }
 
-.code {
-  --tn_black: rgb(22, 22, 29);
-  --tn_grey: rgb(26, 27, 37);
-  --tn_lightgrey: rgb(135, 138, 162);
-  --tn_white: rgb(171, 177, 211);
-  --tn_cyan: rgb(85, 182, 212);
-  --tn_blue: rgb(157, 219, 251);
-  --tn_lavender: rgb(126, 156, 233);
-  --tn_purple: rgb(182, 155, 241);
-  --tn_orange: rgb(242, 163, 111);
-  --tn_green: rgb(168, 205, 118);
+.code-block {
   position: relative;
-  background-color: var(--tn_black);
-  margin-left: 25px;
-  width: calc(100% - 25px);
-  padding-top: 25px; padding-bottom: 25px;
-  border-radius: 15px;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
-.code>code {
-  font-weight: 100;
-  letter-spacing: 0.05em;
-  line-height: 20px;
-}
-
-.lang {
+.code-name {
+  z-index: 1;
   position: absolute;
-  top: 0; right: 0;
-  margin: 15px;
-  color: var(--secondary);
-  font-size: 16px;
+  top: 25px;
+  right: 25px;
+  text-align: right;
+  color: var(--tn_white);
 }
 
-.line {
-  margin-right: 25px; margin-left: 25px;
-  display: flex;
+.code {
+  position: relative !important;
+  border-radius: 25px !important;
+  overflow: hidden !important;
+  width: calc(100% - 75px) !important;
+  margin-top: 25px !important; margin-bottom: 25px !important;
+  margin-left: 25px !important;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5) !important;
+  font-size: 14px !important;
+  background-color: var(--tn_black) !important;
+  overflow-x: scroll !important;
 }
 
-.line span {
-  white-space: pre;
-  font-size: 16px;
+.code code {
+    color: var(--tn_white) !important;
 }
+
+pre[class*="language-"] {
+  padding: 25px !important;
+}
+
+.token.keyword { color: var(--tn_purple) !important; }
+.token.number { color: var(--tn_orange) !important; }
+.token.operator { color: var(--tn_blue) !important; }
+.token.string { color: var(--tn_green) !important; }
+.token.comment { color: var(--tn_grey) !important; }
+.token.punctuation { color: var(--tn_lavender) !important; }
+.token.constant { color: var(--tn_orange) !important; }
 
 .image-grid {
   width: calc(100% - 25px);

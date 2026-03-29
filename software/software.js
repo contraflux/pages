@@ -59,11 +59,11 @@ function updateStates() {
     }
 }
 
-const items = ['vector-fields', 'circuits', 'matrices', 'charges', 'relativity', 'electromagnetism', 'fluids'];
+const items = ['vector-fields', 'circuits', 'matrices', 'charges', 'relativity', 'electromagnetism', 'fluids', 'tensorflux'];
 
 const all = new Filter('select-all', false, items)
-const math = new Filter('select-math', false, ['vector-fields', 'matrices']);
-const physics = new Filter('select-physics', false, ['vector-fields', 'circuits', 'charges', 'relativity', 'electromagnetism', 'fluids']);
+const math = new Filter('select-math', false, ['vector-fields', 'matrices', 'tensorflux']);
+const physics = new Filter('select-physics', false, ['vector-fields', 'circuits', 'charges', 'relativity', 'electromagnetism', 'fluids', 'tensorflux']);
 
 all.dependencies = [math, physics];
 math.dependencies = [all, physics];

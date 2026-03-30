@@ -139,16 +139,105 @@
             </div>
         </div>
         <div class="content-body">
-            <p class="heading" id="heading_wip">Work in Progress</p>
+            <p class="heading" id="heading_wedgeproduct">Wedge Product</p>
             <p class="text">
-                
+                A differential form, also called a p-form, is an antisymmetric (0, p)-tensor. Covectors
+                only have one index, so all covectors are 1-forms. But not all (0, 2)-tensors are 2-forms,
+                only the antisymmetric ones.
+            </p>
+            <p class="text">
+                Just as the tensor product can take a (0, n)- and (0, p)-tensor to a (0, n + p)-tensor,
+                the wedge product takes an n-form and a p-form to a n+p-form.
             </p>
             <div class="code-block">
                 <span class="code-name">julia</span>
                 <pre class="code"><code class="language-julia">
-
+                julia> α = Tensor([1, -2]')
+                julia> β = Tensor([3, 1]')
+                julia> γ = α ∧ β # An asymmetric (0, 2)-tensor, i.e. 2-form
+                (0, 2)-Tensor:
+                [0.0 7.0; -7.0 0.0]
+                    (:co, :co)
+                julia> ζ = β ∧ α # Equal to -α ∧ β
+                (0, 2)-Tensor:
+                [0.0 -7.0; 7.0 0.0]
+                    (:co, :co)
                 </code></pre>
             </div>
+            <p class="text">
+                Note that the wedge product with any repeated differential form is 0, so
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> γ ∧ α # Equal to α ∧ β ∧ α
+                (0, 3)-Tensor:
+                [0.0 0.0; 0.0 0.0;;; 0.0 0.0; 0.0 0.0]
+                    (:co, :co, :co)
+                </code></pre>
+            </div>
+            <p class="heading" id="heading_exteriorderivative">Exterior Derivative</p>
+            <p class="text">
+                The exterior derivative is similar to the covariant derivative, but it
+                antisymmetrizes the components.
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> @variables u v
+                julia> ∂ = PartialDerivative((u, v))
+                julia> d = ExteriorDerivative(∂)
+                julia> α = Tensor([u^2 * v, v + 2]')
+                julia> d[:i] * α[:j]
+                (0, 2)-Tensor:
+                Num[0.0 u^2; -(u^2) 0.0]
+                    (:co, :co)
+                </code></pre>
+            </div>
+            <p class="heading" id="heading_hodgestar">Hodge Star</p>
+            <p class="text">
+                The Hodge star is an isomorphism that maps k-forms to n-k-forms, where n is the
+                dimension of the space
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> e = Basis([
+                           Tensor([1, 0]),
+                           Tensor([0, 1])
+                       ])
+                julia> g = metric(e)
+                julia> ⋆ = HodgeStar(g)
+                julia> ω = Tensor([2, 1]')
+                julia> ⋆(ω)
+                (0, 1)-Tensor:
+                Num[-1.0, 2.0]
+                    (:co,)
+                </code></pre>
+            </div>
+            <p class="text">
+                The Hodge star and exterior derivative are important in defining the three vector
+                calculus operators, gradient, divergence, and curl. A metric is required for the Hodge
+                star, so it is convention to associate a vector F directly with its 1-form F under the metric.
+                Note that both the Hodge star and exterior derivative operate only on differential forms, so
+                dF is operating on the one-form that F maps to under the metric. In TensorFlux, these operators
+                would be written as
+            </p>
+            <div class="code-block">
+                <span class="code-name">julia</span>
+                <pre class="code"><code class="language-julia">
+                julia> d[:i] * f # ∇f = df is the gradient
+                julia> ⋆(d[:i] * ⋆(F)[:j, :k]) # ∇ ⋅ F = ⋆d⋆F is the divergence
+                julia> ⋆(d[:i] * F[:j]) # ∇ × F = ⋆dF is the curl
+                </code></pre>
+            </div>
+            <p class="text">
+                Gradient returns a 1-form, which is associated with the vector ∇f under the metric,
+                divergence returns a 0-form, so it is a scalar, and curl returns a 1-form, again
+                mapped to the vector ∇ × F under the metric. Note that, for the curl, the final Hodge
+                star maps a 2-form to a 1-form, which is only the case in 3 dimensions. In 4 dimensions, it
+                would instead return a 2-form.
+            </p>
         </div>
     </div>
 

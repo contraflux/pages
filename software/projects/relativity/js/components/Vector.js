@@ -46,4 +46,8 @@ export class Vector {
     asString() {
         return "[" + this.x + ", " + this.y + "]";
     }
+
+    equals(v2) {
+        return (this.x == v2.x && this.y == v2.y);
+    }
 }

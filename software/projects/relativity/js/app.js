@@ -91,11 +91,19 @@ function appPeriodic() {
 }
 
 function drawGridOption(option, initial_basis, final_basis, color_initial, color_final, width_initial, width_final) {
+    let initial_time_label = "t";
+    let initial_position_label = "x";
+    let final_time_label = "t'";
+    let final_position_label = "x'";
+    if (initial_basis[0].equals(final_basis[0]) && initial_basis[1].equals(final_basis[1])) {
+        final_time_label = initial_time_label;
+        final_position_label = initial_position_label;
+    }
     if (option.value == "first" || option.value == "both") {
-        drawGrid(gridContainer, initial_basis[0], initial_basis[1], color_initial, width_initial);
+        drawGrid(gridContainer, initial_basis[0], initial_basis[1], initial_time_label, initial_position_label, color_initial, width_initial);
     }
     if (option.value == "second" || option.value == "both") {
-        drawGrid(gridContainer, final_basis[0], final_basis[1], color_final, width_final);
+        drawGrid(gridContainer, final_basis[0], final_basis[1], final_time_label, final_position_label, color_final, width_final);
     }
 }
 

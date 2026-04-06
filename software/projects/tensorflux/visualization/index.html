@@ -139,14 +139,25 @@
             </div>
         </div>
         <div class="content-body">
-            <p class="heading" id="heading_wip">Work in Progress</p>
+            <p class="heading" id="heading_surfaces">Surfaces</p>
             <p class="text">
-                
+                A differential form, also called a p-form, is an antisymmetric (0, p)-tensor. Covectors
+                only have one index, so all covectors are 1-forms. But not all (0, 2)-tensors are 2-forms,
+                only the antisymmetric ones.
             </p>
             <div class="code-block">
                 <span class="code-name">julia</span>
                 <pre class="code"><code class="language-julia">
-
+                julia> α = Tensor([1, -2]')
+                julia> β = Tensor([3, 1]')
+                julia> γ = α ∧ β # An asymmetric (0, 2)-tensor, i.e. 2-form
+                (0, 2)-Tensor:
+                [0.0 7.0; -7.0 0.0]
+                    (:co, :co)
+                julia> ζ = β ∧ α # Equal to -α ∧ β
+                (0, 2)-Tensor:
+                [0.0 -7.0; 7.0 0.0]
+                    (:co, :co)
                 </code></pre>
             </div>
         </div>

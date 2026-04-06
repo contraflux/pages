@@ -44,10 +44,11 @@ function appPeriodic() {
     // const v1 = parseFloat(v1Input.value);
 
     const gamma = 1 / Math.sqrt( 1 - Math.pow(v0 / c, 2))
+    const gamma_2 = 1 / Math.sqrt( 1 - Math.pow(w0 / c, 2))
 
     gammaDisplay.innerHTML = gamma.toFixed(10);
-    timeDisplay.innerHTML = "t' = " + gamma.toFixed(5) + " * t ";
-    lengthDisplay.innerHTML = "x' = " + (1/gamma).toFixed(5) + " * x ";
+    timeDisplay.innerHTML = "Δt' = " + gamma.toFixed(5) + " Δt ";
+    lengthDisplay.innerHTML = "Δx = " + (1/gamma).toFixed(5) + " Δx'";
     eigval1Display.innerHTML = (gamma * (1 - v0)).toFixed(5);
     eigval2Display.innerHTML = (gamma * (1 + v0)).toFixed(5);
 
@@ -64,20 +65,19 @@ function appPeriodic() {
     const e1 = new Vector(1, 0);
     const e2 = new Vector(0, 1);
 
-    const v0t = new Vector(v0, 1);
-    const v0t_bar = gridContainer.matrix.multiply(v0t);
+    const v0t = new Vector(v0*gamma, 1*gamma);
 
-    const w0t = new Vector(w0, 1);
+    const w0t = new Vector(w0*gamma_2, 1*gamma_2);
     const w0t_bar = gridContainer.matrix.multiply(w0t);
 
     const ct = new Vector(1, 1);
     const nct = new Vector(-1, 1);
 
-    const ct_bar = gridContainer.matrix.multiply(ct);
-    const nct_bar = gridContainer.matrix.multiply(nct);
+    const ct_bar = gridContainer.matrix.getInverse().multiply(ct);
+    const nct_bar = gridContainer.matrix.getInverse().multiply(nct);
 
-    const ebar_1 = gridContainer.matrix.multiply(e1);
-    const ebar_2 = gridContainer.matrix.multiply(e2);
+    const ebar_1 = gridContainer.matrix.getInverse().multiply(e1);
+    const ebar_2 = gridContainer.matrix.getInverse().multiply(e2);
 
     drawGridOption(gridOption, [e1, e2], [ebar_1, ebar_2], "white", "#7c98ff", 0.5, 1);
 
@@ -85,7 +85,7 @@ function appPeriodic() {
 
     drawVectorOption(photonOption, nct, nct_bar, "#7cff98", 3, 1);
 
-    drawVectorOption(primaryOption, v0t, v0t_bar, "#ff987c", 3, 1);
+    drawVector(gridContainer, v0t, "#ff987c", 3, true);
 
     drawVectorOption(secondaryOption, w0t, w0t_bar, "#ff7cff", 3, 1);
 }

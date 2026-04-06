@@ -19,9 +19,9 @@ class Container {
 export class GridContainer extends Container {
     constructor(id) {
         super(id);
-        this.coordScale = 25;
+        this.coordScale = 150;
         this.offsetX = 0;
-        this.offsetY = 0;
+        this.offsetY = -0.5;
         this.isDragging = false;
         this.mouseOffsetX = 0;
         this.mouseOffsetY = 0;
@@ -30,9 +30,9 @@ export class GridContainer extends Container {
     }
 
     resetFields() {
-        this.coordScale = 25;
+        this.coordScale = 150;
         this.offsetX = 0;
-        this.offsetY = 0;
+        this.offsetY = -0.5;
         this.isDragging = false;
         this.mouseOffsetX = 0;
         this.mouseOffsetY = 0;

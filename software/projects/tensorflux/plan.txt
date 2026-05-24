@@ -1,5 +1,0 @@
-Overview — installation, quick start, the Riemann example
-Algebra — tensors, indexing, contraction, tensor product, scaling, addition
-Differential Forms — wedge product, exterior derivative, Hodge star (these feel cohesive together)
-Geometry — metric, Christoffel, Riemann, Ricci, Einstein, Lie bracket, partial and covariant derivatives
-Visualization — the plotting functions with actual rendered examples

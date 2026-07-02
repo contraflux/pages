@@ -1,0 +1,261 @@
+:root {
+  --highlight: rgb(26, 27, 36);
+  --shadow: rgb(22, 22, 28);
+  --panel: rgb(31, 33, 40);
+  --light: rgb(190, 200, 220);
+}
+
+body {
+    position: relative;
+    width: 900px;
+    background-color: var(--highlight);
+    margin: auto;
+}
+
+.matrix-equation {
+    position: relative;
+    float: left;
+    height: 100px;
+    margin-left: 10px;
+}
+
+.matrix-name {
+    margin: 0;
+    margin-right: 4px;
+    position: relative;
+    float: left;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.matrix-bracket {
+    position: relative;
+    float: left;
+    height: 100px;
+    width: 25px;
+}
+
+.top {
+    position: absolute;
+    background-color: var(--light);
+    width: 15px; height: 2px;
+    top: 10px;
+    left: 5px;
+}
+
+.bottom {
+    position: absolute;
+    background-color: var(--light);
+    width: 15px; height: 2px;
+    bottom: 10px;
+    left: 5px;
+}
+
+.left {
+    position: absolute;
+    background-color: var(--light);
+    width: 2px; height: 80px;
+    top: 10px;
+    left: 5px;
+}
+
+.right {
+    position: absolute;
+    background-color: var(--light);
+    width: 2px; height: 80px;
+    top: 10px;
+    right: 5px;
+}
+
+.matrix-input {
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    width: 50px; height: 70px;
+}
+
+.matrix-input>input {
+    background-color: var(--panel);
+    margin-bottom: 10px;
+    width: 50px; height: 30px;
+    box-sizing: border-box;
+    border-width: 0px;
+    border-bottom: 2px solid var(--light);
+    border-radius: 5px;
+    text-align: center;
+    color: var(--light);
+    font-size: 16px;
+    transition: all 0.4s ease;
+}
+
+.matrix-input>input:hover {
+    background-color: var(--highlight);
+    box-shadow: 0 5px 10px black;
+}
+
+.matrix-spacer {
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    width: 10px; height: 70px;
+}
+
+.input-container {
+    z-index: 100;
+    position: relative;
+    float: left;
+    background-color: var(--panel);
+    color: var(--light);
+    box-sizing: border-box;
+    width: 230px;
+    margin: 0;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 25px;
+    box-shadow: 0 0 5px 5px var(--shadow);
+    display: flex;
+    padding-left: 10px;
+}
+
+.action-container {
+    z-index: 100;
+    position: relative;
+    float: left;
+    background-color: var(--panel);
+    color: var(--light);
+    box-sizing: border-box;
+    width: 120px;
+    margin: 0;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 25px;
+    box-shadow: 0 0 5px 5px var(--shadow);
+}
+
+.option-container {
+    z-index: 100;
+    position: relative;
+    float: left;
+    background-color: var(--panel);
+    color: var(--light);
+    box-sizing: border-box;
+    width: 530px;
+    margin: 0;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 25px;
+    box-shadow: 0 0 5px 5px var(--shadow);
+    display: flex;
+    justify-content: space-around;
+}
+
+.property-container {
+    z-index: 100;
+    position: relative;
+    float: left;
+    border-radius: 25px;
+    background-color: var(--panel);
+    width: 230px;
+    height: 500px;
+    color: var(--light);
+    overflow: hidden;
+    box-shadow: 0 0 5px 5px var(--shadow);
+}
+
+.action-row {
+    margin-top: 10px;
+    height: 35px;
+    width: 110px;
+    display: flex;
+    justify-content: center;
+}
+
+.property-row {
+    box-sizing: border-box;
+    position: relative;
+    top: 0;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-style: solid;
+    border-color: var(--light);
+    border-width: 0px;
+    padding-bottom: 10px;
+}
+
+.property-row>h4 {
+    height: 16px;
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 0;
+    font-size: 16px;
+}
+
+.property-row>p {
+    height: 16px;
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0;
+    font-size: 16px;
+}
+
+.action-button {
+    position: relative;
+    font-size: 14px;
+    border-radius: 10px;
+    height: 35px;
+    width: 80px;
+    margin-left: 10px;
+    color: var(--light);
+    background-color: var(--panel);
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: var(--light);
+    border-width: 1px;
+    transition: all 0.4s ease;
+}
+
+.action-button:hover {
+    background-color: var(--shadow);
+    box-shadow: 0 5px 10px black;
+}
+
+.action-button>h4 {
+    top: -20px;
+    left: 21px;
+    position: absolute;
+    font-size: 18px;
+    width: 30px; height: 30px;
+    text-align: center;
+    align-content: center;
+}
+
+.action-button>p {
+    top: -7px;
+    left: 38px;
+    position: absolute;
+    font-size: 12px;
+    width: 15px; height: 15px;
+    text-align: center;
+    align-content: center;
+}
+
+.canvas {
+    position: relative;
+    float: left;
+    margin-left: 10px;
+    box-sizing: border-box;
+    border-radius: 25px;
+    background-color: var(--panel);
+    width: 660px;
+    height: 500px;
+    box-shadow: 0 0 10px 10px var(--shadow);
+}

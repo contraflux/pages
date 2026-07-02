@@ -39,9 +39,9 @@ export default function Hardware() {
       lineEl.style.height = `${Math.max(0, Math.min(revealed, timelineEl.offsetHeight))}px`
 
       years.forEach((year) => {
-        if (year.getBoundingClientRect().top < window.innerHeight - 250) {
-          year.classList.add(styles.visible)
-        }
+        const r = year.getBoundingClientRect()
+        const visible = r.top < window.innerHeight - 250 && r.bottom > 0
+        year.classList.toggle(styles.visible, visible)
       })
     }
 

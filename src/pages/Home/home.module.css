@@ -123,6 +123,8 @@
 /* ---- Sections ---- */
 .section {
   padding: 55px 0 10px;
+  /* Keep the heading clear of the fixed navbar when scrolled to via #work. */
+  scroll-margin-top: var(--navbar-height);
 }
 
 .sectionHead {
@@ -218,14 +220,14 @@
 
 /* ---- Skills ---- */
 .skills {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 48px;
 }
 
 .skillRow {
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: 110px 1fr;
   gap: 20px;
   align-items: center;
 }
@@ -288,6 +290,10 @@
   }
 
   .workGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills {
     grid-template-columns: 1fr;
   }
 

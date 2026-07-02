@@ -65,7 +65,16 @@ export default function Home() {
               <a className={styles.ctaPrimary} href="/assets/global/resume.pdf" target="_blank" rel="noreferrer">
                 Resume ↗
               </a>
-              <a className={styles.ctaSecondary} href="#work">View Work</a>
+              <a
+                className={styles.ctaSecondary}
+                href="#work"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
+                }}
+              >
+                View Work
+              </a>
               <a className={styles.ctaSecondary} href="mailto:ethan.rosenfeld@duke.edu">Contact</a>
             </div>
           </div>

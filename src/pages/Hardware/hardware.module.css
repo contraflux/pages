@@ -24,12 +24,11 @@
   position: absolute;
   top: 8px;
   left: 78px;
-  width: 4px;
+  width: 6px;
   height: 0;
   border-radius: 2px;
   background-color: var(--border);
   mask-image: linear-gradient(to bottom, transparent 0, black 40px, black calc(100% - 8px), transparent 100%);
-  transition: height 0.1s linear;
 }
 
 .year {
@@ -55,25 +54,25 @@
 
 .yearLabel {
   display: block;
-  width: 60px;
+  width: 40px;
   text-align: right;
   color: var(--primary);
   font-size: 22px;
 }
 
-/* Centered on the rail (line center 78 + 4/2 = 80; dot center 72 + 16/2 = 80)
-   and vertically centered on the row's cards. */
+/* Centered on the rail's center (line left 78 + 6/2 = 81) and vertically
+   centered on the row's cards, independent of the dot's own size. */
 .dot {
   position: absolute;
   top: 50%;
-  left: 72px;
-  transform: translateY(-50%);
-  width: 16px;
+  left: 81px;
+  transform: translate(-50%, -50%);
+  width: 32px;
   height: 16px;
-  border-radius: 50%;
+  border-radius: 8px;
   background-color: var(--accent);
   border: 3px solid var(--background);
-  box-shadow: 0 0 0 1px var(--border);
+  box-shadow: 0 0 0 2px var(--border);
 }
 
 .grid {
@@ -158,11 +157,13 @@
   .yearLabel {
     width: 40px;
     font-size: 18px;
+    transform: translateX(-10px);
   }
 
-  /* line center 48 + 2 = 50; dot center 42 + 8 = 50 */
+  /* rail center 48 + 6/2 = 51; dot is centered on it via translate(-50%). */
   .dot {
-    left: 42px;
+    left: 51px;
+    width: 16px;
   }
 
   .grid {

@@ -3,10 +3,10 @@ import Footer from '../../components/Footer/Footer'
 import styles from './home.module.css'
 
 const highlights = [
-  { stat: 'DukeAERO', detail: 'Propulsion engineer — liquid & solid motors' },
-  { stat: 'MIT Lincoln Lab', detail: 'Detected buried landmines with SAR' },
-  { stat: 'TensorFlux.jl', detail: 'Published Julia package for geometry' },
-  { stat: 'Aircraft Maintenance', detail: 'A&P intern — Cessna, Piper, Beechcraft' },
+  { stat: 'DukeAERO', detail: 'Propulsion engineer making liquid engines & solid motors' },
+  { stat: 'Aviation', detail: 'Instrument rated private pilot with around 110 hours' },
+  { stat: 'BWSI UAS-SAR', detail: 'Mapping objects and detecting buried landmines with radar' },
+  { stat: 'TensorFlux.jl', detail: 'Julia package for differential geometry' },
 ]
 
 const work = [
@@ -59,19 +59,15 @@ export default function Home() {
             <p className={styles.eyebrow}>Mechanical Engineering + Physics · Duke University</p>
             <h1 className={styles.name}>Ethan Rosenfeld</h1>
             <p className={styles.tagline}>
-              I build rocket propulsion, radar, and interactive physics simulations —
-              and I’m interested in where the models break down.
+              I design and build rocket engines on DukeAERO, and develop interactive physics, math, and engineering software.
             </p>
             <div className={styles.ctaRow}>
               <a className={styles.ctaPrimary} href="/assets/global/resume.pdf" target="_blank" rel="noreferrer">
                 Resume ↗
               </a>
               <a className={styles.ctaSecondary} href="#work">View Work</a>
-              <a className={styles.ctaSecondary} href="mailto:ethan.rosenfeld@duke.edu">Email</a>
+              <a className={styles.ctaSecondary} href="mailto:ethan.rosenfeld@duke.edu">Contact</a>
             </div>
-            <p className={styles.credential}>
-              Instrument-rated private pilot · Class of 2029
-            </p>
           </div>
           <div className={styles.heroImageWrap}>
             <img className={styles.heroImage} src="/assets/global/profile.jpeg" alt="Ethan Rosenfeld" />

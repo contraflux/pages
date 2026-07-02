@@ -15,9 +15,6 @@ export default function Footer() {
         <img src="/assets/global/mail.svg" height="22" alt="" />
         Mail
       </a>
-      <a className={styles.item} href="/assets/global/resume.pdf" target="_blank" rel="noreferrer">
-        Résumé
-      </a>
     </footer>
   )
 }

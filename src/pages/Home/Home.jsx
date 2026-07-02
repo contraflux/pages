@@ -15,14 +15,14 @@ const work = [
     tag: 'Propulsion Engineer',
     blurb: 'Building Duke’s first liquid rocket motor and designing the solid-motor nozzle.',
     img: '/hardware/assets/imgs/aero.png',
-    href: '/hardware/2025/aero',
+    href: '/hardware/2025/aero/',
   },
   {
     title: 'Synthetic Aperture Radar',
     tag: 'MIT Lincoln Laboratory',
     blurb: 'A backprojection SAR imager that detected landmines buried in sand.',
     img: '/hardware/assets/imgs/sar.png',
-    href: '/hardware/2024/sar',
+    href: '/hardware/2024/sar/',
   },
   {
     title: 'Interactive Simulations',

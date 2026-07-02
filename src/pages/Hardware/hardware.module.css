@@ -11,16 +11,18 @@
   border-bottom: 1px solid var(--border);
 }
 
-/* Vertical rail running behind the year markers */
+/* Vertical rail running behind the year markers; height is driven by scroll
+   position in Hardware.jsx so it reveals as you move down the page. */
 .line {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 20px;
   left: 90px;
   width: 4px;
+  height: 0;
   border-radius: 2px;
   background-color: var(--border);
-  mask-image: linear-gradient(to bottom, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, black 40px, black calc(100% - 8px), transparent 100%);
+  transition: height 0.1s linear;
 }
 
 .year {
@@ -29,18 +31,14 @@
   grid-template-columns: 110px 1fr;
   gap: 24px;
   padding: 26px 0;
-  animation: fade-up 0.5s ease both;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.year.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .marker {

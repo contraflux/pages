@@ -1,0 +1,158 @@
+.page {
+  width: var(--content-width);
+  margin: 0 auto;
+  padding-top: var(--navbar-height);
+}
+
+.timeline {
+  position: relative;
+  padding: 20px 0 40px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Vertical rail running behind the year markers */
+.line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 90px;
+  width: 4px;
+  border-radius: 2px;
+  background-color: var(--border);
+  mask-image: linear-gradient(to bottom, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+}
+
+.year {
+  position: relative;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 24px;
+  padding: 26px 0;
+  animation: fade-up 0.5s ease both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.marker {
+  position: relative;
+}
+
+.yearLabel {
+  display: block;
+  width: 70px;
+  text-align: right;
+  color: var(--primary);
+  font-size: 22px;
+  padding-top: 4px;
+}
+
+.dot {
+  position: absolute;
+  top: 12px;
+  left: 82px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  border: 3px solid var(--background);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.empty {
+  margin: 8px 0;
+  color: var(--secondary);
+  font-size: 15px;
+  font-style: italic;
+}
+
+.card {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.cardImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.9;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 100%);
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .cardImg {
+  opacity: 1;
+}
+
+.cardText {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding: 18px 20px;
+}
+
+.cardTitle {
+  margin: 0;
+  color: var(--primary);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.cardDesc {
+  margin: 8px 0 0;
+  color: var(--secondary);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+@media (max-width: 800px) {
+  .year {
+    grid-template-columns: 70px 1fr;
+    gap: 16px;
+  }
+
+  .line {
+    left: 58px;
+  }
+
+  .yearLabel {
+    width: 46px;
+    font-size: 18px;
+  }
+
+  .dot {
+    left: 50px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

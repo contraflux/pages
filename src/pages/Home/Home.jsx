@@ -29,7 +29,7 @@ const work = [
     tag: 'Physics & Math',
     blurb: 'Runnable browser sims for fields, circuits, relativity, and matrices.',
     img: '/software/assets/imgs/vectors.png',
-    href: '/software/',
+    href: '/software',
   },
   {
     title: 'TensorFlux.jl',
@@ -51,7 +51,7 @@ const skills = [
 export default function Home() {
   return (
     <>
-      <Navbar active="Home" />
+      <Navbar />
 
       <main className={styles.page}>
         <section className={styles.hero}>
@@ -90,7 +90,7 @@ export default function Home() {
         <section id="work" className={styles.section}>
           <div className={styles.sectionHead}>
             <h2 className={styles.sectionTitle}>Selected Work</h2>
-            <a className={styles.sectionLink} href="/hardware/">All projects ↗</a>
+            <a className={styles.sectionLink} href="/hardware">All projects ↗</a>
           </div>
           <div className={styles.workGrid}>
             {work.map((w) => (

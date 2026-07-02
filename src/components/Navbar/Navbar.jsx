@@ -1,36 +1,37 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import styles from './navbar.module.css'
 
-// Section pages are still served as static HTML from /public during the
-// migration, so they use plain anchors (full navigation) rather than router
-// links. `active` highlights the current page.
 const links = [
-  { label: 'Home', href: '/' },
-  { label: 'Hardware', href: '/hardware/' },
-  { label: 'Software', href: '/software/' },
-  { label: 'Digital Assets', href: '/digital/' },
-  { label: 'Photography', href: '/photography/' },
+  { label: 'Home', to: '/' },
+  { label: 'Hardware', to: '/hardware' },
+  { label: 'Software', to: '/software' },
+  { label: 'Digital Assets', to: '/digital' },
+  { label: 'Photography', to: '/photography' },
 ]
 
-export default function Navbar({ active = 'Home' }) {
+export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+
+  const isActive = (to) => (to === '/' ? pathname === '/' : pathname.startsWith(to))
 
   return (
     <>
       <nav className={styles.navbar}>
-        <a href="/" className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           <img src="/assets/global/name.png" height="45" alt="Ethan Rosenfeld" />
-        </a>
+        </Link>
         <div className={styles.links}>
           {links.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={link.to}
               className={styles.item}
-              data-active={active === link.label || undefined}
+              data-active={isActive(link.to) || undefined}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
         <button
@@ -48,14 +49,15 @@ export default function Navbar({ active = 'Home' }) {
 
       <nav className={styles.dropdown} data-open={open || undefined}>
         {links.map((link) => (
-          <a
+          <Link
             key={link.label}
-            href={link.href}
+            to={link.to}
             className={styles.dropdownItem}
-            data-active={active === link.label || undefined}
+            data-active={isActive(link.to) || undefined}
+            onClick={() => setOpen(false)}
           >
             {link.label}
-          </a>
+          </Link>
         ))}
       </nav>
     </>

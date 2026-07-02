@@ -39,7 +39,7 @@ export default function Hardware() {
       lineEl.style.height = `${Math.max(0, Math.min(revealed, timelineEl.offsetHeight))}px`
 
       years.forEach((year) => {
-        if (year.getBoundingClientRect().top < window.innerHeight - 100) {
+        if (year.getBoundingClientRect().top < window.innerHeight - 250) {
           year.classList.add(styles.visible)
         }
       })
@@ -64,10 +64,11 @@ export default function Hardware() {
           banner="/hardware/assets/banner.png"
         />
 
-        <div className={styles.timeline} ref={timelineRef}>
-          <div className={styles.line} ref={lineRef} />
-          {timeline.map((row) => (
-            <div key={row.year} className={styles.year}>
+        <div className={styles.timeline}>
+          <div className={styles.track} ref={timelineRef}>
+            <div className={styles.line} ref={lineRef} />
+            {timeline.map((row) => (
+              <div key={row.year} className={styles.year}>
               <div className={styles.marker}>
                 <span className={styles.yearLabel}>{row.year}</span>
                 <span className={styles.dot} />
@@ -88,7 +89,8 @@ export default function Hardware() {
                 )}
               </div>
             </div>
-          ))}
+            ))}
+          </div>
         </div>
       </main>
       <Footer />

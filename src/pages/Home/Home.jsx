@@ -3,10 +3,10 @@ import Footer from '../../components/Footer/Footer'
 import styles from './home.module.css'
 
 const highlights = [
-  { stat: '4.0 GPA', detail: 'MechE + Physics + Aerospace cert · Duke ’29' },
   { stat: 'DukeAERO', detail: 'Propulsion engineer — liquid & solid motors' },
   { stat: 'MIT Lincoln Lab', detail: 'Detected buried landmines with SAR' },
   { stat: 'TensorFlux.jl', detail: 'Published Julia package for geometry' },
+  { stat: 'Aircraft Maintenance', detail: 'A&P intern — Cessna, Piper, Beechcraft' },
 ]
 
 const work = [
@@ -64,13 +64,13 @@ export default function Home() {
             </p>
             <div className={styles.ctaRow}>
               <a className={styles.ctaPrimary} href="/assets/global/resume.pdf" target="_blank" rel="noreferrer">
-                Résumé ↗
+                Resume ↗
               </a>
               <a className={styles.ctaSecondary} href="#work">View Work</a>
               <a className={styles.ctaSecondary} href="mailto:ethan.rosenfeld@duke.edu">Email</a>
             </div>
             <p className={styles.credential}>
-              Instrument-rated private pilot · 4.0 GPA · Class of 2029
+              Instrument-rated private pilot · Class of 2029
             </p>
           </div>
           <div className={styles.heroImageWrap}>

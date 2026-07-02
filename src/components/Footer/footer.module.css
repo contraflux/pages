@@ -1,0 +1,23 @@
+.footer {
+  width: var(--content-width);
+  margin: 0 auto;
+  padding: 40px 0 50px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--secondary);
+  font-size: 16px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.item:hover {
+  color: var(--accent);
+  transform: translateY(-4px);
+}

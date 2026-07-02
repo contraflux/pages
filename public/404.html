@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            // SPA fallback: remember the requested path and hand it back to
+            // index.html, which restores it via history.replaceState.
+            sessionStorage.setItem('redirect', window.location.pathname + window.location.search);
+            window.location.replace('/');
+        </script>
+    </head>
+</html>

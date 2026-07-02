@@ -1,0 +1,172 @@
+.page {
+  width: var(--content-width);
+  margin: 0 auto;
+  padding-top: var(--navbar-height);
+}
+
+.timeline {
+  padding: 20px 0 40px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Centered on the page; cards flex within so labels never crunch the rail. */
+.track {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* Vertical rail running behind the year markers; height is driven by scroll
+   position in Hardware.jsx so it reveals as you move down the page. */
+.line {
+  position: absolute;
+  top: 8px;
+  left: 78px;
+  width: 6px;
+  height: 0;
+  border-radius: 2px;
+  background-color: var(--border);
+  mask-image: linear-gradient(to bottom, transparent 0, black 40px, black calc(100% - 8px), transparent 100%);
+}
+
+.year {
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 26px 0;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.year.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.marker {
+  position: relative;
+}
+
+.yearLabel {
+  display: block;
+  width: 40px;
+  text-align: right;
+  color: var(--primary);
+  font-size: 22px;
+}
+
+/* Centered on the rail's center (line left 78 + 6/2 = 81) and vertically
+   centered on the row's cards, independent of the dot's own size. */
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 81px;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 16px;
+  border-radius: 8px;
+  background-color: var(--accent);
+  border: 3px solid var(--background);
+  box-shadow: 0 0 0 2px var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.empty {
+  margin: 8px 0;
+  color: var(--secondary);
+  font-size: 15px;
+  font-style: italic;
+}
+
+.card {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.cardImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.9;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 100%);
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .cardImg {
+  opacity: 1;
+}
+
+.cardText {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding: 18px 20px;
+}
+
+.cardTitle {
+  margin: 0;
+  color: var(--primary);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.cardDesc {
+  margin: 8px 0 0;
+  color: var(--secondary);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+@media (max-width: 800px) {
+  .track {
+    width: 100%;
+  }
+
+  .year {
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+  }
+
+  .line {
+    left: 48px;
+  }
+
+  .yearLabel {
+    width: 40px;
+    font-size: 18px;
+    transform: translateX(-10px);
+  }
+
+  /* rail center 48 + 6/2 = 51; dot is centered on it via translate(-50%). */
+  .dot {
+    left: 51px;
+    width: 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

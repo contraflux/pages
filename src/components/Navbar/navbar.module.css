@@ -1,0 +1,138 @@
+.navbar {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--navbar-height);
+  padding: 0 max(50px, calc(50% - var(--content-width) / 2));
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  background-color: var(--background);
+  letter-spacing: 0.04em;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.item {
+  color: var(--secondary);
+  font-size: 16px;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.item:hover {
+  color: var(--primary);
+  border-bottom-color: var(--accent);
+}
+
+.item[data-active] {
+  color: var(--primary);
+  border-bottom-color: var(--accent);
+}
+
+.toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  width: 36px;
+  height: 30px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle span {
+  display: block;
+  width: 36px;
+  height: 4px;
+  border-radius: 1px;
+  background-color: var(--primary);
+  transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.3s ease;
+}
+
+.toggle:hover span {
+  background-color: var(--accent);
+}
+
+.toggle[data-open] span:nth-child(1) {
+  transform: translateY(11px) rotate(-45deg);
+}
+
+.toggle[data-open] span:nth-child(2) {
+  opacity: 0;
+}
+
+.toggle[data-open] span:nth-child(3) {
+  transform: translateY(-11px) rotate(45deg);
+}
+
+.dropdown {
+  z-index: 2;
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 50px;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+  transform: translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.dropdown[data-open] {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dropdownItem {
+  color: var(--secondary);
+  font-size: 16px;
+  padding: 12px 10px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.dropdownItem:hover,
+.dropdownItem[data-active] {
+  color: var(--primary);
+  border-bottom-color: var(--accent);
+}
+
+/* Switch to the hamburger before the five links stop fitting on one line
+   (they need ~861px), so they never overflow or wrap. */
+@media (max-width: 880px) {
+  .navbar {
+    padding: 0 30px;
+    gap: 0;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .toggle {
+    display: flex;
+  }
+}

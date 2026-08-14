@@ -2,7 +2,7 @@
 
 Personal portfolio site — hardware and software projects, digital assets, and photography.
 
-Live at [contraflux.github.io](https://contraflux.github.io).
+Live at [contraflux.github.io](https://echotops.github.io).
 
 ## Stack
 

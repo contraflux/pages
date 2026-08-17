@@ -5,7 +5,7 @@
  * functions for the scalar fields, vector fields, and paths, periodic function
  * and event listeners
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/2/2025
  */
 

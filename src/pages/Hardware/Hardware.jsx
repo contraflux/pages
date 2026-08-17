@@ -1,23 +1,28 @@
-import { useEffect, useRef } from 'react'
-import Navbar from '../../components/Navbar/Navbar'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Footer from '../../components/Footer/Footer'
-import PageHeader from '../../components/PageHeader/PageHeader'
 import styles from './hardware.module.css'
 
+// Entries with no href yet route to the under-construction placeholder
+// instead of a real project page.
 const timeline = [
-  { year: '2026', entries: [] },
+  { year: '2026', entries: [
+      { title: 'DukeAERO Liquids 26-27', desc: '', img: '', href: '' },
+    ]
+  },
   {
     year: '2025',
     entries: [
-      { title: 'DukeAERO 2025', desc: 'Developing liquid and solid rocket motors on DukeAERO', img: '/hardware/assets/imgs/aero.png', href: '/hardware/2025/aero/' },
-      { title: 'Simulator', desc: 'Building a Cessna 172 simulator in the library', img: '/hardware/assets/imgs/sim.png', href: '/hardware/2025/aviators/' },
+      { title: 'DukeAERO Liquids 25-26', desc: 'Developing liquid and solid rocket motors on DukeAERO', img: '/hardware/assets/imgs/aero.png', href: '/hardware/2025/dukeaero-liquids' },
+      { title: 'DukeAERO Solids 25-26', desc: 'Building a solid rocket motors on DukeAERO', img: '', href: '/hardware/2025/dukeaero-solids' },
+      { title: 'Duke Aviators Sim Dev', desc: 'Building a Cessna 172 simulator in the library', img: '/hardware/assets/imgs/sim.png', href: '' },
     ],
   },
   {
     year: '2024',
     entries: [
-      { title: 'Synthetic Aperture Radar', desc: 'Coding radars and finding landmines at MIT', img: '/hardware/assets/imgs/sar.png', href: '/hardware/2024/sar/' },
-      { title: 'FRC Robotics', desc: 'Creating an FRC robot on my high school’s team', img: '/hardware/assets/imgs/frc.png', href: '/hardware/2024/frc/' },
+      { title: 'Synthetic Aperture Radar', desc: 'Coding radars and finding landmines at MIT', img: '/hardware/assets/imgs/sar.png', href: '/hardware/2024/synthetic-aperture-radar' },
+      { title: 'FRC Robotics', desc: 'Creating an FRC robot on my high school’s team', img: '/hardware/assets/imgs/frc.png', href: '' },
     ],
   },
 ]
@@ -25,23 +30,43 @@ const timeline = [
 export default function Hardware() {
   const timelineRef = useRef(null)
   const lineRef = useRef(null)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useLayoutEffect(() => {
     const timelineEl = timelineRef.current
     const lineEl = lineRef.current
-    const years = [...timelineEl.querySelectorAll(`.${styles.year}`)]
+    // Year labels and cards reveal individually (not as one block per row),
+    // each tracking its own position through the same scroll window.
+    const revealTargets = [
+      ...timelineEl.querySelectorAll(`.${styles.yearLabel}`),
+      ...timelineEl.querySelectorAll(`.${styles.card}`),
+    ]
 
-    // Reveal years as they scroll into view and grow the rail to match the
-    // scroll position, so the timeline "draws itself" on the way down.
+    // Tie opacity/position directly to scroll position every frame (no CSS
+    // transition involved), so elements track the scrollbar 1:1 instead of
+    // playing a fixed-duration animation once a threshold is crossed.
+    const startLine = () => window.innerHeight * 0.75
+    const endLine = () => window.innerHeight * 0.5
+
     const update = () => {
       const rect = timelineEl.getBoundingClientRect()
-      const revealed = window.innerHeight - rect.top - 40
+      const revealed = window.innerHeight - rect.top - 100
       lineEl.style.height = `${Math.max(0, Math.min(revealed, timelineEl.offsetHeight))}px`
 
-      years.forEach((year) => {
-        const r = year.getBoundingClientRect()
-        const visible = r.top < window.innerHeight - 250 && r.bottom > 0
-        year.classList.toggle(styles.visible, visible)
+      const start = startLine()
+      const end = endLine()
+      revealTargets.forEach((el) => {
+        const r = el.getBoundingClientRect()
+        const center = r.top
+        const progress = Math.min(1, Math.max(0, (start - center) / (start - end)))
+        el.style.opacity = progress
+        el.style.transform = `translateY(${50 * (1 - progress)}px)`
       })
     }
 
@@ -56,42 +81,50 @@ export default function Hardware() {
 
   return (
     <>
-      <Navbar />
       <main className={styles.page}>
-        <PageHeader
-          title="Hardware Projects"
-          subtitle="Projects in propulsion, sensing, and robotics"
-          banner="/hardware/assets/banner.png"
-        />
-
-        <div className={styles.timeline}>
-          <div className={styles.track} ref={timelineRef}>
-            <div className={styles.line} ref={lineRef} />
-            {timeline.map((row) => (
+        <div className={styles.container}>
+          <div className={styles.timeline}>
+            <div className={styles.track} ref={timelineRef}>
+              <div className={styles.line} ref={lineRef} />
+              {timeline.map((row) => (
               <div key={row.year} className={styles.year}>
-              <div className={styles.marker}>
                 <span className={styles.yearLabel}>{row.year}</span>
-                <span className={styles.dot} />
+                <div className={styles.grid}>
+                  {row.entries.length === 0 ? (
+                    <p className={styles.empty}>New projects in progress</p>
+                  ) : (
+                    row.entries.map((e) => (
+                      <Link key={e.title} className={styles.card} to={e.href || '/under-construction'}>
+                        {e.img && (
+                          <div className={styles.cardMedia}>
+                            <img src={e.img} alt="" />
+                          </div>
+                        )}
+                        <div className={styles.cardBody}>
+                          <p className={styles.cardTitle}>{e.title}</p>
+                          <p className={styles.cardDesc}>{e.desc}</p>
+                        </div>
+                      </Link>
+                    ))
+                  )}
+                </div>
               </div>
-              <div className={styles.grid}>
-                {row.entries.length === 0 ? (
-                  <p className={styles.empty}>New projects in progress</p>
-                ) : (
-                  row.entries.map((e) => (
-                    <a key={e.title} className={styles.card} href={e.href}>
-                      <img className={styles.cardImg} src={e.img} alt="" />
-                      <div className={styles.cardText}>
-                        <p className={styles.cardTitle}>{e.title}</p>
-                        <p className={styles.cardDesc}>{e.desc}</p>
-                      </div>
-                    </a>
-                  ))
-                )}
-              </div>
+              ))}
             </div>
-            ))}
           </div>
         </div>
+
+        <button
+          type="button"
+          className={styles.scrollPrompt}
+          data-hidden={scrolled || undefined}
+          onClick={() => window.scrollBy({ top: window.innerHeight * 0.25, behavior: 'smooth' })}
+        >
+          <span>Timeline</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
       </main>
       <Footer />
     </>

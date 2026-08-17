@@ -5,7 +5,7 @@
  * multiplication, determinant, trace, and finding eigenvalues and
  * eigenvectors
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/10/2025
  */
 

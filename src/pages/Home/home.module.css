@@ -1,28 +1,27 @@
 .page {
   width: var(--content-width);
   margin: 0 auto;
-  padding-top: var(--navbar-height);
 }
 
 /* ---- Hero ---- */
 .hero {
+  position: relative;
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0 100px;
+}
+
+.heroGrid {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 60px;
   align-items: center;
-  padding: 70px 0 55px;
 }
 
 .heroText {
   max-width: 560px;
-}
-
-.eyebrow {
-  margin: 0 0 18px;
-  color: var(--accent);
-  font-size: 15px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
 }
 
 .name {
@@ -34,10 +33,10 @@
 }
 
 .tagline {
-  margin: 22px 0 0;
+  margin: 20px 0 0;
   color: var(--secondary);
-  font-size: 19px;
-  line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .ctaRow {
@@ -50,10 +49,11 @@
 .ctaPrimary,
 .ctaSecondary {
   padding: 11px 22px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   font-size: 16px;
-  transition: transform 0.3s ease, background-color 0.3s ease,
-              border-color 0.3s ease, color 0.3s ease;
+  /* Buttons use a color-shift hover (no lift, no scale) — consistent with
+     the scroll prompt below and the pattern established on Hardware. */
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .ctaPrimary {
@@ -64,7 +64,6 @@
 
 .ctaPrimary:hover {
   background-color: #96acff;
-  transform: translateY(-3px);
 }
 
 .ctaSecondary {
@@ -75,7 +74,6 @@
 .ctaSecondary:hover {
   border-color: var(--accent);
   color: var(--accent);
-  transform: translateY(-3px);
 }
 
 .heroImageWrap {
@@ -92,53 +90,65 @@
   box-shadow: 0 0 40px rgba(124, 152, 255, 0.15);
 }
 
-/* ---- Highlights ---- */
-.highlights {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  padding: 30px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.highlight {
-  padding: 4px 2px;
-}
-
-.highlightStat {
-  margin: 0;
-  color: var(--primary);
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.highlightDetail {
-  margin: 8px 0 0;
+.scrollPrompt {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
   color: var(--secondary);
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.scrollPrompt:hover {
+  color: var(--primary);
+}
+
+.scrollPrompt svg {
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+
+.scrollPrompt[data-hidden] {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
+  pointer-events: none;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 }
 
 /* ---- Sections ---- */
 .section {
-  padding: 55px 0 10px;
-  /* Keep the heading clear of the fixed navbar when scrolled to via #work. */
+  padding: 64px 0 40px;
+  /* Keep the heading clear of the navbar when scrolled to via #work. */
   scroll-margin-top: var(--navbar-height);
+  border-top: 1px solid var(--border);
 }
 
 .sectionHead {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 28px;
+  margin-bottom: 36px;
 }
 
 .sectionTitle {
   margin: 0;
   color: var(--primary);
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 .sectionLink {
@@ -151,110 +161,81 @@
   color: var(--accent);
 }
 
-/* ---- Work cards ---- */
+/* ---- Work features ---- */
 .workGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
+  gap: 28px;
 }
 
-.card {
+/* Same hover language as Hardware's cards: grows slightly in place, no
+   color shift, no shadow. `scale` (not `transform: scale()`) so it can't
+   collide with any future transform-based effect on this element. */
+.feature {
   display: flex;
   flex-direction: column;
   background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: scale 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+.feature:hover {
+  scale: 1.035;
 }
 
-.cardMedia {
-  height: 150px;
+.featureMedia {
   overflow: hidden;
 }
 
-.cardMedia img {
+.featureMedia img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: 220px;
   object-fit: cover;
-  opacity: 0.85;
+  opacity: 0.9;
+  /* Fades into the card's surface color instead of cutting off with a hard
+     edge where the image meets the text body below. */
+  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
   transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
-.card:hover .cardMedia img {
-  transform: scale(1.05);
+.feature:hover .featureMedia img {
+  transform: scale(1.03);
   opacity: 1;
 }
 
-.cardBody {
-  padding: 20px 22px 24px;
+.featureBody {
+  padding: 24px 26px 26px;
 }
 
-.cardTag {
+.featureTitle {
   margin: 0;
-  color: var(--accent);
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.cardTitle {
-  margin: 8px 0 0;
   color: var(--primary);
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 500;
+  line-height: 1.2;
 }
 
-.cardBlurb {
-  margin: 10px 0 0;
+.featureDescription {
+  margin: 12px 0 0;
   color: var(--secondary);
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* ---- Skills ---- */
-.skills {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px 48px;
-}
-
-.skillRow {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 20px;
-  align-items: center;
-}
-
-.skillGroup {
-  margin: 0;
-  color: var(--secondary);
-  font-size: 15px;
-  letter-spacing: 0.04em;
-}
-
-.skillTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.skillTag {
-  padding: 7px 14px;
+.featureLink {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 9px 18px;
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-sm);
   color: var(--primary);
-  font-size: 14px;
+  font-size: 15px;
   transition: border-color 0.3s ease, color 0.3s ease;
 }
 
-.skillTag:hover {
+.featureLink:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
@@ -262,13 +243,16 @@
 /* ---- Responsive ---- */
 @media (max-width: 800px) {
   .hero {
+    padding: 30px 0 80px;
+  }
+
+  .heroGrid {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 32px;
-    padding: 50px 0 40px;
   }
 
-  .hero > .heroImageWrap {
+  .heroGrid > .heroImageWrap {
     order: -1;
   }
 
@@ -284,22 +268,8 @@
     justify-content: center;
   }
 
-  .highlights {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px 18px;
-  }
-
   .workGrid {
     grid-template-columns: 1fr;
-  }
-
-  .skills {
-    grid-template-columns: 1fr;
-  }
-
-  .skillRow {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    text-align: left;
+    gap: 22px;
   }
 }

@@ -1,7 +1,6 @@
 .page {
   width: var(--content-width);
   margin: 0 auto;
-  padding-top: var(--navbar-height);
 }
 
 /* ---- Filter bar ---- */
@@ -11,8 +10,8 @@
   align-items: center;
   gap: 20px;
   margin-top: 26px;
-  /* Halve the gap to the grid's top border (PageHeader's 32px bottom padding). */
-  margin-bottom: -32px;
+  /* Rest on the grid's top border (cancel PageHeader's 32px bottom padding). */
+  margin-bottom: -33px;
 }
 
 .filter {
@@ -33,7 +32,7 @@
 }
 
 .filter[data-active] {
-  color: var(--accent);
+  color: var(--primary);
   border-bottom-color: var(--accent);
 }
 
@@ -126,11 +125,19 @@
   background-color: var(--surface);
 }
 
+/* Same exact-cancel fix as Software's page — see that file for the full
+   explanation of why this offset has to be pixel-precise on mobile. */
+@media (max-width: 880px) {
+  .filters {
+    margin-bottom: -29px;
+  }
+}
+
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
   }
-  
+
   .card {
     height: 300px;
   }

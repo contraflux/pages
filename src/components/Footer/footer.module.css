@@ -18,6 +18,6 @@
 }
 
 .item:hover {
-  color: var(--accent);
+  color: var(--primary);
   transform: translateY(-4px);
 }

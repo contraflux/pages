@@ -1,20 +1,78 @@
+/* Color, weight, the two standardized radii, and the small/medium/large
+   text scale were all validated here first as a page-scoped trial, then
+   promoted to the global tokens in index.css — this file now just consumes
+   them directly. */
 .page {
+  /* No background-color here on purpose: it used to differ from body's
+     (back when this page had its own separate --hw-background), which
+     required its own opaque layer. Now that they're the same global token,
+     body's background already covers this page — an extra identical-color
+     layer here would just get needlessly opacity-animated by the global
+     `main { animation: page-fade-in }` fade-in on every mount, which is
+     what caused the background flicker on navigation. */
+  min-height: 100vh;
+}
+
+.container {
   width: var(--content-width);
   margin: 0 auto;
-  padding-top: var(--navbar-height);
+  border-bottom: 1px solid var(--border)
+}
+
+/* Fixed to the viewport (not the page), so it always sits at the bottom of
+   the screen while visible, and disappears once you start scrolling.
+   "Button" hover treatment: color shift, no size change (see .card below
+   for the opposite choice on cards). */
+.scrollPrompt {
+  position: fixed;
+  z-index: 2;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.scrollPrompt:hover {
+  color: var(--primary);
+}
+
+.scrollPrompt svg {
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+
+.scrollPrompt[data-hidden] {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
+  pointer-events: none;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 }
 
 .timeline {
-  padding: 20px 0 40px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  padding: 50px 0 50px;
 }
 
-/* Centered on the page; cards flex within so labels never crunch the rail. */
+/* Centered on the page; narrower than the full content width so the rail
+   reads as a centered column instead of hugging the left edge. */
 .track {
   position: relative;
   width: 100%;
-  max-width: 760px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -23,121 +81,127 @@
 .line {
   position: absolute;
   top: 8px;
-  left: 78px;
+  left: calc(50% - 3px);
   width: 6px;
   height: 0;
   border-radius: 2px;
   background-color: var(--border);
-  mask-image: linear-gradient(to bottom, transparent 0, black 40px, black calc(100% - 8px), transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0, black calc(100% - 28px), transparent 100%);
 }
 
 .year {
   position: relative;
   display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 24px;
+  gap: 18px;
   align-items: center;
-  padding: 26px 0;
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.year.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.marker {
-  position: relative;
+  padding-bottom: 28px;
+  padding-top: 56px;
+  /* .yearLabel and .card (not this element) get opacity/transform set
+     inline on scroll (Hardware.jsx), so each reveals individually and
+     tracks the scrollbar directly — no transition property here on
+     purpose. */
 }
 
 .yearLabel {
-  display: block;
-  width: 40px;
-  text-align: right;
-  color: var(--primary);
-  font-size: 22px;
-}
-
-/* Centered on the rail's center (line left 78 + 6/2 = 81) and vertically
-   centered on the row's cards, independent of the dot's own size. */
-.dot {
   position: absolute;
-  top: 50%;
-  left: 81px;
-  transform: translate(-50%, -50%);
-  width: 32px;
-  height: 16px;
-  border-radius: 8px;
-  background-color: var(--accent);
-  border: 3px solid var(--background);
-  box-shadow: 0 0 0 2px var(--border);
+  display: block;
+  width: 70px;
+  left: calc(50% - 35px);
+  top: 0;
+  text-align: center;
+  color: var(--primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-regular);
+  background-color: var(--border);
+  height: 28px;
+  border-radius: var(--radius-sm);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 22px;
+  gap: 14px 105px;
 }
 
 .empty {
-  margin: 8px 0;
+  margin: 14px 0;
   color: var(--secondary);
-  font-size: 15px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
   font-style: italic;
+  text-align: center;
 }
 
+/* "Card" hover treatment: grows slightly in place (Apple-style), no color
+   shift and no shadow — the opposite choice from .scrollPrompt above.
+   Fixed height (not just grid row stretch) so cards without an image
+   still match the rest of the grid, including a row where every card in
+   it lacks one. justify-content:flex-end pins .cardBody to the bottom —
+   a no-op when .cardMedia is present (the two already fill the full
+   height), but without it a no-image card's text sits at the top with a
+   large empty gap below instead of in the same band image cards' text
+   occupies. */
 .card {
-  position: relative;
-  height: 240px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 268px;
   background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  /* Deliberately not transitioning `transform` here: the scroll-reveal
+     effect (Hardware.jsx) sets `transform: translateY(...)` inline on this
+     same element every scroll frame, with no transition, so it tracks the
+     scrollbar 1:1. The hover grow uses the separate `scale` property
+     instead of `transform: scale()` so the two don't fight (inline styles
+     always win over stylesheet rules for the same property, which was
+     silently blocking the hover effect entirely). */
+  transition: scale 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  scale: 1.035;
 }
 
-.cardImg {
-  position: absolute;
-  top: 0;
-  left: 0;
+.cardMedia {
+  overflow: hidden;
+}
+
+.cardMedia img {
+  display: block;
   width: 100%;
+  height: 160px;
+  object-fit: cover;
   opacity: 0.9;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 100%);
-  transition: opacity 0.3s ease;
+  /* Fades into the card's surface color instead of cutting off with a hard
+     edge where the image meets the text body below. */
+  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
+  transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
-.card:hover .cardImg {
+.card:hover .cardMedia img {
+  transform: scale(1.03);
   opacity: 1;
 }
 
-.cardText {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  padding: 18px 20px;
+.cardBody {
+  padding: 18px 20px 20px;
 }
 
 .cardTitle {
   margin: 0;
   color: var(--primary);
-  font-size: 20px;
-  font-weight: 500;
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
 }
 
 .cardDesc {
   margin: 8px 0 0;
   color: var(--secondary);
-  font-size: 15px;
-  line-height: 1.45;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
 }
 
 @media (max-width: 800px) {
@@ -146,27 +210,20 @@
   }
 
   .year {
-    grid-template-columns: 60px 1fr;
-    gap: 16px;
+    gap: 14px;
   }
 
   .line {
-    left: 48px;
+    left: calc(50px - 3px);
   }
 
   .yearLabel {
-    width: 40px;
-    font-size: 18px;
-    transform: translateX(-10px);
-  }
-
-  /* rail center 48 + 6/2 = 51; dot is centered on it via translate(-50%). */
-  .dot {
-    left: 51px;
-    width: 16px;
+    left: calc(50px - 35px);
   }
 
   .grid {
     grid-template-columns: 1fr;
+    margin-left: 106px;
+    margin-right: 50px;
   }
 }

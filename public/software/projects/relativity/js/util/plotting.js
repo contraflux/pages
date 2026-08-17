@@ -3,7 +3,7 @@
  * 
  * Functions for drawing grid and vectors
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/10/2025
  */
 

@@ -1,6 +1,13 @@
+/* Sticky rather than fixed/absolute: it's natively handled by the browser
+   (layout + compositor), so it tracks scroll with zero JS and zero lag —
+   fixed's compositor-only tracking without fixed's need to switch position
+   modes at the top (which caused a visible jump) or its rubber-band wobble
+   during Safari overscroll. Being in normal flow (unlike fixed/absolute)
+   means it now occupies real space at the top of the document, so pages no
+   longer add their own padding-top to compensate for it. */
 .navbar {
   z-index: 3;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -18,12 +25,50 @@
   display: flex;
   align-items: center;
   margin-right: auto;
+  overflow: hidden;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.4s ease 0.12s;
+}
+
+/* Home has no logo: collapse it instantly (width/margin can't be
+   transitioned smoothly) and fade it out; the resulting jump in the links'
+   position is masked by the FLIP slide applied in Navbar.jsx. */
+.navbar[data-home] .logo {
+  max-width: 0;
+  margin-right: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Wrapper that the FLIP transform in Navbar.jsx is applied to; kept free of
+   any CSS transitions of its own so the inline style it sets never clashes
+   with .links' gap transition below. */
+.linksSlide {
+  display: flex;
 }
 
 .links {
   display: flex;
   align-items: center;
   gap: 28px;
+  transition: gap 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Home page has no logo, so center the links in the bar instead of
+   letting them sit flush left, with a bit more breathing room between
+   them since they're the only thing in the bar. */
+.navbar[data-home] .linksSlide {
+  margin: 0 auto;
+}
+
+.navbar[data-home] .links {
+  gap: 52px;
+}
+
+.navbar[data-home] .toggle {
+  margin-left: auto;
 }
 
 .item {
@@ -83,10 +128,25 @@
   transform: translateY(-11px) rotate(45deg);
 }
 
+/* Sticky like .navbar (same native scroll-tracking, no JS), but zero
+   height so it never occupies layout space — .dropdown, positioned
+   absolute within it, still renders at full size even when "closed"
+   (transformed off-screen), so a non-zero-height sticky parent would push
+   page content down regardless of open state.
+   z-index lives here, not on .dropdown: position:sticky always opens its
+   own stacking context, so without it main (same DOM-order stacking
+   level) painted over the whole dropdown. */
+.dropdownAnchor {
+  z-index: 2;
+  position: sticky;
+  top: var(--navbar-height);
+  height: 0;
+}
+
 .dropdown {
   z-index: 2;
-  position: fixed;
-  top: var(--navbar-height);
+  position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
   display: flex;

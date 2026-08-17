@@ -1,11 +1,15 @@
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-// Reset scroll position to the top whenever the route changes.
+// useLayoutEffect (not useEffect): runs before paint and before any page's
+// own useLayoutEffect that reads scroll position on mount (e.g. Hardware's
+// scroll-driven reveal) — otherwise that page computes its initial state
+// from the previous page's stale scroll position, then visibly snaps once
+// this resets scroll and fires a 'scroll' event.
 export default function ScrollToTop() {
   const { pathname } = useLocation()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
 

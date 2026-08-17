@@ -1,7 +1,6 @@
 .header {
   position: relative;
   padding: 40px 0 32px;
-  overflow: hidden;
 }
 
 .banner {
@@ -10,12 +9,12 @@
   top: 0;
   right: 0;
   height: 100%;
-  max-width: 100%;
+  max-width: 75%;
   object-fit: cover;
   mask-composite: intersect;
   mask-image:
-    linear-gradient(to right, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 0) 100%),
-    linear-gradient(135deg, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 1) 50%);
+    linear-gradient(to right, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%),
+    linear-gradient(135deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 1) 60%);
 }
 
 .title {
@@ -32,4 +31,46 @@
   margin: 10px 0 0;
   color: var(--secondary);
   font-size: 16px;
+}
+
+/* Below this breakpoint (matches the navbar's own hamburger switch) the
+   banner stops sitting behind the title entirely. The desktop mask's safe
+   zone is tuned for a single-line title/subtitle; once text wraps wider on
+   narrow screens there's no crop that reliably keeps it off the image. So
+   instead of trying to scale the overlay down, the image becomes a plain
+   block above the text — same idea as the card image treatment used
+   elsewhere on the site. */
+@media (max-width: 880px) {
+  .header {
+    padding: 0 0 28px;
+  }
+
+  .banner {
+    z-index: 0;
+    position: relative;
+    top: auto;
+    right: auto;
+    display: block;
+    width: 100%;
+    height: calc(10vw + 90px);
+    max-width: none;
+    mask-composite: normal;
+    margin-bottom: -20px;
+    mask-image:
+      linear-gradient(to bottom, black 0%, black 85%, transparent 100%),
+      linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+  }
+
+  /* On .title (not .banner's margin-bottom) so the gap under the navbar
+     exists whether or not this page has a banner — pages without one
+     (Software) were getting zero top spacing otherwise. */
+  .title {
+    margin-top: 40px;
+  }
+
+  .title,
+  .subtitle {
+    width: auto;
+    max-width: none;
+  }
 }

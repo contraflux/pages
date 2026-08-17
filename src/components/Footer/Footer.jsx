@@ -3,7 +3,7 @@ import styles from './footer.module.css'
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <a className={styles.item} href="https://github.com/contraflux" target="_blank" rel="noreferrer">
+      <a className={styles.item} href="https://github.com/echotops" target="_blank" rel="noreferrer">
         <img src="/assets/global/github.svg" height="22" alt="" />
         GitHub
       </a>

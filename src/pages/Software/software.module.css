@@ -1,7 +1,6 @@
 .page {
   width: var(--content-width);
   margin: 0 auto;
-  padding-top: var(--navbar-height);
 }
 
 /* ---- Filter bar ---- */
@@ -11,7 +10,7 @@
   gap: 22px;
   margin-top: 26px;
   /* Rest on the grid's top border (cancel PageHeader's 32px bottom padding). */
-  margin-bottom: -32px;
+  margin-bottom: -33px;
 }
 
 .filter {
@@ -32,14 +31,14 @@
 }
 
 .filter[data-active] {
-  color: var(--accent);
+  color: var(--primary);
   border-bottom-color: var(--accent);
 }
 
 /* ---- Grid ---- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   gap: 22px;
   padding: 30px 0 40px;
   border-top: 1px solid var(--border);
@@ -116,6 +115,17 @@
   border-radius: 15px;
   color: var(--secondary);
   font-size: 12px;
+}
+
+/* Matches PageHeader's own breakpoint, where its bottom padding shrinks
+   from 32px to 28px — exact cancel-out, same as the desktop rule above
+   matches its own 32px exactly. A full 1px short (as tried before) is a
+   much more visible gap here than the same offset reads on desktop, since
+   mobile renders at a higher device pixel ratio. */
+@media (max-width: 880px) {
+  .filters {
+    margin-bottom: -29px;
+  }
 }
 
 @media (max-width: 800px) {

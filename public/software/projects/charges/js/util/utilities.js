@@ -4,7 +4,7 @@
  * An assortment of functions including unit conversions, log change of base,
  * and linear interpolations.
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/2/2025
  */
 

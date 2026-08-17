@@ -4,7 +4,7 @@
  * Physics calculations for the electric field, electric force, and updating
  * charge positions and velocities using the Runge-Kutta method.
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/8/2025
  */
 

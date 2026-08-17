@@ -1,7 +1,6 @@
 .page {
   width: var(--content-width);
   margin: 0 auto;
-  padding-top: var(--navbar-height);
 }
 
 .gallery {

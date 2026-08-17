@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import styles from './digital.module.css'
@@ -39,7 +38,6 @@ export default function Digital() {
 
   return (
     <>
-      <Navbar />
       <main className={styles.page}>
         <PageHeader
           title="Digital Assets"

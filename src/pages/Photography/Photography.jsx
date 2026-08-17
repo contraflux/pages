@@ -1,4 +1,3 @@
-import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import PageHeader from '../../components/PageHeader/PageHeader'
 import styles from './photography.module.css'
@@ -19,7 +18,6 @@ const photos = [
 export default function Photography() {
   return (
     <>
-      <Navbar />
       <main className={styles.page}>
         <PageHeader
           title="Photography"

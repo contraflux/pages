@@ -5,7 +5,7 @@
  * divergence. Also includes Runge-Kutta method for approximating the solution
  * to differential equations.
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/2/2025
  */
 

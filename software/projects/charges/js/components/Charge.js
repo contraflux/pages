@@ -3,7 +3,7 @@
  * 
  * Point charge definition
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/10/2025
  */
 

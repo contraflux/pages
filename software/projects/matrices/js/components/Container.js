@@ -3,7 +3,7 @@
  * 
  * Classes for organizing content needed across scripts
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/10/2025
  */
 

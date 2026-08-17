@@ -3,7 +3,7 @@
  * 
  * Useful functions for constructing arrays
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/2/2025
  */
 

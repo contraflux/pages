@@ -4,7 +4,7 @@
  * Functions for drawing grid, scalar fields, vector fields, and paths on
  * the canvas
  * 
- * @author contraflux
+ * @author echotops
  * @date 10/2/2025
  */
 

@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Footer from '../../components/Footer/Footer'
 import PageHeader from '../../components/PageHeader/PageHeader'
+import { useGridFlip, useRenderedIds } from '../../hooks/useFilterGridAnimation'
 import styles from './software.module.css'
 
 const projects = [
@@ -22,7 +23,15 @@ const filters = [
 
 export default function Software() {
   const [active, setActive] = useState('all')
+  const gridRef = useRef(null)
   const shown = projects.filter((p) => active === 'all' || p.tags.includes(active))
+  const { renderedIds, leavingIds, leavingRects } = useRenderedIds(shown.map((p) => p.id), gridRef)
+  const rendered = projects.filter((p) => renderedIds.has(p.id))
+
+  // Only cards actually participating in grid flow (i.e. not currently
+  // leaving) can possibly need a FLIP animation — see useFilterGridAnimation.js.
+  const inFlowIds = rendered.filter((p) => !leavingIds.has(p.id)).map((p) => p.id).join('|')
+  useGridFlip(gridRef, inFlowIds)
 
   return (
     <>
@@ -46,11 +55,19 @@ export default function Software() {
           </div>
         </PageHeader>
 
-        <div className={styles.grid}>
-          {shown.map((p) => (
+        <div className={styles.grid} ref={gridRef}>
+          {rendered.map((p) => (
             <a
               key={p.id}
+              data-card-id={p.id}
               className={styles.card}
+              data-leaving={leavingIds.has(p.id) || undefined}
+              style={leavingIds.has(p.id) && leavingRects[p.id] ? {
+                top: leavingRects[p.id].top,
+                left: leavingRects[p.id].left,
+                width: leavingRects[p.id].width,
+                height: leavingRects[p.id].height,
+              } : undefined}
               href={p.href}
               target={p.external ? '_blank' : undefined}
               rel={p.external ? 'noreferrer' : undefined}

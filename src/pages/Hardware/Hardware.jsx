@@ -94,7 +94,7 @@ export default function Hardware() {
                     <p className={styles.empty}>New projects in progress</p>
                   ) : (
                     row.entries.map((e) => (
-                      <Link key={e.title} className={styles.card} to={e.href || '/under-construction'}>
+                      <Link key={e.title} className={styles.card} data-empty={!e.img || undefined} to={e.href || '/under-construction'}>
                         {e.img && (
                           <div className={styles.cardMedia}>
                             <img src={e.img} alt="" />

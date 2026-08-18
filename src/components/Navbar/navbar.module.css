@@ -96,7 +96,7 @@
   justify-content: center;
   gap: 7px;
   width: 36px;
-  height: 30px;
+  height: 20px;
   padding: 0;
   background: none;
   border: none;
@@ -106,7 +106,7 @@
 .toggle span {
   display: block;
   width: 36px;
-  height: 4px;
+  height: 2px;
   border-radius: 1px;
   background-color: var(--primary);
   transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.3s ease;
@@ -117,15 +117,15 @@
 }
 
 .toggle[data-open] span:nth-child(1) {
-  transform: translateY(11px) rotate(-45deg);
+  transform: translateY(9px) rotate(-45deg);
 }
 
 .toggle[data-open] span:nth-child(2) {
-  opacity: 0;
+  transform: translateX(75px);
 }
 
 .toggle[data-open] span:nth-child(3) {
-  transform: translateY(-11px) rotate(45deg);
+  transform: translateY(-9px) rotate(45deg);
 }
 
 /* Sticky like .navbar (same native scroll-tracking, no JS), but zero

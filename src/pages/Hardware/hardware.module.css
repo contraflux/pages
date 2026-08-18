@@ -44,6 +44,23 @@
   transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
 }
 
+/* A short/dense viewport (most phones) can already have card content
+   reaching this band at scroll 0, before `scrolled` flips this hidden —
+   a full-width scrim (not just a small halo behind the label) guarantees
+   it stays legible regardless of what's behind it, instead of the two
+   texts colliding. Fixed (not relative to the button) so it covers the
+   full width the underlying card text could occupy. */
+.scrollPrompt::before {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  background: linear-gradient(to top, var(--background) 0%, var(--background) 35%, transparent 100%);
+}
+
 .scrollPrompt:hover {
   color: var(--primary);
 }
@@ -72,7 +89,7 @@
 .track {
   position: relative;
   width: 100%;
-  max-width: 700px;
+  max-width: 740px;
   margin: 0 auto;
 }
 
@@ -102,13 +119,18 @@
      purpose. */
 }
 
+/* display:flex + centered content (not block + text-align, which only
+   vertically centers by coincidence when line-height happens to roughly
+   fill height) so this stays centered regardless of font-size/height,
+   including the smaller phone-tier override below. */
 .yearLabel {
   position: absolute;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 70px;
   left: calc(50% - 35px);
   top: 0;
-  text-align: center;
   color: var(--primary);
   font-size: var(--text-lg);
   font-weight: var(--weight-regular);
@@ -120,7 +142,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px 105px;
+  gap: 14px 100px;
 }
 
 .empty {
@@ -132,66 +154,70 @@
   text-align: center;
 }
 
-/* "Card" hover treatment: grows slightly in place (Apple-style), no color
-   shift and no shadow — the opposite choice from .scrollPrompt above.
+/* Shared card language (also used on Digital Assets, though the two
+   pages don't need to match dimensions — just the same visual style): a
+   padded surface box with an inset, separately-rounded photo and an
+   accent-ring hover instead of scale/lift — the photo is never overlaid
+   with text, so there's no legibility risk regardless of image content.
    Fixed height (not just grid row stretch) so cards without an image
    still match the rest of the grid, including a row where every card in
-   it lacks one. justify-content:flex-end pins .cardBody to the bottom —
-   a no-op when .cardMedia is present (the two already fill the full
-   height), but without it a no-image card's text sits at the top with a
-   large empty gap below instead of in the same band image cards' text
-   occupies. */
+   it lacks one. */
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: 268px;
+  height: 340px;
+  padding: 14px;
   background-color: var(--surface);
+  border: 2px solid transparent;
   border-radius: var(--radius-lg);
-  overflow: hidden;
-  /* Deliberately not transitioning `transform` here: the scroll-reveal
-     effect (Hardware.jsx) sets `transform: translateY(...)` inline on this
-     same element every scroll frame, with no transition, so it tracks the
-     scrollbar 1:1. The hover grow uses the separate `scale` property
-     instead of `transform: scale()` so the two don't fight (inline styles
-     always win over stylesheet rules for the same property, which was
-     silently blocking the hover effect entirely). */
-  transition: scale 0.3s ease;
+  /* Deliberately not transitioning `transform`/`scale` here: the
+     scroll-reveal effect (Hardware.jsx) sets `transform: translateY(...)`
+     inline on this same element every scroll frame, with no transition,
+     so it tracks the scrollbar 1:1 — a competing transition on this
+     element risks the same inline-style conflict scale had before. */
+  transition: border-color 0.3s ease;
 }
 
 .card:hover {
-  scale: 1.035;
+  border-color: var(--accent);
+}
+
+/* Only cards with no image (e.img is falsy — see Hardware.jsx) get
+   bottom-aligned, so the lone .cardBody sits in the same band an
+   image-card's text would. Applying this to every card unconditionally
+   was the bug: flex justify-content pushes the *whole* content block
+   (image + text together) toward the end when it doesn't exactly fill
+   the fixed height, which left an uneven, oversized gap above the image
+   instead of an even inset all around. */
+.card[data-empty] {
+  justify-content: flex-end;
 }
 
 .cardMedia {
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
 .cardMedia img {
   display: block;
   width: 100%;
-  height: 160px;
+  height: 200px;
   object-fit: cover;
-  opacity: 0.9;
-  /* Fades into the card's surface color instead of cutting off with a hard
-     edge where the image meets the text body below. */
-  mask-image: linear-gradient(to bottom, black 0%, black 60%, transparent 100%);
-  transition: transform 0.4s ease, opacity 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .card:hover .cardMedia img {
   transform: scale(1.03);
-  opacity: 1;
 }
 
 .cardBody {
-  padding: 18px 20px 20px;
+  padding: 16px 4px 4px;
 }
 
 .cardTitle {
   margin: 0;
   color: var(--primary);
-  font-size: var(--text-md);
+  font-size: var(--text-lg);
   font-weight: var(--weight-medium);
   line-height: 1.25;
 }
@@ -225,5 +251,27 @@
     grid-template-columns: 1fr;
     margin-left: 106px;
     margin-right: 50px;
+  }
+}
+
+/* The 106px/50px rail gutter above reads fine once resized down from
+   desktop width, but at an actual phone width it eats close to half the
+   screen and leaves cards badly squeezed — retune the same rail/label/grid
+   proportionally smaller instead of just inheriting the tablet values. */
+@media (max-width: 480px) {
+  .grid {
+    margin-left: 50px;
+    margin-right: 16px;
+  }
+
+  .line {
+    left: 22px;
+  }
+
+  .yearLabel {
+    left: 1px;
+    width: 48px;
+    height: 22px;
+    font-size: var(--text-sm);
   }
 }

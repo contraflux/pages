@@ -5,10 +5,21 @@
 
 /* ---- Filter bar ---- */
 .filters {
+  position: relative;
+  /* Above .grid (also positioned, for .card[data-leaving]'s pinning) —
+     the negative margin-bottom below intentionally rests this bar's
+     bottom edge exactly on the grid's top border, so without this the
+     grid (later in DOM order, and positioned) paints over the active
+     filter's colored underline at that shared pixel. */
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
+  /* row-gap smaller than column-gap: only matters once the two groups
+     wrap onto separate lines (see the 480px breakpoint below), where the
+     full 20px reads as too much space between them. */
+  row-gap: 10px;
+  column-gap: 20px;
   margin-top: 26px;
   /* Rest on the grid's top border (cancel PageHeader's 32px bottom padding). */
   margin-bottom: -33px;
@@ -36,6 +47,15 @@
   border-bottom-color: var(--accent);
 }
 
+/* .filters wraps whole groups, not individual buttons, so a wrap only
+   ever happens at the divider (between the "sim" and "type" filters)
+   instead of orphaning a single button onto its own line. */
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .divider {
   width: 1px;
   height: 20px;
@@ -43,9 +63,21 @@
 }
 
 /* ---- Grid ---- */
+/* minmax basis chosen so 4 columns (not 5) fit once this page's
+   content-width reaches its own 1000px cap, then drops to 3/2/1 as the
+   viewport narrows — same idea as Hardware's grid but tuned for this
+   page's own column count rather than matching its exact card width. */
+/* position:relative — the positioning context for .card[data-leaving]
+   below, which pins itself with top/left measured relative to this
+   container. isolation:isolate scopes card stacking (moving cards at
+   z-index:2 vs the idle/entering/leaving baseline of 0) to a stacking
+   context contained entirely within this grid, so it can't be affected
+   by z-index on anything elsewhere on the page. */
 .grid {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 22px;
   padding: 30px 0 40px;
   border-top: 1px solid var(--border);
@@ -53,76 +85,127 @@
 }
 
 /* ---- Card ---- */
+/* Opacity-only, not transform: useGridFlip repositions still-visible cards
+   by setting `transform` directly on the element via JS, so a CSS
+   animation that also touches transform here would fight it. */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cardOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Shared card language with Hardware — see that file's .card comment for
+   the full rationale (padded surface, inset photo, accent-ring hover,
+   text never overlaid on the photo). */
 .card {
+  /* position:relative + z-index:0 — a baseline stacking context so
+     useGridFlip can lift a card above its siblings (z-index:2, set via
+     JS) while it's actively sliding into place; z-index has no effect at
+     all on a position:static element. */
   position: relative;
-  height: 200px;
-  overflow: hidden;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 11px;
   background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  transition: border-color 0.3s ease;
+  /* Delayed 0.1s so the fade finishes exactly when a sibling's FLIP
+     translate does (useGridFlip's 0.35s translate: 0.25s fade + 0.1s
+     delay = 0.35s) — an entering card settles into place visually at the
+     same moment everything else does, instead of finishing its fade
+     early and then just sitting there while its neighbors keep sliding.
+     backwards, not both/forwards, holds it at opacity:0 through that
+     delay (rather than showing the card immediately then fading) without
+     permanently overriding later cascade rules once the animation ends. */
+  animation: cardIn 0.25s ease 0.1s backwards;
+}
+
+/* Pulled out of grid flow the instant it starts leaving (top/left/width/
+   height set inline in Digital.jsx, measured from its last position as a
+   normal grid item) so the rest of the grid can reflow around it
+   immediately, instead of waiting for it to actually finish fading out and
+   unmount ~250ms later (EXIT_MS in useFilterGridAnimation.js, matched to
+   this animation's own duration). A cardOut *animation*, not an opacity
+   transition: position is switching from static to absolute in the same
+   style recalc, and browsers generally won't smoothly interpolate opacity
+   across a layout-mode change happening in the same frame — a keyframe
+   animation doesn't have that problem, since it plays its own defined
+   curve regardless of what else changes. No delay, unlike cardIn above —
+   a leaving card should start fading immediately, in step with whatever
+   reflow it's making room for. */
+.card[data-leaving] {
+  position: absolute;
+  animation: cardOut 0.25s ease forwards;
+  pointer-events: none;
 }
 
 .card:hover {
-  transform: translateY(-5px);
   border-color: var(--accent);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
-.cardImg {
-  position: absolute;
+.cardMedia {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.cardMedia img {
+  display: block;
   width: 100%;
-  height: 150px;
-  opacity: 0.9;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 150px);
-  transition: opacity 0.3s ease;
+  height: 160px;
   object-fit: cover;
-  object-position: center;
+  transition: transform 0.4s ease;
 }
 
-.card:hover .cardImg {
-  opacity: 1;
+.card:hover .cardMedia img {
+  transform: scale(1.03);
 }
 
-.cardText {
-  position: absolute;
-  bottom: 40px;
-  left: 0;
-  z-index: 1;
-  padding: 18px 20px;
-  max-width: 100%;
+.cardBody {
+  padding: 13px 3px 3px;
 }
 
+/* Explicit px (not var(--text-lg)/var(--text-sm)) — see the same note on
+   Hardware's .cardTitle/.cardDesc. */
 .cardTitle {
   margin: 0;
   color: var(--primary);
-  font-size: 19px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: var(--weight-medium);
 }
 
 .cardSub {
-  margin: 8px 0 0;
+  margin: 5px 0 0;
   color: var(--secondary);
-  font-size: 15px;
+  font-size: 11px;
 }
 
-.cardTags {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
+.cardMeta {
   display: flex;
+  align-items: center;
   gap: 6px;
-  padding: 15px 20px;
+  margin-top: 11px;
 }
 
-.cardTags span {
+.cardMetaItem {
   padding: 4px 11px;
   border: 1px solid var(--accent);
   border-radius: 15px;
   color: var(--secondary);
-  font-size: 12px;
-  background-color: var(--surface);
+  font-size: 11px;
 }
 
 /* Same exact-cancel fix as Software's page — see that file for the full
@@ -137,13 +220,14 @@
   .grid {
     grid-template-columns: 1fr;
   }
+}
 
-  .card {
-    height: 300px;
-  }
-
-  .cardImg {
-    height: 250px;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 250px);
+/* The two filter groups wrap onto separate lines somewhere around this
+   width (real phone widths land well inside it) — once they're stacked
+   instead of side-by-side, the vertical divider between them no longer
+   separates anything. */
+@media (max-width: 480px) {
+  .divider {
+    display: none;
   }
 }

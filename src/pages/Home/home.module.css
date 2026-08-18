@@ -4,9 +4,13 @@
 }
 
 /* ---- Hero ---- */
+/* Capped, not just 100vh - navbar-height: the content itself doesn't grow
+   with viewport height, so on a normal-to-tall monitor an uncapped
+   min-height just leaves the bio floating in a lot of empty black space
+   above and below it. */
 .hero {
   position: relative;
-  min-height: calc(100vh - var(--navbar-height));
+  min-height: min(calc(100vh - var(--navbar-height)), 700px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -271,5 +275,13 @@
   .workGrid {
     grid-template-columns: 1fr;
     gap: 22px;
+  }
+}
+
+/* The 40px step above is tuned for tablet-width resizing; at an actual
+   phone width it still dominates the screen more than it needs to. */
+@media (max-width: 480px) {
+  .name {
+    font-size: 32px;
   }
 }

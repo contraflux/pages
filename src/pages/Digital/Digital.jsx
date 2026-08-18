@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Footer from '../../components/Footer/Footer'
 import PageHeader from '../../components/PageHeader/PageHeader'
+import { useGridFlip, useRenderedIds } from '../../hooks/useFilterGridAnimation'
 import styles from './digital.module.css'
 
 const assets = [
@@ -25,6 +26,7 @@ const assets = [
 export default function Digital() {
   const [sim, setSim] = useState('all')
   const [type, setType] = useState(null)
+  const gridRef = useRef(null)
 
   const reset = () => {
     setSim('all')
@@ -35,6 +37,13 @@ export default function Digital() {
   const shown = assets.filter(
     (a) => (sim === 'all' || a.sim === sim) && (type === null || a.type === type),
   )
+  const { renderedIds, leavingIds, leavingRects } = useRenderedIds(shown.map((a) => a.id), gridRef)
+  const rendered = assets.filter((a) => renderedIds.has(a.id))
+
+  // Only cards actually participating in grid flow (i.e. not currently
+  // leaving) can possibly need a FLIP animation — see useFilterGridAnimation.js.
+  const inFlowIds = rendered.filter((a) => !leavingIds.has(a.id)).map((a) => a.id).join('|')
+  useGridFlip(gridRef, inFlowIds)
 
   return (
     <>
@@ -45,26 +54,46 @@ export default function Digital() {
           banner="/digital/assets/banner.png"
         >
           <div className={styles.filters}>
-            <button className={styles.filter} data-active={sim === 'all' && type === null || undefined} onClick={reset}>∀ All</button>
-            <button className={styles.filter} data-active={sim === 'MSFS' || undefined} onClick={() => setSim('MSFS')}>✈ MSFS</button>
-            <button className={styles.filter} data-active={sim === 'DCS' || undefined} onClick={() => setSim('DCS')}>☖ DCS</button>
+            <div className={styles.filterGroup}>
+              <button className={styles.filter} data-active={sim === 'all' && type === null || undefined} onClick={reset}>∀ All</button>
+              <button className={styles.filter} data-active={sim === 'MSFS' || undefined} onClick={() => setSim('MSFS')}>✈ MSFS</button>
+              <button className={styles.filter} data-active={sim === 'DCS' || undefined} onClick={() => setSim('DCS')}>☖ DCS</button>
+            </div>
             <span className={styles.divider} />
-            <button className={styles.filter} data-active={type === 'Scenery' || undefined} onClick={() => toggleType('Scenery')}>⛰ Scenery</button>
-            <button className={styles.filter} data-active={type === 'Livery' || undefined} onClick={() => toggleType('Livery')}>✎ Livery</button>
+            <div className={styles.filterGroup}>
+              <button className={styles.filter} data-active={type === 'Scenery' || undefined} onClick={() => toggleType('Scenery')}>⛰ Scenery</button>
+              <button className={styles.filter} data-active={type === 'Livery' || undefined} onClick={() => toggleType('Livery')}>✎ Livery</button>
+            </div>
           </div>
         </PageHeader>
 
-        <div className={styles.grid}>
-          {shown.map((a) => (
-            <a key={a.id} className={styles.card} href={a.href} target="_blank" rel="noreferrer">
-              <img className={styles.cardImg} src={a.img} alt="" />
-              <div className={styles.cardText}>
+        <div className={styles.grid} ref={gridRef}>
+          {rendered.map((a) => (
+            <a
+              key={a.id}
+              data-card-id={a.id}
+              className={styles.card}
+              data-leaving={leavingIds.has(a.id) || undefined}
+              style={leavingIds.has(a.id) && leavingRects[a.id] ? {
+                top: leavingRects[a.id].top,
+                left: leavingRects[a.id].left,
+                width: leavingRects[a.id].width,
+                height: leavingRects[a.id].height,
+              } : undefined}
+              href={a.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className={styles.cardMedia}>
+                <img src={a.img} alt="" />
+              </div>
+              <div className={styles.cardBody}>
                 <p className={styles.cardTitle}>{a.title}</p>
                 <p className={styles.cardSub}>{a.sub}</p>
-              </div>
-              <div className={styles.cardTags}>
-                <span>{a.sim}</span>
-                <span>{a.type}</span>
+                <div className={styles.cardMeta}>
+                  <span className={styles.cardMetaItem}>{a.sim}</span>
+                  <span className={styles.cardMetaItem}>{a.type}</span>
+                </div>
               </div>
             </a>
           ))}

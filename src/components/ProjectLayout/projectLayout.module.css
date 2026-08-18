@@ -4,7 +4,12 @@
 }
 
 /* ---- Header ---- */
+/* Matches .body's width below (also 700px) — previously this spanned the
+   full page width while .body was a narrower centered column, so the
+   title/back-link and the body copy didn't line up on the left edge. */
 .header {
+  max-width: 700px;
+  margin: 0 auto;
   padding: 40px 0 32px;
   border-bottom: 1px solid var(--border);
 }

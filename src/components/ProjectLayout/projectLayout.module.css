@@ -71,13 +71,28 @@
   line-height: 1.75;
 }
 
+/* Inline links within body text (e.g. crediting a library or linking to a
+   source repo) — invisible until hover/focus, same "underline only on
+   interaction" language as the site's nav/filter links. */
+.paragraph a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.3s ease;
+}
+
+.paragraph a:hover {
+  text-decoration-color: var(--accent);
+}
+
 /* ---- Figures ---- */
 .figure {
   margin: 32px auto;
   max-width: 520px;
 }
 
-.figure img {
+.figure img,
+.figure video {
   display: block;
   width: 100%;
   border-radius: 14px;
@@ -104,6 +119,20 @@
 .figureGrid .figure {
   margin: 0;
   max-width: none;
+}
+
+/* ---- Code ---- */
+.code {
+  margin: 32px 0;
+  padding: 18px 20px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow-x: auto;
+  color: var(--secondary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 /* ---- Table ---- */

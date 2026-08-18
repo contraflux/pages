@@ -45,12 +45,35 @@ export function Figure({ src, alt = '', caption }) {
   )
 }
 
+// Same shape as Figure (shares its styles.figure/styles.caption so it also
+// works as a FigureGrid child), for a looping muted preview clip instead of
+// a still image.
+export function Video({ src, caption }) {
+  return (
+    <figure className={styles.figure}>
+      <video src={src} autoPlay loop muted playsInline controls />
+      {caption && <figcaption className={styles.caption}>{caption}</figcaption>}
+    </figure>
+  )
+}
+
 // Two or more Figures side by side, e.g. <FigureGrid><Figure .../><Figure .../></FigureGrid>.
 export function FigureGrid({ columns = 2, children }) {
   return (
     <div className={styles.figureGrid} style={{ '--figure-grid-columns': columns }}>
       {children}
     </div>
+  )
+}
+
+// Preformatted code, e.g. <CodeBlock>{`function foo()\n  ...\nend`}</CodeBlock>.
+// No syntax highlighting — plain monospace, matching the site's otherwise
+// dependency-free approach.
+export function CodeBlock({ children }) {
+  return (
+    <pre className={styles.code}>
+      <code>{children}</code>
+    </pre>
   )
 }
 

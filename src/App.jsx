@@ -11,6 +11,8 @@ import ExampleProject from './pages/Hardware/projects/ExampleProject/ExampleProj
 import SyntheticApertureRadar from './pages/Hardware/projects/SyntheticApertureRadar/SyntheticApertureRadar'
 import DukeAeroSolids2526 from './pages/Hardware/projects/DukeAeroSolids2526/DukeAeroSolids2526'
 import DukeAeroLiquids2526 from './pages/Hardware/projects/DukeAeroLiquids2526/DukeAeroLiquids2526'
+import Electromagnetism from './pages/Software/projects/Electromagnetism/Electromagnetism'
+import Fluids from './pages/Software/projects/Fluids/Fluids'
 
 export default function App() {
   return (
@@ -28,6 +30,8 @@ export default function App() {
         <Route path="/hardware/2025/dukeaero-solids" element={<DukeAeroSolids2526 />} />
         <Route path="/hardware/2025/dukeaero-liquids" element={<DukeAeroLiquids2526 />} />
         <Route path="/software" element={<Software />} />
+        <Route path="/software/projects/electromagnetism" element={<Electromagnetism />} />
+        <Route path="/software/projects/fluids" element={<Fluids />} />
         <Route path="/digital" element={<Digital />} />
         <Route path="/photography" element={<Photography />} />
         <Route path="/under-construction" element={<UnderConstruction />} />

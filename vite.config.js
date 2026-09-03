@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // In dev, Vite's SPA fallback intercepts directory-style URLs (e.g.
-// /software/projects/vector-fields/) before serving the nested index.html that
+// /software/projects/circuits/) before serving the nested index.html that
 // lives in public/. This middleware serves those static pages so the dev server
 // behaves like the built output (and GitHub Pages).
 function servePublicHtmlDirs() {
